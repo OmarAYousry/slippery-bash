@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerBehaviour playerBehaviour = null;
+
     public void OnNavigate()
     {
         Debug.Log("Navigating...");
@@ -11,18 +14,13 @@ public class PlayerInputController : MonoBehaviour
     public void OnSubmit()
     {
         Debug.Log("Submitting...");
-        GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+        //GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
     }
 
     public void OnPunch()
     {
-        GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
+        //GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
         Debug.Log("Shots fired!!!");
-    }
-
-    public void OnPause()
-    {
-        Debug.Log("Pausing...");
     }
 
     public void OnResume()
@@ -42,6 +40,13 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        Debug.Log("Moving..." + value.Get<Vector2>());
+        Debug.Log("Moving...");
+        Vector2 moveDirection = value.Get<Vector2>();
+        playerBehaviour.MovePlayer(moveDirection);
+    }
+
+    public void OnPause()
+    {
+        PauseMenuBehaviour.ShowPauseMenu();
     }
 }

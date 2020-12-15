@@ -90,8 +90,9 @@ GameObject:
   - component: {fileID: 956461136107283255}
   - component: {fileID: 8801331566746638946}
   - component: {fileID: 1109056335167332252}
+  - component: {fileID: 3093025917337889201}
   m_Layer: 5
-  m_Name: Start_Button
+  m_Name: Start Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,3 +198,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3093025917337889201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115912492381066876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775fc18e6ebbe2e41a3a7c2f5574fc77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
