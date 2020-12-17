@@ -7,13 +7,14 @@ using UnityEngine.Rendering.HighDefinition;
 /// This script sets the exposure and intensity of the sky light.
 /// We blend between 2 modes: bright and dark
 /// </summary>
-public class SkyController: BlendBinaryState
+public class SkyController: BlendState
 {
+    private const int STATE_AMOUNT = 3;
+
     [SerializeField] private HDAdditionalLightData sun;
     [SerializeField] private Volume vfx;
 
-    public SkyProfile state1;
-    public SkyProfile state2;
+    public SkyProfile[] states;
 
     private VolumeProfile profile;
     private HDRISky hDRISky;
@@ -32,31 +33,75 @@ public class SkyController: BlendBinaryState
         profile.TryGet(out indirectLighting);
     }
 
+    /// <summary>
+    /// Make sure the state array is always size STATE_AMOUNT.
+    /// </summary>
+    private void OnValidate()
+    {
+        if(startState >= STATE_AMOUNT)
+        {
+            startState = STATE_AMOUNT - 1;
+        }
+
+        if(states.Length != STATE_AMOUNT)
+        {
+            SkyProfile[] old = new SkyProfile[states.Length];
+            for(int i = 0; i < old.Length; i++)
+            {
+                old[i] = states[i];
+            }
+            states = new SkyProfile[STATE_AMOUNT];
+            if(old.Length > 0)
+            {
+                for(int i = 0; i < states.Length; i++)
+                {
+                    states[i] = old[Mathf.Min(i, old.Length - 1)];
+                }
+            }
+        }
+    }
+
+    public override int StateAmount()
+    {
+        return STATE_AMOUNT;
+    }
+
 
     //---------------------------------------------------------------------------------------------//
-    protected override void ApplyProgress(float progress)
+    protected override void ApplyTransition(int toState, float transition)
     {
         baking = !baking;
         if(baking)
             return;
 
-        ApplyInstant(progress);
-    }
+        SkyProfile profile = states[toState];
 
-    protected override void ApplyInstant(float progress)
-    {
         sun.lightUnit = LightUnit.Lux;
-        float value = Mathf.Lerp(state1.lux, state2.lux, progress);
+        float value = Mathf.Lerp(sun.intensity, profile.lux, transition);
         sun.SetIntensity(value, LightUnit.Lux);
 
-        hDRISky.exposure.value = Mathf.Lerp(state1.skyExposure, state2.skyExposure, progress);
+        value = Mathf.Lerp(hDRISky.exposure.value, profile.skyExposure, transition);
+        hDRISky.exposure.value = value;
 
-        exposure.fixedExposure.value = Mathf.Lerp(state1.exposure, state2.exposure, progress);
+        value = Mathf.Lerp(exposure.fixedExposure.value, profile.exposure, transition);
+        exposure.fixedExposure.value = value;
 
-        indirectLighting.indirectDiffuseIntensity.value = Mathf.Lerp(state1.indirect, state2.indirect, progress);
+        value = Mathf.Lerp(indirectLighting.indirectDiffuseIntensity.value, profile.indirect, transition);
+        indirectLighting.indirectDiffuseIntensity.value = value;
     }
 
-    protected override void OverrideStateProperties(bool firstState)
+    protected override void ApplyState(int toState)
+    {
+        SkyProfile profile = states[toState];
+
+        sun.lightUnit = LightUnit.Lux;
+        sun.SetIntensity(profile.lux, LightUnit.Lux);
+        hDRISky.exposure.value = profile.skyExposure;
+        exposure.fixedExposure.value = profile.exposure;
+        indirectLighting.indirectDiffuseIntensity.value = profile.indirect;
+    }
+
+    protected override void OverrideStateProperties(int index)
     {
         VolumeProfile origin = profile;
         if(!origin)
@@ -69,7 +114,7 @@ public class SkyController: BlendBinaryState
         origin.TryGet(out exposure);
         origin.TryGet(out indirectLighting);
 
-        SkyProfile file = firstState ? state1 : state2;
+        SkyProfile file = states[index];
 
         sun.lightUnit = LightUnit.Lux;
         file.lux = sun.intensity;

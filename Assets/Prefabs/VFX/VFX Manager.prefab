@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301e10a94a7530a42baa2c21c345a8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   duration: 5
   curve:
     serializedVersion: 2
@@ -38,8 +37,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  state1: {fileID: 1228009187730433554}
-  state2: {fileID: 1768472462144020699}
+  states:
+  - {fileID: 1228009187730433554}
+  - {fileID: 1768472462144020699}
+  - {fileID: 1228009187730433554}
 --- !u!114 &79673903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faab4abdbd15b8c41864c170572f21f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   duration: 5
   curve:
     serializedVersion: 2
@@ -80,8 +80,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   sun: {fileID: 8498346699953789059}
   vfx: {fileID: 5574114639682499965}
-  state1: {fileID: 11400000, guid: b4c009a169d06324c8bd8a2d2551c524, type: 2}
-  state2: {fileID: 11400000, guid: d26c5068e45d818498b6d54e49898c57, type: 2}
+  states:
+  - {fileID: 11400000, guid: b4c009a169d06324c8bd8a2d2551c524, type: 2}
+  - {fileID: 11400000, guid: d26c5068e45d818498b6d54e49898c57, type: 2}
+  - {fileID: 11400000, guid: b4c009a169d06324c8bd8a2d2551c524, type: 2}
 --- !u!1 &8595074268730062025
 GameObject:
   m_ObjectHideFlags: 0

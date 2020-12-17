@@ -2,16 +2,16 @@
 
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
-/// This class handles the transition between two states.
+/// This class handles the transition between states.
 /// </summary>
-public abstract class BlendBinaryState : MonoBehaviour
+public abstract class BlendState: MonoBehaviour
 {
     [Header("Transition")]
     /// <summary>
-    /// At what state should the object start?
+    /// Give the index of the state to start with.
     /// </summary>
-    [Tooltip("At what state should the object start?")]
-    [Range(0,1)] public float startValue = 0;
+    [Tooltip("Give the index of the state to start with.")]
+    public int startState = 0;
     /// <summary>
     /// The time in seconds the transition to the requested intensity needs.
     /// </summary>
@@ -23,18 +23,15 @@ public abstract class BlendBinaryState : MonoBehaviour
     [Tooltip("The curve of the value during the transition over time.")]
     public AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
 
-    private float toValue;
-    private float currentValue;
-    private int progression;          // -1: go to 0; 0: no animation; 1: go to 1
+    private int toState;
+    private float transition = -1;
 
 
     //---------------------------------------------------------------------------------------------//
     private void Start()
     {
-        Value = overrideValue = toValue = currentValue = startValue;
-        progression = 0;
-
-        ApplyInstant(startValue);
+        toState = startState;
+        ApplyState(toState);
     }
 
 
@@ -44,18 +41,33 @@ public abstract class BlendBinaryState : MonoBehaviour
     /// The blend factor between dark and bright; 1: bright.
     /// Changing this property will trigger a transition to the requested intensity.
     /// </summary>
-    public float Value
+    public int State
     {
         get
         {
-            return currentValue;
+            return toState;
         }
         set
         {
-            if(value != toValue)
+            int amount = StateAmount();
+            int targetIndex = value;
+            if(targetIndex >= amount)
             {
-                toValue = value;
-                progression = toValue > currentValue ? 1 : -1;
+                targetIndex = amount - 1;
+                Debug.LogWarning(string.Concat(
+                    "[",
+                    GetType(),
+                    "] This object does not handle ",
+                    value,
+                    " states. The target index is set to ",
+                   targetIndex,
+                    " instead if necessary."
+                    ));
+            }
+            if(targetIndex != toState)
+            {
+                toState = targetIndex;
+                transition = 0;
             }
         }
     }
@@ -67,9 +79,14 @@ public abstract class BlendBinaryState : MonoBehaviour
     {
         get
         {
-            return progression != 0;
+            return transition >= 0;
         }
     }
+
+    /// <summary>
+    /// How many states does this script handle?
+    /// </summary>
+    public abstract int StateAmount();
     #endregion
 
 
@@ -80,26 +97,22 @@ public abstract class BlendBinaryState : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if(progression != 0)
+        if(IsAnimating)
         {
-            if(progression > 0 && currentValue >= toValue
-                || progression < 0 && currentValue <= toValue)
+            transition += Time.deltaTime / duration;
+            float progress = curve.Evaluate(transition);
+            ApplyTransition(toState, progress);
+
+            if(transition >= 1)
             {
-                currentValue = toValue;
-                progression = 0;
+                transition = -1;
             }
-            else
-            {
-                currentValue += Time.deltaTime / duration * progression;
-            }
-            float progress = curve.Evaluate(currentValue);
-            ApplyProgress(progress);
         }
     }
 
-    protected abstract void ApplyProgress(float progress);
+    protected abstract void ApplyTransition(int toState, float transition);
 
-    protected abstract void ApplyInstant(float progress);
+    protected abstract void ApplyState(int toState);
     #endregion
 
 
@@ -111,24 +124,24 @@ public abstract class BlendBinaryState : MonoBehaviour
     public bool debugging { get; set; }
     /// <summary>
     /// This attribute is used for on editor debugging and only applies if debugging is set to true.
-    /// Use the Value property instead for proper blending.
+    /// Use the State property instead for proper blending.
     /// </summary>
-    public float overrideValue { get; set; }
+    public int forceState { get; set; }
 
     /// <summary>
     /// Save the properties of the states and overwrite them on the active assets.
     /// This is only applied during debugging and only to be used from the inspector.
     /// !WARNING IT WILL DISCARD PREVIOUS CHANGES ON THE ASSET!
     /// </summary>
-    /// <param name="firstState">true if the asset of the first state should be overwritten</param>
-    public void OverrideButton(bool firstState)
+    /// <param name="state">index of the state in the array</param>
+    public void OverrideButton(int state)
     {
         if(debugging)
         {
-            OverrideStateProperties(firstState);
+            OverrideStateProperties(state);
         }
     }
 
-    protected abstract void OverrideStateProperties(bool firstState);
+    protected abstract void OverrideStateProperties(int index);
     #endregion
 }
