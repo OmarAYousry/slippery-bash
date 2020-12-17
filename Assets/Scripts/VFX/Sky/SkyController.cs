@@ -11,8 +11,8 @@ public class SkyController: BlendState
 {
     private const int STATE_AMOUNT = 3;
 
-    [SerializeField] private HDAdditionalLightData sun;
-    [SerializeField] private Volume vfx;
+    [SerializeField] private HDAdditionalLightData sun = null;
+    [SerializeField] private Volume vfx = null;
 
     public SkyProfile[] states;
 

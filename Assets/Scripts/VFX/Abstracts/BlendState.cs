@@ -28,7 +28,7 @@ public abstract class BlendState: MonoBehaviour
 
 
     //---------------------------------------------------------------------------------------------//
-    private void Start()
+    protected virtual void Start()
     {
         toState = startState;
         ApplyState(toState);
