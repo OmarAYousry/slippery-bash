@@ -12,7 +12,7 @@ public class OceanBuoyancy : MonoBehaviour
 
     private void Awake()
     {
-        rigidBody = transform.GetComponentInParent<Rigidbody>();
+        rigidBody = transform.GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -23,7 +23,13 @@ public class OceanBuoyancy : MonoBehaviour
             float distanceToSurface = surfaceHeight - bElement.transform.position.y;
 
             if (bElement.transform.position.y <= surfaceHeight)
-                rigidBody.AddForceAtPosition(Vector3.up * (buoyancyForce * (depthFactor * distanceToSurface)), transform.position);
+                rigidBody.AddForceAtPosition(Vector3.up * (buoyancyForce * (depthFactor * distanceToSurface)), bElement.transform.position);
+
+            //if (bElement.transform.position.y > surfaceHeight)
+            //{
+            //    Debug.Log("Applying gravity force");
+            //    rigidBody.AddForceAtPosition(Vector3.down * buoyancyForce * 50f, transform.position);
+            //}
         }
     }
 }
