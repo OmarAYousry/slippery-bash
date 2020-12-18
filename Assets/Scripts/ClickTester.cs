@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ClickTester : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                TileController tile = hit.collider.gameObject.GetComponent<TileController>();
+
+                TileController tile = hit.collider.gameObject.GetComponentInParent<TileController>();
                 if (tile != null)
                 {
                     tile.DestroyMesh();
