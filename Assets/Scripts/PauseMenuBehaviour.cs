@@ -9,11 +9,11 @@ public class PauseMenuBehaviour : MonoBehaviour
     void Awake()
     {
         instance = this;
+        HidePauseMenu();
     }
 
     void Start()
     {
-        HidePauseMenu();
     }
 
     public static bool isGamePaused { get { return instance.gameObject.activeSelf; } }
@@ -26,8 +26,12 @@ public class PauseMenuBehaviour : MonoBehaviour
         instance.gameObject.SetActive(true);
     }
 
+    public static void HidePauseMenu()
+    {
+        instance.OnResumeButtonPressed();
+    }
 
-    public void HidePauseMenu()
+    public void OnResumeButtonPressed()
     {
         if (!isGamePaused)
             return;
@@ -35,11 +39,17 @@ public class PauseMenuBehaviour : MonoBehaviour
         Debug.LogError("Beeeep");
 
         instance.gameObject.SetActive(false);
+
+        GameController.ResumeGame();
     }
 
-    public void EndGame()
+
+    public void OnEndGameButtonPressed()
     {
         Debug.LogError("Boooop");
         // go back to lobby
+        instance.gameObject.SetActive(false);
+
+        GameController.ResetToLobby();
     }
 }
