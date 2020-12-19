@@ -6,6 +6,12 @@
 /// </summary>
 public abstract class BlendState: MonoBehaviour
 {
+    /// <summary>
+    /// Should this script setup the first state?
+    /// </summary>
+    [Tooltip("Should this script setup the first state?")]
+    public bool setInitialState = false;
+
     [Header("Transition")]
     /// <summary>
     /// Give the index of the state to start with.
@@ -30,8 +36,11 @@ public abstract class BlendState: MonoBehaviour
     //---------------------------------------------------------------------------------------------//
     protected virtual void Start()
     {
-        toState = startState;
-        ApplyState(toState);
+        if(setInitialState)
+        {
+            toState = startState;
+            ApplyState(toState);
+        }
     }
 
 

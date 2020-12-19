@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e5f4d29093dd24aa302ac2cadd9120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setInitialState: 1
   startState: 0
   duration: 5
   curve:

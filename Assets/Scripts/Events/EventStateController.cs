@@ -8,9 +8,9 @@ public class EventStateController: BlendState
 {
     public enum EventState { Idle, Titanic, Storm, Snow }
 
-    [SerializeField] private BlendState sky;
-    [SerializeField] private BlendState wave;
-    [SerializeField] private EventStateProfile[] profiles;
+    [SerializeField] private BlendState sky = null;
+    [SerializeField] private BlendState wave = null;
+    [SerializeField] private EventStateProfile[] profiles = null;
 
     [Header("Parameters")]
     /// <summary>

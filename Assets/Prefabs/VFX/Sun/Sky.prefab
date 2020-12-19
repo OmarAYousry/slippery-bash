@@ -234,7 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faab4abdbd15b8c41864c170572f21f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startState: 1
+  setInitialState: 0
+  startState: 0
   duration: 5
   curve:
     serializedVersion: 2
