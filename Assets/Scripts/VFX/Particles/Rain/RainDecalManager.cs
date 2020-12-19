@@ -27,6 +27,8 @@ public class RainDecalManager : MonoBehaviour
     [Tooltip("The range in which the particle spawns decals. (too small: no spawn; too big: too many spawns)")]
     public float spawnHeight = .1f;
 
+    private int updatesSkipped;
+
     private ParticleSystem.Particle[] particles;
     private List<RainDecal> inactiveDecals;
     private int amountOfActiveParticles;
@@ -55,6 +57,13 @@ public class RainDecalManager : MonoBehaviour
 
     private void Update()
     {
+        if(updatesSkipped < skipUpdates)
+        {
+            updatesSkipped++;
+            return;
+        }
+        updatesSkipped = 0;
+
         SpawnDecal();
     }
 
@@ -68,6 +77,10 @@ public class RainDecalManager : MonoBehaviour
 
             // Get all active particles from the particle system.
             amountOfActiveParticles = rain.GetParticles(particles);
+
+            // abort if there is no particle
+            if(amountOfActiveParticles <= 0)
+                return;
 
             // get the current range of the ocean
             oceanRange.z = OceanRenderer.Instance.SeaLevel;

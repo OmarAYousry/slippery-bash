@@ -18,3 +18,6 @@ MonoBehaviour:
   waveProperties:
     state: 2
     transitionDuration: 100
+  particlesProperties:
+    state: 2
+    transitionDuration: 10

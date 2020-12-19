@@ -12,4 +12,5 @@ public class EventStateProfile : ScriptableObject
 
     public BlendStateProperties skyProperties;
     public BlendStateProperties waveProperties;
+    public BlendStateProperties particlesProperties;
 }

@@ -10,6 +10,7 @@ public class EventStateController: BlendState
 
     [SerializeField] private BlendState sky = null;
     [SerializeField] private BlendState wave = null;
+    [SerializeField] private BlendState particles = null;
     [SerializeField] private EventStateProfile[] profiles = null;
 
     [Header("Parameters")]
@@ -26,6 +27,8 @@ public class EventStateController: BlendState
     protected override void Start()
     {
         State = (int)initialState;
+
+        EventStateProfile profile = profiles[State];
 
         base.Start();
     }
@@ -80,6 +83,9 @@ public class EventStateController: BlendState
 
         wave.duration = profile.waveProperties.transitionDuration;
         wave.State = profile.waveProperties.state;
+
+        particles.duration = profile.particlesProperties.transitionDuration;
+        particles.State = profile.particlesProperties.state;
     }
 
     protected override void OverrideStateProperties(int index)

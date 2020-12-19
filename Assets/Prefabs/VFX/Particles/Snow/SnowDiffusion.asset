@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2686e09ec7aef44bad2843e4416f057, type: 3}
-  m_Name: RainDiffusion
+  m_Name: SnowDiffusion
   m_EditorClassIdentifier: 
   m_Version: 1
   profile:
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    transmissionTint: {r: 0.003676507, g: 0.008568125, b: 0.012983031, a: 1}
+    transmissionTint: {r: 1, g: 1, b: 1, a: 1}
     texturingMode: 0
     transmissionMode: 1
-    thicknessRemap: {x: 0, y: 49.999996}
+    thicknessRemap: {x: 0, y: 50}
     worldScale: 1
-    ior: 1
-    hash: 1081122541
+    ior: 1.4
+    hash: 1075116102
