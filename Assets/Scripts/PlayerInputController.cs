@@ -6,20 +6,32 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private PlayerBehaviour playerBehaviour = null;
 
+    [SerializeField]
+    private PlayerInput playerInput = null;
+
     public void OnNavigate()
     {
         Debug.Log("Navigating...");
     }
 
+    public void OnCancel()
+    {
+        GameController.ResumeGame();
+    }
+
     public void OnSubmit()
     {
         Debug.Log("Submitting...");
-        //GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+    }
+
+    public void OnJump()
+    {
+        playerBehaviour.PerformJump();
     }
 
     public void OnPunch()
     {
-        //GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
+        playerBehaviour.PerformPunch();
         Debug.Log("Shots fired!!!");
     }
 
@@ -28,25 +40,19 @@ public class PlayerInputController : MonoBehaviour
         Debug.Log("Resuming...");
     }
 
-    public void OnJoin()
-    {
-        Debug.Log("Joining...");
-    }
-
-    public void OnLeave()
-    {
-        Debug.Log("Leaving...");
-    }
-
     public void OnMove(InputValue value)
     {
-        Debug.Log("Moving...");
         Vector2 moveDirection = value.Get<Vector2>();
-        playerBehaviour.MovePlayer(moveDirection);
+        playerBehaviour.UpdateSpeed(moveDirection);
     }
 
     public void OnPause()
     {
-        PauseMenuBehaviour.ShowPauseMenu();
+        GameController.PauseGame();
+    }
+
+    public void ChangeInputMap(string mapName)
+    {
+        playerInput.SwitchCurrentActionMap(mapName);
     }
 }
