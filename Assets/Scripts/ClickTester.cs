@@ -12,11 +12,10 @@ public class ClickTester : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-
                 TileController tile = hit.collider.gameObject.GetComponentInParent<TileController>();
                 if (tile != null)
                 {
-                    tile.DestroyMesh();
+                    tile.DestroyMesh(secondsToWait: 0.0f);
                 }
             }
         }
