@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
@@ -19,6 +20,9 @@ public class EventStateController: BlendState
     /// </summary>
     [Tooltip("With which event state will the game start?")]
     public EventState initialState = EventState.Idle;
+
+    [Header("Storm")]
+    public LightningBehavior lightning;
 
     //private EventState currentState;
 
@@ -93,4 +97,19 @@ public class EventStateController: BlendState
         Debug.Log("[EventStateController] Overriding is not necessary since changes is already made on the file.");
     }
     #endregion
+
+    public Transform target;
+    public float debugSpawn = 5;
+    private float debugtimer;
+    private void LateUpdate()
+    {
+        if(debugtimer < debugSpawn)
+        {
+            debugtimer += Time.deltaTime;
+            return;
+        }
+        debugtimer = 0;
+
+        lightning.SetLightning(target.position);
+    }
 }

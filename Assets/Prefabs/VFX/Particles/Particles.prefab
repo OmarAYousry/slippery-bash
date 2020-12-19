@@ -47,8 +47,8 @@ MonoBehaviour:
     type: 3}
   rain: {fileID: 6791746604192597118}
   maxDecals: 255
-  skipUpdates: 10
-  spawnHeight: 1
+  skipUpdates: 1
+  spawnHeight: 10
 --- !u!1 &4284749338494245882
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 7293400785779492700, guid: 961849f32d2e2fe4c87bd8da96b7aed3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7293400785779492700, guid: 961849f32d2e2fe4c87bd8da96b7aed3,
         type: 3}
@@ -224,7 +224,7 @@ PrefabInstance:
     - target: {fileID: 5202582203005273449, guid: 1afd8e3f75d662844a505d3de2dfbcb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5202582203005273449, guid: 1afd8e3f75d662844a505d3de2dfbcb8,
         type: 3}
