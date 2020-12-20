@@ -13,6 +13,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Vector3 playerSpeed = new Vector3();
 
+    bool isJumping = false;
+
     private void Awake()
     {
         SpawnPlayerWithRandomOffset();
@@ -91,11 +93,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerAnimator.SetTrigger("Punch");
 
-        if (Physics.SphereCast(punchTransform.transform.position, 1.0f, transform.forward, out RaycastHit hitInfo, maxDistance: 0.0f))
-        {
-            // assume player?? what if floor?
-        }
-
         Vector3 punchContactPoint = punchTransform.transform.position;
         const float punchRadius = 1.0f;
 
@@ -137,6 +134,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformJump()
     {
+        if (isJumping)
+            return;
+
+        isJumping = true;
+
         playerAnimator.SetTrigger("Jump");
 
         float jumpPower = 3.0f;
@@ -153,4 +155,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerInputController.ChangeInputMap("Player");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // should check "Floor" tag -- not yet implemented
+        isJumping = false;
+    }
+
 }
