@@ -20,8 +20,9 @@ public class EventStateSwitcher: BlendState
     [Tooltip("With which event state will the game start?")]
     public EventState initialState = EventState.Idle;
 
-    [Header("Storm")]
-    [SerializeField] private LightningSpawner lightning = null;
+    [Header("Behaviors")]
+    [SerializeField] private EventBehavior titanic = null;
+    [SerializeField] private EventBehavior storm = null;
 
 
     private bool skyReady;
@@ -98,15 +99,24 @@ public class EventStateSwitcher: BlendState
 
         sky.duration = profile.skyProperties.transitionDuration;
         sky.State = profile.skyProperties.state;
+        skyReady = false;
         sky.OnAnimationEnd += EffectReady;
 
         wave.duration = profile.waveProperties.transitionDuration;
         wave.State = profile.waveProperties.state;
+        waveReady = false;
         wave.OnAnimationEnd += EffectReady;
 
         particles.duration = profile.particlesProperties.transitionDuration;
         particles.State = profile.particlesProperties.state;
+        particlesReady = false;
         particles.OnAnimationEnd += EffectReady;
+
+        if(!sky.IsAnimating && !wave.IsAnimating && !particles.IsAnimating)
+        {
+            TriggerEventBehaviour();
+            OnAnimationEnd?.Invoke(this);
+        }
     }
 
     protected override void DisableState(int previousState) {
@@ -115,8 +125,10 @@ public class EventStateSwitcher: BlendState
             case EventState.Idle:
                 break;
             case EventState.Titanic:
+                titanic.ResetBehavior();
                 break;
             case EventState.Storm:
+                storm.ResetBehavior();
                 break;
             case EventState.Snow:
                 break;
@@ -160,9 +172,10 @@ public class EventStateSwitcher: BlendState
             case EventState.Idle:
                 break;
             case EventState.Titanic:
+                titanic.StartBehavior(EventDuration);
                 break;
             case EventState.Storm:
-                lightning.Spawn(EventDuration);
+                storm.StartBehavior(EventDuration);
                 break;
             case EventState.Snow:
                 break;

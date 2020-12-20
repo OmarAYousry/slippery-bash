@@ -3,9 +3,9 @@ using UnityEngine;
 
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
-/// This script spawns a lightning object at a player position.
+/// This script spawns lightning objects at the player positions.
 /// </summary>
-public class LightningSpawner : MonoBehaviour
+public class StormBehavior : EventBehavior
 {
     [SerializeField] private GameObject prefab;
 
@@ -38,15 +38,16 @@ public class LightningSpawner : MonoBehaviour
 
 
     //---------------------------------------------------------------------------------------------//
-    /// <summary>
-    /// Let the thunder begin!
-    /// </summary>
-    /// <param name="duration">How long is the event?</param>
-    public void Spawn(float duration)
+    public override void StartBehavior(float duration)
     {
         spawnOffset = duration / lightningAmount;
         spawnTimer = spawnOffset;
         amountLeft = lightningAmount;
+    }
+
+    public override void ResetBehavior()
+    {
+        amountLeft = 0;
     }
 
 
@@ -101,7 +102,7 @@ public class LightningSpawner : MonoBehaviour
             }
         }
         hitPoint /= targetAmount;
-        randomOffset = Random.insideUnitSphere * (currentRadius + additionalSpawnRadius);
+        randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
         hitPoint.x += randomOffset.x;
         hitPoint.z += randomOffset.y;
 

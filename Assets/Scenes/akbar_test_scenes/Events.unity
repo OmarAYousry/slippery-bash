@@ -459,7 +459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406837218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1238194, y: 0, z: -6.481616}
+  m_LocalPosition: {x: -3.12, y: 0, z: -2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2140407284}
@@ -785,7 +785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791929484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.4438195, y: 0, z: -14.621616}
+  m_LocalPosition: {x: -4.55, y: 0, z: 1.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2140407284}
@@ -934,7 +934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950474165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9561806, y: 0, z: -10.021616}
+  m_LocalPosition: {x: 2.88, y: 0, z: -3.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2140407284}
@@ -1531,7 +1531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934123370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.7161806, y: 0, z: -12.681616}
+  m_LocalPosition: {x: 1.07, y: 0, z: 0.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2140407284}
@@ -2041,6 +2041,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1739130670029463982, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3122524580988490493, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2101,6 +2106,36 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1964052157}
+    - target: {fileID: 4754789813239825645, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976667606763103856, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: targets.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976667606763103856, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 950474166}
+    - target: {fileID: 4976667606763103856, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 406837219}
+    - target: {fileID: 4976667606763103856, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: targets.Array.data[2]
+      value: 
+      objectReference: {fileID: 1934123371}
+    - target: {fileID: 4976667606763103856, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: targets.Array.data[3]
+      value: 
+      objectReference: {fileID: 791929485}
     - target: {fileID: 6341384700895949144, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: target
@@ -2158,18 +2193,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
+      propertyPath: stormProbability.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
       propertyPath: initialIdleDuration
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: maxMinEventDuration.x
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: maxMinEventDuration.y
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
@@ -2229,7 +2269,7 @@ PrefabInstance:
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: titanicProbability.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
@@ -2240,6 +2280,16 @@ PrefabInstance:
         type: 3}
       propertyPath: idleProbability.m_Curve.Array.data[0].inWeight
       value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: stormProbability.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019374289903244966, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da13107105d6a5440901cf089f2715d1, type: 3}
