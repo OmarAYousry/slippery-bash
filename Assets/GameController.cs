@@ -25,18 +25,18 @@ public class GameController : MonoBehaviour
     public static void StartLobby()
     {
         TitleBehaviour.DisableTitleScreen();
-        instance.StartCoroutine(StartButtonBehaviour.EnableStartButton(secondsToWait: 1.0f));
+        instance.StartCoroutine(LobbyBehaviour.EnableLobbyUI(secondsToWait: 3.0f));
     }
 
     public static void StartGame()
     {
-        instance.StartCoroutine(StartButtonBehaviour.DisableStartButton());
-        instance.StartCoroutine(StartButtonBehaviour.StartGameCountdown());
+        //instance.StartCoroutine(LobbyBehaviour.DisableLobbyUI());
+        instance.StartCoroutine(LobbyBehaviour.StartGameCountdown());
     }
 
     public static void PauseGame()
     {
-        if (PauseMenuBehaviour.isGamePaused || StartButtonBehaviour.isInLobby)
+        if (PauseMenuBehaviour.isGamePaused || LobbyBehaviour.isInLobby)
         {
             return;
         }
