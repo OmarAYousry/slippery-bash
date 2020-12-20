@@ -23,6 +23,7 @@ public class EventStateSwitcher: BlendState
     [Header("Behaviors")]
     [SerializeField] private EventBehavior titanic = null;
     [SerializeField] private EventBehavior storm = null;
+    [SerializeField] private EventBehavior snow = null;
 
 
     private bool skyReady;
@@ -131,6 +132,7 @@ public class EventStateSwitcher: BlendState
                 storm.ResetBehavior();
                 break;
             case EventState.Snow:
+                snow.ResetBehavior();
                 break;
         }
     }
@@ -178,6 +180,7 @@ public class EventStateSwitcher: BlendState
                 storm.StartBehavior(EventDuration);
                 break;
             case EventState.Snow:
+                snow.StartBehavior(EventDuration);
                 break;
         }
     }

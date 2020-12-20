@@ -251,8 +251,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afad61efcad171047adb42e712597c0c, type: 2}
   - {fileID: 11400000, guid: 02db476328efc5441b9f8ca7794c3825, type: 2}
   initialState: 0
-  storm: {fileID: 8510035596860491626}
   titanic: {fileID: 4976667606763103856}
+  storm: {fileID: 8510035596860491626}
+  snow: {fileID: 5772254098464946884}
 --- !u!1001 &1725370421026262212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,6 +329,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1725370421026262212}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5772254098464946884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5182118993501566464, guid: 1c4b7a944272769498f6680e7032ef7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725370421026262212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41159c7a11fa3ae4eaeef28c599e4d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2384856151921136059
 PrefabInstance:
   m_ObjectHideFlags: 0
