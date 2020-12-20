@@ -9,19 +9,9 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private PlayerInput playerInput = null;
 
-    public void OnNavigate()
-    {
-        Debug.Log("Navigating...");
-    }
-
     public void OnCancel()
     {
         GameController.ResumeGame();
-    }
-
-    public void OnSubmit()
-    {
-        Debug.Log("Submitting...");
     }
 
     public void OnJump()
@@ -32,12 +22,6 @@ public class PlayerInputController : MonoBehaviour
     public void OnPunch()
     {
         playerBehaviour.PerformPunch();
-        Debug.Log("Shots fired!!!");
-    }
-
-    public void OnResume()
-    {
-        Debug.Log("Resuming...");
     }
 
     public void OnMove(InputValue value)
@@ -49,6 +33,11 @@ public class PlayerInputController : MonoBehaviour
     public void OnPause()
     {
         GameController.PauseGame();
+    }
+
+    public void OnLobbyStart()
+    {
+        LobbyBehaviour.virtualStartGameButtonClick();
     }
 
     public void ChangeInputMap(string mapName)
