@@ -11,6 +11,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private Transform punchTransform = null;
 
+    [SerializeField]
+    private SwimmingBehaviour swimBehaviour = null;
+
     private Vector3 playerSpeed = new Vector3();
 
     bool isJumping = false;
@@ -156,10 +159,32 @@ public class PlayerBehaviour : MonoBehaviour
         playerInputController.ChangeInputMap("Player");
     }
 
+    public void KillPlayer()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // should check "Floor" tag -- not yet implemented
         isJumping = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            playerAnimator.SetBool("Swimming", true);
+            swimBehaviour.StartSwimming();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            playerAnimator.SetBool("Swimming", false);
+            swimBehaviour.EndSwimming();
+        }
+    }
 }
