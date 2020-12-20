@@ -75,7 +75,7 @@ Material:
     - _SmoothnessFarDistance: 2000
     - _Specular: 0.34
     m_Colors:
-    - _DepthFogDensity: {r: 0.5, g: 0.36, b: 0.36, a: 0}
+    - _DepthFogDensity: {r: 1, g: 1, b: 1, a: 0}
     - _FoamBubbleColor: {r: 0.6392157, g: 0.8313726, b: 0.8196079, a: 0}
     - _SSSTint: {r: 0.0763862, g: 0.426, b: 0.39074484, a: 0}
     - _ScatterColourBase: {r: 0, g: 0.107907996, b: 0.16470589, a: 0}
