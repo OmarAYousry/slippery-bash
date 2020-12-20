@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
@@ -75,6 +76,7 @@ public abstract class BlendState: MonoBehaviour
             }
             if(targetIndex != toState)
             {
+                DisableState(toState);
                 toState = targetIndex;
                 transition = 0;
             }
@@ -84,13 +86,20 @@ public abstract class BlendState: MonoBehaviour
     /// <summary>
     /// The property telling, if the object is currently animating the transition to a requested intensity.
     /// </summary>
-    public bool IsAnimating
+    public virtual bool IsAnimating
     {
         get
         {
             return transition >= 0;
         }
     }
+
+    /// <summary>
+    /// The event will be triggered after the transition is done.
+    /// Use this if you need to wait for the transition end.
+    /// Alternatively use IsAnimating.
+    /// </summary>
+    public UnityAction<BlendState> OnAnimationEnd;
 
     /// <summary>
     /// How many states does this script handle?
@@ -104,7 +113,7 @@ public abstract class BlendState: MonoBehaviour
     /// <summary>
     /// Animate the transition if requested.
     /// </summary>
-    private void Update()
+    protected virtual void Update()
     {
         if(IsAnimating)
         {
@@ -114,6 +123,10 @@ public abstract class BlendState: MonoBehaviour
 
             if(transition >= 1)
             {
+                if(duration > 0)
+                {
+                    OnAnimationEnd?.Invoke(this);
+                }
                 transition = -1;
             }
         }
@@ -122,6 +135,8 @@ public abstract class BlendState: MonoBehaviour
     protected abstract void ApplyTransition(int toState, float transition);
 
     protected abstract void ApplyState(int toState);
+
+    protected abstract void DisableState(int previousState);
     #endregion
 
 

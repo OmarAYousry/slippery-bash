@@ -80,6 +80,8 @@ public class WeatherParticleController : BlendState
         emission.rateOverTime = profile.snowEmission;
     }
 
+    protected override void DisableState(int previousState) { }
+
     protected override void OverrideStateProperties(int index)
     {
         ParticlesProfile file = states[index];

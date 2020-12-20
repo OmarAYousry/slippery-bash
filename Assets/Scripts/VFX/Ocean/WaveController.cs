@@ -78,6 +78,8 @@ public class WaveController: BlendState
         target._weight = 1;
     }
 
+    protected override void DisableState(int previousState) { }
+
     protected override void OverrideStateProperties(int index)
     {
         Debug.Log("[WaveManager] Overriding is not necessary since changes is already made on the file.");

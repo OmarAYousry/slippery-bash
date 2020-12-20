@@ -101,6 +101,8 @@ public class SkyController: BlendState
         indirectLighting.indirectDiffuseIntensity.value = profile.indirect;
     }
 
+    protected override void DisableState(int previousState) { }
+
     protected override void OverrideStateProperties(int index)
     {
         VolumeProfile origin = profile;

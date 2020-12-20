@@ -17,7 +17,7 @@ MonoBehaviour:
     transitionDuration: 5
   waveProperties:
     state: 1
-    transitionDuration: 20
+    transitionDuration: 5
   particlesProperties:
     state: 1
-    transitionDuration: 1
+    transitionDuration: 5
