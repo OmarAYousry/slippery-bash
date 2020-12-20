@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switcher: {fileID: 6341384700895949144}
-  initialIdleDuration: 10
-  maxMinEventDuration: {x: 30, y: 10}
+  initialIdleDuration: 5
+  maxMinEventDuration: {x: 30, y: 5}
   eventDurationCurve:
     serializedVersion: 2
     m_Curve:
@@ -111,7 +111,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 1
+      time: 0
       value: 1
       inSlope: 0
       outSlope: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -135,11 +135,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 1
+      time: 0
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -159,11 +159,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 1
+      time: 0
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 1
+      time: 0
       value: 1
       inSlope: 0
       outSlope: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setInitialState: 1
   startState: 0
-  duration: 5
+  duration: 0
   curve:
     serializedVersion: 2
     m_Curve:
@@ -352,6 +352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Storm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269307830078445265, guid: 226bba49c5456714c96e4a676d0a6f4e,
+        type: 3}
+      propertyPath: targets.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7609844513170930928, guid: 226bba49c5456714c96e4a676d0a6f4e,
         type: 3}
@@ -569,6 +574,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Titanic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995935656717493528, guid: 59e5a9c87a702e04491197e9ae6531b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560596643998668238, guid: 59e5a9c87a702e04491197e9ae6531b3,
+        type: 3}
+      propertyPath: targets.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7629979119061632901, guid: 59e5a9c87a702e04491197e9ae6531b3,
         type: 3}

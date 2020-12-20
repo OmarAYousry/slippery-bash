@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skyProperties:
     state: 1
-    transitionDuration: 5
+    transitionDuration: 10
   waveProperties:
     state: 1
-    transitionDuration: 5
+    transitionDuration: 10
   particlesProperties:
     state: 1
-    transitionDuration: 5
+    transitionDuration: 10

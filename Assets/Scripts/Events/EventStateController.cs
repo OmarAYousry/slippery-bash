@@ -85,6 +85,9 @@ public class EventStateController: MonoBehaviour
     /// - Resetting: Stop() has been called and all events are resetting
     /// </summary>
     public EventStatePhase Phase { get; private set; }
+
+    public float GameProgress { get { return timer / timeUntilCompleteFalloff; } }
+    public float EventProgress { get { return eventTimer / currentEventDuration; } }
     #endregion
 
 

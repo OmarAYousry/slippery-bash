@@ -76,7 +76,7 @@ public class TitanicBehavior: EventBehavior
     //---------------------------------------------------------------------------------------------//
     private void Update()
     {
-        if(desiredVelocity != Vector3.zero)
+        if(desiredVelocity.sqrMagnitude > 0)
         {
             // move the ship on the ocean
             rigid.AddForce(desiredVelocity - rigid.velocity, ForceMode.Acceleration);
@@ -84,7 +84,10 @@ public class TitanicBehavior: EventBehavior
             spawnPoint.y = OceanHeightSampler.SampleHeight(gameObject, spawnPoint);
             transform.position = spawnPoint;
             // TODO: add roll
-            transform.rotation = Quaternion.LookRotation(rigid.velocity);
+            if(rigid.velocity.sqrMagnitude > 0)
+            {
+                transform.rotation = Quaternion.LookRotation(rigid.velocity);
+            }
         }
         else if(transform.position.y < -10)
         {
@@ -95,7 +98,7 @@ public class TitanicBehavior: EventBehavior
     private void OnCollisionEnter(Collision collision)
     {
         // TODO: check if collision with tile
-        if(desiredVelocity != Vector3.zero)
+        if(desiredVelocity.sqrMagnitude > 0)
         {
             destroyCollider.parent = null;
             destroyCollider.position = transform.position;
