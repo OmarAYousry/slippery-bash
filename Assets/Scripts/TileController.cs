@@ -13,16 +13,21 @@ public class TileController : MonoBehaviour
     [SerializeField]
     float explosionForce;
 
+    int timesAlreadySteppedOn = 0;
+    const int MaxStepsBeforeBreaking = 3;
+
     void Awake()
     {
         //if (destroyer == null)
         //    destroyer = GetComponent<MeshDestroy>();
     }
 
-    public void DestroyMesh()
+    public IEnumerator DestroyMesh(float secondsToWait)
     {
         //transform.localScale *= 0.9f;
         //destroyer.DestroyMesh();
+
+        yield return new WaitForSeconds(secondsToWait);
         
         tileMesh.SetActive(false);
         brokenMeshParent.SetActive(true);
@@ -34,5 +39,25 @@ public class TileController : MonoBehaviour
             //rb.AddExplosionForce(explosionForce * randomFloat, brokenPiece.transform.position, 1f);
             rb.AddForce(Vector3.up * explosionForce);
         }
+
+        yield return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.LogError($"Hit {gameObject.name}");
+
+            // ideally load a different sprite every step or 2 to show damage
+            if (timesAlreadySteppedOn++ >= MaxStepsBeforeBreaking)
+                StartCoroutine(DestroyMesh(secondsToWait: 1.0f));
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }

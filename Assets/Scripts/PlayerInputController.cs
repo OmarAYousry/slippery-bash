@@ -9,9 +9,6 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private PlayerInput playerInput = null;
 
-    [SerializeField]
-    private Animator playerAnimator = null;
-
     public void OnNavigate()
     {
         Debug.Log("Navigating...");
@@ -27,9 +24,14 @@ public class PlayerInputController : MonoBehaviour
         Debug.Log("Submitting...");
     }
 
+    public void OnJump()
+    {
+        playerBehaviour.PerformJump();
+    }
+
     public void OnPunch()
     {
-        playerAnimator.SetTrigger("Punch");
+        playerBehaviour.PerformPunch();
         Debug.Log("Shots fired!!!");
     }
 
@@ -40,11 +42,8 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        Debug.Log("Moving...");
         Vector2 moveDirection = value.Get<Vector2>();
-        playerBehaviour.MovePlayer(moveDirection);
-        playerAnimator.SetFloat("Speed", 1.0f);
-        
+        playerBehaviour.UpdateSpeed(moveDirection);
     }
 
     public void OnPause()

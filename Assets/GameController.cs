@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
         foreach (PlayerBehaviour player in players)
         {
             // TODO: Change Control Scheme from UI
-            player.changeInputToGame();
+            player.ChangeInputToGame();
         }
 
         PauseMenuBehaviour.HidePauseMenu();

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1601137340226164720}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputController: {fileID: 2413989426128204149}
   playerRigidbody: {fileID: 1601137340226164720}
+  playerAnimator: {fileID: 7874956550721149678}
+  punchTransform: {fileID: 290746079227503670}
 --- !u!114 &2413989426128204149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBehaviour: {fileID: 4464128484117372418}
   playerInput: {fileID: 1047300810339054363}
-  playerAnimator: {fileID: 7874956550721149678}
 --- !u!136 &738746950501056213
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -189,6 +190,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &3172566711758724927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 290746079227503670}
+  m_Layer: 0
+  m_Name: PunchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &290746079227503670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172566711758724927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.135, y: 0, z: 0.128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2896873995187975993}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &175251250327068555
 PrefabInstance:
   m_ObjectHideFlags: 0
