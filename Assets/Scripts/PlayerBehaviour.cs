@@ -92,6 +92,20 @@ public class PlayerBehaviour : MonoBehaviour
         MovePlayer(playerSpeed);
     }
 
+    private void Update()
+    {
+        if(!swimBehaviour.IsSwimming && transform.position.y < OceanHeightSampler.SampleHeight(gameObject, transform.position))
+        {
+            playerAnimator.SetBool("Swimming", true);
+            swimBehaviour.StartSwimming();
+        }
+        else if(swimBehaviour.IsSwimming && transform.position.y > OceanHeightSampler.SampleHeight(gameObject, transform.position))
+        {
+            playerAnimator.SetBool("Swimming", false);
+            swimBehaviour.EndSwimming();
+        }
+    }
+
     public void PerformPunch()
     {
         playerAnimator.SetTrigger("Punch");
@@ -168,23 +182,5 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // should check "Floor" tag -- not yet implemented
         isJumping = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            playerAnimator.SetBool("Swimming", true);
-            swimBehaviour.StartSwimming();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            playerAnimator.SetBool("Swimming", false);
-            swimBehaviour.EndSwimming();
-        }
     }
 }

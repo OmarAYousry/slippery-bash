@@ -20,12 +20,7 @@ public class TitanicBehavior: EventBehavior
     /// </summary>
     [Tooltip("How long should the collider be enabled to destroy tiles?")]
     public float destroyLifetime = .1f;
-    /// The ship moves towards the player positions.
-    /// </summary>
-    [Tooltip("The ship moves towards the player positions.")]
-    public Transform[] targets;
 
-    private int targetAmount;
     private Vector3 targetPoint;
     private Vector3 spawnPoint;
     private Vector3 desiredVelocity;
@@ -38,17 +33,15 @@ public class TitanicBehavior: EventBehavior
 
         // search a point to move to
         targetPoint = Vector3.zero;
-        targetAmount = 0;
-        for(int i = 0; i < targets.Length; i++)
+        for(int i = 0; i < GameController.players.Count; i++)
         {
             // check if the player hasn't despawned yet (not expected)
-            if(targets[i])
+            if(GameController.players[i])
             {
-                targetPoint += targets[i].position;
-                targetAmount++;
+                targetPoint += GameController.players[i].transform.position;
             }
         }
-        targetPoint /= targetAmount;
+        targetPoint /= GameController.players.Count;
 
         // spawn around that point
         spawnPoint = Random.insideUnitCircle.normalized * spawnDistance;

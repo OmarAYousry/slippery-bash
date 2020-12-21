@@ -10,11 +10,6 @@ public class StormBehavior : EventBehavior
     [SerializeField] private GameObject prefab;
 
     /// <summary>
-    /// The lightning strikes near the player positions.
-    /// </summary>
-    [Tooltip("The lightning strikes near the player positions.")]
-    public Transform[] targets;
-    /// <summary>
     /// The lightning can also strike outside the player positions.
     /// </summary>
     [Tooltip("The lightning can also strike outside the player positions.")]
@@ -32,7 +27,6 @@ public class StormBehavior : EventBehavior
     private List<LightningBehavior> lightnings = new List<LightningBehavior>();
     private LightningBehavior currentLightning;
     private Vector3 hitPoint;
-    private int targetAmount;
     private float currentRadius;
     private Vector2 randomOffset;
 
@@ -90,18 +84,12 @@ public class StormBehavior : EventBehavior
 
         // search a point to hit
         hitPoint = Vector3.zero;
-        targetAmount = 0;
-        for(int i = 0; i < targets.Length; i++)
+        for(int i = 0; i < GameController.players.Count; i++)
         {
-            // check if the player hasn't despawned yet (not expected)
-            if(targets[i])
-            {
-                hitPoint += targets[i].position;
-                targetAmount++;
-                currentRadius = Vector3.Distance(targets[i].position, hitPoint / targetAmount);
-            }
+                hitPoint += GameController.players[i].transform.position;
+                currentRadius = Vector3.Distance(GameController.players[i].transform.position, hitPoint / GameController.players.Count);
         }
-        hitPoint /= targetAmount;
+        hitPoint /= GameController.players.Count;
         randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
         hitPoint.x += randomOffset.x;
         hitPoint.z += randomOffset.y;

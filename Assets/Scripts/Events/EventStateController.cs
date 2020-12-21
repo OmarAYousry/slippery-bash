@@ -8,6 +8,8 @@ using UnityEngine.Events;
 /// </summary>
 public class EventStateController: MonoBehaviour
 {
+    public static EventStateController Instance { get; private set; }
+
     public enum EventStatePhase { Standby, Playing, Pause, Resetting }
 
     [SerializeField] private EventStateSwitcher switcher = null;
@@ -93,6 +95,11 @@ public class EventStateController: MonoBehaviour
 
     //---------------------------------------------------------------------------------------------//
     #region Internal
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Update()
     {
         switch(Phase)
