@@ -76,6 +76,8 @@ public class LobbyBehaviour : MonoBehaviour
 
         instance.countdownTimerText.gameObject.SetActive(false);
 
+        EventStateController.Instance.Play();
+
         instance.gameObject.SetActive(false);
 
         yield return null;

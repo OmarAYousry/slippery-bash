@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private static GameController instance = null;
-    private static List<PlayerBehaviour> players = null;
+    public static List<PlayerBehaviour> players = null;
     
 
     private void Awake()
