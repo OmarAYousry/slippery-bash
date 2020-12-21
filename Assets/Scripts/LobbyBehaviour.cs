@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 public class LobbyBehaviour : MonoBehaviour
@@ -77,6 +78,8 @@ public class LobbyBehaviour : MonoBehaviour
         instance.countdownTimerText.gameObject.SetActive(false);
 
         instance.gameObject.SetActive(false);
+
+        FindObjectOfType<InputSystemUIInputModule>().enabled = true;
 
         yield return null;
     }
