@@ -45,6 +45,10 @@ public class TileController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // do not consider tile destruction while still in lobby
+        if (LobbyBehaviour.isInLobby)
+            return;
+
         if (other.CompareTag("Player"))
         {
             Debug.LogError($"Hit {gameObject.name}");
