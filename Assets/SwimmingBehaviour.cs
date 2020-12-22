@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SwimmingBehaviour : MonoBehaviour
@@ -7,7 +8,26 @@ public class SwimmingBehaviour : MonoBehaviour
     private PlayerBehaviour playerBehaviour = null;
 
     [SerializeField]
+    private Animator playerAnimator = null;
+
+    [SerializeField]
+    private Rigidbody playerRigidBody;
+    [SerializeField]
+    private float buoyancyForce;
+    [SerializeField]
+    private float depthFactor;
+    [SerializeField]
+    private float surfaceOffset;
+
+    [SerializeField]
     private Slider strengthBar = null;
+
+    [SerializeField]
+    private PhysicMaterial playerWalkingMaterial;
+
+    [SerializeField]
+    private PhysicMaterial playerSwimmingMaterial;
+
     public bool IsSwimming { get; private set; } = false;
 
     private readonly float drownTime = 10.0f;
@@ -38,6 +58,35 @@ public class SwimmingBehaviour : MonoBehaviour
         strengthBar.value = swimTimer;
     }
 
+    private void FixedUpdate()
+    {
+        if (IsSwimming)
+        {
+            float surfaceHeight = OceanHeightSampler.SampleHeight(playerRigidBody.gameObject, playerRigidBody.transform.position) + surfaceOffset;
+            float distanceToSurface = surfaceHeight - playerRigidBody.transform.position.y;
+
+            if (playerRigidBody.transform.position.y <= surfaceHeight)
+                playerRigidBody.AddForceAtPosition(Vector3.up * (buoyancyForce * (depthFactor * distanceToSurface)), playerRigidBody.transform.position, ForceMode.Acceleration);
+
+
+        }
+    }
+
+    public void CheckForSwimming()
+    {
+        if (!IsSwimming && transform.position.y < OceanHeightSampler.SampleHeight(gameObject, transform.position) + surfaceOffset)
+        {
+            playerRigidBody.velocity = new Vector3();
+            playerAnimator.SetBool("Swimming", true);
+            StartSwimming();
+        }
+        else if (IsSwimming && transform.position.y > OceanHeightSampler.SampleHeight(gameObject, transform.position) + surfaceOffset)
+        {
+            playerAnimator.SetBool("Swimming", false);
+            EndSwimming();
+        }
+    }
+
     private void AdjustSwimTimer()
     {
         if (IsSwimming)
@@ -59,11 +108,26 @@ public class SwimmingBehaviour : MonoBehaviour
     {
         IsSwimming = true;
         strengthBar.gameObject.SetActive(true);
+
+        StopCoroutine(AdjustPhysicsForSwimming(false));
+        StartCoroutine(AdjustPhysicsForSwimming(true));
     }
 
     public void EndSwimming()
     {
         IsSwimming = false;
         strengthBar.gameObject.SetActive(false);
+
+        StopCoroutine(AdjustPhysicsForSwimming(true));
+        StartCoroutine(AdjustPhysicsForSwimming(false));
+    }
+
+    private IEnumerator AdjustPhysicsForSwimming(bool goingToWater)
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (goingToWater)
+            GetComponent<Collider>().material = playerSwimmingMaterial;
+        else
+            GetComponent<Collider>().material = playerWalkingMaterial;
     }
 }

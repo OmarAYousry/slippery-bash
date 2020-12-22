@@ -94,16 +94,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if(!swimBehaviour.IsSwimming && transform.position.y < OceanHeightSampler.SampleHeight(gameObject, transform.position))
-        {
-            playerAnimator.SetBool("Swimming", true);
-            swimBehaviour.StartSwimming();
-        }
-        else if(swimBehaviour.IsSwimming && transform.position.y > OceanHeightSampler.SampleHeight(gameObject, transform.position))
-        {
-            playerAnimator.SetBool("Swimming", false);
-            swimBehaviour.EndSwimming();
-        }
+        swimBehaviour.CheckForSwimming();
     }
 
     public void PerformPunch()
@@ -149,6 +140,9 @@ public class PlayerBehaviour : MonoBehaviour
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
     }
 
+    [SerializeField]
+    private float jumpPower = 0.0f;
+
     public void PerformJump()
     {
         if (isJumping)
@@ -158,7 +152,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         playerAnimator.SetTrigger("Jump");
 
-        float jumpPower = 3.0f;
         Vector3 jumpDirection = transform.up; // <-- Global up or local up better? unsure, but global up *should* be the same as local up
         playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
     }
@@ -183,4 +176,10 @@ public class PlayerBehaviour : MonoBehaviour
         // should check "Floor" tag -- not yet implemented
         isJumping = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.LogError(other.tag);
+    }
+
 }
