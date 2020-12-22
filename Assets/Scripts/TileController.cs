@@ -43,6 +43,26 @@ public class TileController : MonoBehaviour
         yield return null;
     }
 
+    public void DestroyMeshCascading(float cascadeRadius = 2.0f, int maxNumCascades = 999)
+    {
+        StartCoroutine(DestroyMesh(0.0f));
+
+        Collider[] collidersInContact = Physics.OverlapSphere(transform.position, cascadeRadius);
+
+        int numCascades = 0;
+
+        foreach(Collider contactedCollider in collidersInContact)
+        {
+            if(numCascades++ < maxNumCascades)
+                break;
+
+            if(contactedCollider.name.Contains("tile"))
+            {
+                StartCoroutine(contactedCollider.GetComponent<TileController>().DestroyMesh(0.0f));
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // do not consider tile destruction while still in lobby

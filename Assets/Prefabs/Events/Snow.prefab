@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1472270457177934566}
   - component: {fileID: 5182118993501566464}
   - component: {fileID: 4417236725844839505}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,9 +3,8 @@
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
 /// This script enables a collider above the ocean for the players to move on.
-/// TODO: also freeze the tiles!
 /// </summary>
-public class SnowBehavior : EventBehavior
+public class SnowBehavior: EventBehavior
 {
     [SerializeField] private Collider col;
 
@@ -14,10 +13,34 @@ public class SnowBehavior : EventBehavior
     public override void StartBehavior(float duration)
     {
         col.enabled = true;
+        Freeze(true);
     }
 
     public override void ResetBehavior()
     {
         col.enabled = false;
+        Freeze(false);
+    }
+
+    private void Freeze(bool freeze)
+    {
+        TileController[] tiles = PlatformController.tiles;
+        Rigidbody currentRb;
+        for(int i = 0; i < tiles.Length; i++)
+        {
+            currentRb = tiles[i].GetComponent<Rigidbody>();
+            if(currentRb)
+            {
+                currentRb.useGravity = !freeze;
+                currentRb.isKinematic = freeze;
+                if(freeze)
+                    currentRb.velocity = Vector3.zero;
+            }
+        }
+        currentRb = PlatformController.rigid;
+        currentRb.useGravity = !freeze;
+        currentRb.isKinematic = freeze;
+        if(freeze)
+            currentRb.velocity = Vector3.zero;
     }
 }

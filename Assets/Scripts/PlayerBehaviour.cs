@@ -177,9 +177,4 @@ public class PlayerBehaviour : MonoBehaviour
         isJumping = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.LogError(other.tag);
-    }
-
 }

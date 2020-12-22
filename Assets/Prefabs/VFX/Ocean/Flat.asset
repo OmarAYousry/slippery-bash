@@ -33,7 +33,7 @@ MonoBehaviour:
   - 1.0282621
   - 1.4403292
   - -6
-  _powerDisabled: 0000000000000000000000000000
+  _powerDisabled: 0101010101010101010101010101
   _chopScales:
   - 1
   - 1

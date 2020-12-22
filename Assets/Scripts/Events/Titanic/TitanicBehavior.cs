@@ -91,16 +91,21 @@ public class TitanicBehavior: EventBehavior
     private void OnCollisionEnter(Collision collision)
     {
         // TODO: check if collision with tile
-        if(desiredVelocity.sqrMagnitude > 0)
+        if(collision.collider.GetComponentInParent<TileController>())
         {
-            destroyCollider.parent = null;
-            destroyCollider.position = transform.position;
-            destroyCollider.rotation = Quaternion.LookRotation(desiredVelocity, Vector3.up);
-            destroyCollider.gameObject.SetActive(true);
+            collision.collider.GetComponentInParent<TileController>().DestroyMeshCascading();
 
-            Invoke("DeactivateDestroyCollider", destroyLifetime);
+            if(desiredVelocity.sqrMagnitude > 0)
+            {
+                destroyCollider.parent = null;
+                destroyCollider.position = transform.position;
+                destroyCollider.rotation = Quaternion.LookRotation(desiredVelocity, Vector3.up);
+                destroyCollider.gameObject.SetActive(true);
 
-            Sink();
+                Invoke("DeactivateDestroyCollider", destroyLifetime);
+
+                Sink();
+            }
         }
     }
 

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    TileController[] tiles;
+    public static TileController[] tiles;
+    public static Rigidbody rigid;
 
     void Awake()
     {
         tiles = GetComponentsInChildren<TileController>();
+        rigid = GetComponent<Rigidbody>();
     }
 }

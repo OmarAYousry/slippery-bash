@@ -98,7 +98,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 100
+    widthMultiplier: 10
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5322628121809420465}
   - component: {fileID: 5322628121809420464}
+  - component: {fileID: 6144048545030830277}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -186,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 5322628121809420495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 7461238232009030359}
   - {fileID: 5858473779418350725}
@@ -350,7 +351,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hitDuration: 0.5
+  hitDuration: 1
+--- !u!54 &6144048545030830277
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322628121809420495}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5322628123688844268
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5322628123688844268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: 500, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5322628121809420465}
@@ -458,7 +475,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -5270,7 +5287,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -10007,6 +10024,16 @@ PrefabInstance:
       propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: scalingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ForceModule.y.minScalar
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2041199512760788577, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: m_Name
@@ -10096,12 +10123,17 @@ PrefabInstance:
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: EmissionModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: scalingMode
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ForceModule.y.minScalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2041199512760788577, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
@@ -10189,6 +10221,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightningLight
       objectReference: {fileID: 0}
+    - target: {fileID: 3193582105877943602, guid: d5841ce02b9fed14b82810b8cfe7af09,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 3193582105877943603, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10247,7 +10284,7 @@ PrefabInstance:
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 3.4098e-41
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
@@ -10257,7 +10294,7 @@ PrefabInstance:
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1.22e-43
+      value: 1e-45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5841ce02b9fed14b82810b8cfe7af09, type: 3}

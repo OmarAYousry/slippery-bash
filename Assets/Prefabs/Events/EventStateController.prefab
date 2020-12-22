@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 1472270457177934566, guid: 1c4b7a944272769498f6680e7032ef7a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1472270457177934566, guid: 1c4b7a944272769498f6680e7032ef7a,
         type: 3}
@@ -451,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 635051574, guid: 4ee247e0819aee747909cede7421648c, type: 3}
       propertyPath: ShapeModule.m_Scale.y
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 635051574, guid: 4ee247e0819aee747909cede7421648c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1549714372, guid: 4ee247e0819aee747909cede7421648c, type: 3}
       propertyPath: setInitialState
@@ -1656,6 +1660,11 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7293400785755921472, guid: 4ee247e0819aee747909cede7421648c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7293400785755921474, guid: 4ee247e0819aee747909cede7421648c,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -1746,6 +1755,11 @@ PrefabInstance:
         type: 3}
       propertyPath: targets.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560596643998668238, guid: 59e5a9c87a702e04491197e9ae6531b3,
+        type: 3}
+      propertyPath: spawnDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7629979119061632901, guid: 59e5a9c87a702e04491197e9ae6531b3,
         type: 3}

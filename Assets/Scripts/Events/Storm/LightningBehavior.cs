@@ -260,6 +260,14 @@ public class LightningBehavior: MonoBehaviour
         strikeTimer = 0;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerBehaviour>().GetHit((other.transform.position - transform.position).normalized);
+        }
+    }
+
 
     //---------------------------------------------------------------------------------------------//
     /// <summary>

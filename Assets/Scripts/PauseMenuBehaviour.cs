@@ -36,7 +36,6 @@ public class PauseMenuBehaviour : MonoBehaviour
         if (!isGamePaused)
             return;
 
-        Debug.LogError("Beeeep");
 
         instance.gameObject.SetActive(false);
 
