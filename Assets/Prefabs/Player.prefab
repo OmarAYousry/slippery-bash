@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 880591033494072722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 2896873995187975993}
   - {fileID: 919141104045001664}
@@ -149,6 +149,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 7874956550721149678}
   punchTransform: {fileID: 290746079227503670}
   swimBehaviour: {fileID: 7700249134392567917}
+  jumpPower: 6
 --- !u!114 &7700249134392567917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBehaviour: {fileID: 4464128484117372418}
+  playerAnimator: {fileID: 7874956550721149678}
+  playerRigidBody: {fileID: 1601137340226164720}
+  buoyancyForce: 50
+  depthFactor: 1
+  surfaceOffset: 0.2
   strengthBar: {fileID: 1726834262622375321}
+  playerWalkingMaterial: {fileID: 13400000, guid: d19495e1d18bf07478ee2f776523df62,
+    type: 2}
+  playerSwimmingMaterial: {fileID: 13400000, guid: 9dea6063a3971b445952c96bea4dc3a5,
+    type: 2}
 --- !u!114 &2413989426128204149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +194,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880591033494072722}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d19495e1d18bf07478ee2f776523df62, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.17
