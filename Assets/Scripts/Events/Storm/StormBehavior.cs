@@ -84,12 +84,15 @@ public class StormBehavior : EventBehavior
 
         // search a point to hit
         hitPoint = Vector3.zero;
-        for(int i = 0; i < GameController.players.Count; i++)
+        if(GameController.players != null)
         {
+            for(int i = 0; i < GameController.players.Count; i++)
+            {
                 hitPoint += GameController.players[i].transform.position;
                 currentRadius = Vector3.Distance(GameController.players[i].transform.position, hitPoint / GameController.players.Count);
+            }
+            hitPoint /= GameController.players.Count;
         }
-        hitPoint /= GameController.players.Count;
         randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
         hitPoint.x += randomOffset.x;
         hitPoint.z += randomOffset.y;

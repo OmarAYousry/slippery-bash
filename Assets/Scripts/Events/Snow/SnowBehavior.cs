@@ -26,21 +26,27 @@ public class SnowBehavior: EventBehavior
     {
         TileController[] tiles = PlatformController.tiles;
         Rigidbody currentRb;
-        for(int i = 0; i < tiles.Length; i++)
+        if(tiles != null)
         {
-            currentRb = tiles[i].GetComponent<Rigidbody>();
-            if(currentRb)
+            for(int i = 0; i < tiles.Length; i++)
             {
-                currentRb.useGravity = !freeze;
-                currentRb.isKinematic = freeze;
-                if(freeze)
-                    currentRb.velocity = Vector3.zero;
+                currentRb = tiles[i].GetComponent<Rigidbody>();
+                if(currentRb)
+                {
+                    currentRb.useGravity = !freeze;
+                    currentRb.isKinematic = freeze;
+                    if(freeze)
+                        currentRb.velocity = Vector3.zero;
+                }
             }
         }
-        currentRb = PlatformController.rigid;
-        currentRb.useGravity = !freeze;
-        currentRb.isKinematic = freeze;
-        if(freeze)
-            currentRb.velocity = Vector3.zero;
+        if(PlatformController.rigid)
+        {
+            currentRb = PlatformController.rigid;
+            currentRb.useGravity = !freeze;
+            currentRb.isKinematic = freeze;
+            if(freeze)
+                currentRb.velocity = Vector3.zero;
+        }
     }
 }

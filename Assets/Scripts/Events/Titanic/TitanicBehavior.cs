@@ -33,15 +33,18 @@ public class TitanicBehavior: EventBehavior
 
         // search a point to move to
         targetPoint = Vector3.zero;
-        for(int i = 0; i < GameController.players.Count; i++)
+        if(GameController.players != null)
         {
-            // check if the player hasn't despawned yet (not expected)
-            if(GameController.players[i])
+            for(int i = 0; i < GameController.players.Count; i++)
             {
-                targetPoint += GameController.players[i].transform.position;
+                // check if the player hasn't despawned yet (not expected)
+                if(GameController.players[i])
+                {
+                    targetPoint += GameController.players[i].transform.position;
+                }
             }
+            targetPoint /= GameController.players.Count;
         }
-        targetPoint /= GameController.players.Count;
 
         // spawn around that point
         spawnPoint = Random.insideUnitCircle.normalized * spawnDistance;
