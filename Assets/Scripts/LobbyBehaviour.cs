@@ -81,8 +81,6 @@ public class LobbyBehaviour : MonoBehaviour
 
         instance.gameObject.SetActive(false);
 
-        FindObjectOfType<InputSystemUIInputModule>().enabled = true;
-
         yield return null;
     }
 }

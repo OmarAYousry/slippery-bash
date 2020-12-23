@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     {
         instance = this;
         players = new List<PlayerBehaviour>();
+        Time.timeScale = 1.0f;
     }
 
     public static void RegisterPlayer(PlayerBehaviour playerToRegister)
@@ -20,6 +21,11 @@ public class GameController : MonoBehaviour
             StartLobby();
 
         players.Add(playerToRegister);
+    }
+
+    public static void CheckEndGameCondition(PlayerBehaviour playerJustDied)
+    {
+        GameOverBehaviour.CheckEndGameCondition(playerJustDied);
     }
 
     public static void StartLobby()
@@ -36,10 +42,12 @@ public class GameController : MonoBehaviour
 
     public static void PauseGame()
     {
+        Debug.LogError(LobbyBehaviour.isInLobby);
         if (PauseMenuBehaviour.isGamePaused || LobbyBehaviour.isInLobby)
         {
             return;
         }
+        Debug.LogError("here...");
 
         Time.timeScale = 0.0f;
         foreach (PlayerBehaviour player in players)
@@ -47,6 +55,7 @@ public class GameController : MonoBehaviour
             // TODO: Change Control Scheme to UI
             player.ChangeInputToUI();
         }
+        Debug.LogError("here...2");
 
         PauseMenuBehaviour.ShowPauseMenu();
     }
@@ -58,7 +67,6 @@ public class GameController : MonoBehaviour
             return;
         }
 
-
         Time.timeScale = 1.0f;
         foreach (PlayerBehaviour player in players)
         {
@@ -69,22 +77,8 @@ public class GameController : MonoBehaviour
         PauseMenuBehaviour.HidePauseMenu();
     }
 
-    public static void EndGame(PlayerBehaviour winner)
+    public static void ResetToTitle()
     {
-        if (winner == null)
-        {
-            // no winner
-        }
-        else
-        {
-            // declare winner
-        }
-
-        // After x seconds, reset to lobby...
-    }
-
-    public static void ResetToLobby()
-    {
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

@@ -30,9 +30,20 @@ public class PlayerInputController : MonoBehaviour
         playerBehaviour.UpdateSpeed(moveDirection);
     }
 
+    public void OnNavigate()
+    {
+        Debug.LogWarning("Navigating...");
+    }
+
     public void OnPause()
     {
+        Debug.Log("Here already?");
         GameController.PauseGame();
+    }
+
+    public void OnSubmit()
+    {
+        Debug.LogError("Submitting...");
     }
 
     public void OnLobbyStart()

@@ -71,13 +71,17 @@ public class TileController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.LogError($"Hit {gameObject.name}");
 
             // ideally load a different sprite every step or 2 to show damage
             if (timesAlreadySteppedOn++ >= MaxStepsBeforeBreaking)
                 StartCoroutine(DestroyMesh(secondsToWait: 1.0f));
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.LogError(collision.gameObject);
     }
 
     private void OnTriggerExit(Collider other)

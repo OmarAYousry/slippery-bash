@@ -89,6 +89,9 @@ public class SwimmingBehaviour : MonoBehaviour
 
     private void AdjustSwimTimer()
     {
+        if (LobbyBehaviour.isInLobby)
+            return;
+
         if (IsSwimming)
         {
             if (swimTimer >= drownTime)
@@ -109,8 +112,8 @@ public class SwimmingBehaviour : MonoBehaviour
         IsSwimming = true;
         strengthBar.gameObject.SetActive(true);
 
-        StopCoroutine(AdjustPhysicsForSwimming(false));
-        StartCoroutine(AdjustPhysicsForSwimming(true));
+        StopCoroutine(ApplyWalkingMaterial());
+        StartCoroutine(ApplySwimmingMaterial());
     }
 
     public void EndSwimming()
@@ -118,16 +121,18 @@ public class SwimmingBehaviour : MonoBehaviour
         IsSwimming = false;
         strengthBar.gameObject.SetActive(false);
 
-        StopCoroutine(AdjustPhysicsForSwimming(true));
-        StartCoroutine(AdjustPhysicsForSwimming(false));
+        StopCoroutine(ApplySwimmingMaterial());
+        StartCoroutine(ApplyWalkingMaterial());
     }
 
-    private IEnumerator AdjustPhysicsForSwimming(bool goingToWater)
+    private IEnumerator ApplySwimmingMaterial()
     {
         yield return new WaitForSeconds(1.0f);
-        if (goingToWater)
-            GetComponent<Collider>().material = playerSwimmingMaterial;
-        else
-            GetComponent<Collider>().material = playerWalkingMaterial;
+        GetComponent<Collider>().material = playerSwimmingMaterial;
+    }
+    private IEnumerator ApplyWalkingMaterial()
+    {
+        yield return new WaitForSeconds(1.0f);
+        GetComponent<Collider>().material = playerWalkingMaterial;
     }
 }

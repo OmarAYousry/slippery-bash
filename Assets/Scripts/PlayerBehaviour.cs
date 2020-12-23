@@ -108,7 +108,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         foreach (Collider contactedCollider in collidersInContact)
         {
-            Debug.LogWarning(contactedCollider.gameObject.name);
             if (contactedCollider.CompareTag("Player"))
             {
                 PlayerBehaviour hitPlayer = contactedCollider.GetComponent<PlayerBehaviour>();
@@ -118,12 +117,10 @@ public class PlayerBehaviour : MonoBehaviour
                     continue;
 
                 // get closest point on contacting collider
-                //Vector3 contactPoint = contactedCollider.ClosestPoint(punchContactPoint);
                 Vector3 contactPoint = hitPlayer.transform.position;
-                // set up 'ray' of force from contact point with direction
+                // set up force vector from contact point with direction
                 // equal to the punching player's (normalized) foward vector
                 Vector3 forceVector = (contactPoint - transform.position).normalized;
-                //Ray forceRay = new Ray(transform.position, transform.);
                 // Let the player behaviour of the hit player
                 // handle its own getting hit behaviour
                 hitPlayer.GetHit(forceVector);
@@ -156,6 +153,11 @@ public class PlayerBehaviour : MonoBehaviour
         playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
     }
 
+    private void LateUpdate()
+    {
+        Debug.Log(GetComponent<UnityEngine.InputSystem.PlayerInput>().currentActionMap);
+    }
+
     public void ChangeInputToUI()
     {
         playerInputController.ChangeInputMap("UI");
@@ -169,11 +171,14 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayer()
     {
         Destroy(gameObject);
+        GameController.CheckEndGameCondition(this);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // should check "Floor" tag -- not yet implemented
+        //Debug.LogError(collision.gameObject.SetActive(false));
+        //collision.gameObject.SetActive(false);
+        // should maybe check "Floor" tag -- not yet implemented
         isJumping = false;
     }
 
