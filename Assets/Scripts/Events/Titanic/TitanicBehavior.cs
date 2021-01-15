@@ -7,8 +7,8 @@
 /// </summary>
 public class TitanicBehavior: EventBehavior
 {
-    [SerializeField] private Rigidbody rigid;
-    [SerializeField] private Transform destroyCollider;
+    [SerializeField] private Rigidbody rigid = null;
+    [SerializeField] private Transform destroyCollider = null;
 
     /// <summary>
     /// How far from the center should the ship spawn and move from?

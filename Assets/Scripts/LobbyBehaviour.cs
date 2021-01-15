@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
@@ -31,6 +33,7 @@ public class LobbyBehaviour : MonoBehaviour
     {
         instance.gameObject.SetActive(true);
         instance.startGameButton.interactable = false;
+        instance.anim.Animate(true);
 
         yield return new WaitForSeconds(secondsToWait);
 
@@ -47,6 +50,7 @@ public class LobbyBehaviour : MonoBehaviour
     public void OnStartGameButtonPressed()
     {
         startGameButton.interactable = false;
+        anim.Animate(false);
         GameController.StartGame();
     }
 
@@ -82,5 +86,56 @@ public class LobbyBehaviour : MonoBehaviour
         instance.gameObject.SetActive(false);
 
         yield return null;
+    }
+
+
+    // added by Akbar Suriaganda
+    //-----------------------------------------------------------------------------------------------------------------------------------------------//
+    [SerializeField] private TextMeshProUGUI objective = null;
+    [SerializeField] private PlayerJoinUI[] playerUI = null;
+    [SerializeField] private MainMenuAnimation anim = null;
+
+    private int playerJoined;
+
+
+    //---------------------------------------------------------------------------------------------//
+    private void Update()
+    {
+        UpdateObjectiveAndButton();
+    }
+
+    private void UpdateObjectiveAndButton()
+    {
+        playerJoined = GameController.players.Count;
+        startGameButton.interactable = playerJoined > 0;
+
+        for(int i = 0; i < playerUI.Length; i++)
+        {
+            playerUI[i].ToggleJoin(i < playerJoined);
+        }
+
+        switch(playerJoined)
+        {
+            case 0: objective.text = "NO PLAYER JOINED";
+                break;
+            case 1: objective.text = "SURVIVAL!";
+                break;
+            default: objective.text = "LAST MAN STANDING!";
+                break;
+        }
+    }
+
+
+    //---------------------------------------------------------------------------------------------//
+    /// <summary>
+    /// Leave the game and close the app.
+    /// </summary>
+    public void QuitButton()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

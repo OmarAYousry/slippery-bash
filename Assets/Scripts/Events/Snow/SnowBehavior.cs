@@ -6,7 +6,7 @@
 /// </summary>
 public class SnowBehavior: EventBehavior
 {
-    [SerializeField] private Collider col;
+    [SerializeField] private Collider col = null;
 
 
     //---------------------------------------------------------------------------------------------//
