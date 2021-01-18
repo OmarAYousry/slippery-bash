@@ -54,10 +54,14 @@ public class MainMenuAnimation : MonoBehaviour
     //---------------------------------------------------------------------------------------------//
     /// <summary>
     /// Trigger the animation.
+    /// Enable the canvas if necessary.
     /// </summary>
     /// <param name="moveIn">Is the menu appearing or leaving? true: appearing</param>
     public void Animate(bool moveIn)
     {
+        if(!gameObject.activeInHierarchy)
+            gameObject.SetActive(true);
+
         this.moveIn = moveIn;
         enabled = true;
     }

@@ -5,9 +5,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
+/// <summary>
+/// Created by Omar
+/// Modified by Akbar
+/// </summary>
 public class LobbyBehaviour : MonoBehaviour
 {
     private static LobbyBehaviour instance = null;
+    public static LobbyBehaviour Instance { get { return instance; } }
 
     [SerializeField]
     private Button startGameButton = null;
@@ -15,18 +20,18 @@ public class LobbyBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject tutorialInfo = null;
 
-    [SerializeField]
-    private Text countdownText = null;
+    //[SerializeField]
+    //private Text countdownText = null;
 
-    [SerializeField]
-    private Text countdownTimerText = null;
+    //[SerializeField]
+    //private Text countdownTimerText = null;
 
     public static bool isInLobby { get { return instance.gameObject.activeSelf; } }
 
     private void Awake()
     {
         instance = this;
-        instance.gameObject.SetActive(false);
+        //instance.gameObject.SetActive(false);
     }
 
     public static IEnumerator EnableLobbyUI(float secondsToWait = 0.0f)
@@ -51,7 +56,7 @@ public class LobbyBehaviour : MonoBehaviour
     {
         startGameButton.interactable = false;
         anim.Animate(false);
-        GameController.StartGame();
+        GameController.StartCountdown();
     }
 
     public static void virtualStartGameButtonClick()
@@ -60,33 +65,33 @@ public class LobbyBehaviour : MonoBehaviour
             instance.startGameButton.onClick.Invoke();
     }
 
-    public static IEnumerator StartGameCountdown(float timeScale = 1.0f)
-    {
-        instance.countdownText.gameObject.SetActive(true);
-        instance.countdownTimerText.gameObject.SetActive(true);
+    // is triggered in the game controller and handled in the countdown ui
+    //public static IEnumerator StartGameCountdown(float timeScale = 1.0f)
+    //{
+    //    instance.countdownText.gameObject.SetActive(true);
+    //    instance.countdownTimerText.gameObject.SetActive(true);
 
-        instance.countdownTimerText.text = "3";
-        yield return new WaitForSeconds(timeScale);
+    //    instance.countdownTimerText.text = "3";
+    //    yield return new WaitForSeconds(timeScale);
 
-        instance.countdownTimerText.text = "2";
-        yield return new WaitForSeconds(timeScale);
+    //    instance.countdownTimerText.text = "2";
+    //    yield return new WaitForSeconds(timeScale);
 
-        instance.countdownTimerText.text = "1";
-        yield return new WaitForSeconds(timeScale);
+    //    instance.countdownTimerText.text = "1";
+    //    yield return new WaitForSeconds(timeScale);
 
-        instance.countdownText.gameObject.SetActive(false);
+    //    instance.countdownText.gameObject.SetActive(false);
 
-        instance.countdownTimerText.text = "GO!!!";
-        yield return new WaitForSeconds(timeScale);
+    //    instance.countdownTimerText.text = "GO!!!";
+    //    yield return new WaitForSeconds(timeScale);
 
-        instance.countdownTimerText.gameObject.SetActive(false);
+    //    instance.countdownTimerText.gameObject.SetActive(false);
 
-        EventStateController.Instance.Play();
 
-        instance.gameObject.SetActive(false);
+    //    instance.gameObject.SetActive(false);
 
-        yield return null;
-    }
+    //    yield return null;
+    //}
 
 
     // added by Akbar Suriaganda
@@ -111,7 +116,7 @@ public class LobbyBehaviour : MonoBehaviour
 
         for(int i = 0; i < playerUI.Length; i++)
         {
-            playerUI[i].ToggleJoin(i < playerJoined);
+            playerUI[i].ToggleJoin(i < playerJoined, i);
         }
 
         switch(playerJoined)

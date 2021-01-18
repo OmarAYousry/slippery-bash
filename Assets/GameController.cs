@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Created by Omar
+/// Modified by Akbar
+/// </summary>
 public class GameController : MonoBehaviour
 {
     private static GameController instance = null;
@@ -30,14 +34,22 @@ public class GameController : MonoBehaviour
 
     public static void StartLobby()
     {
-        TitleBehaviour.DisableTitleScreen();
+        //TitleBehaviour.DisableTitleScreen();
         instance.StartCoroutine(LobbyBehaviour.EnableLobbyUI(secondsToWait: 3.0f));
     }
 
-    public static void StartGame()
+    public static void StartCountdown()
     {
         //instance.StartCoroutine(LobbyBehaviour.DisableLobbyUI());
-        instance.StartCoroutine(LobbyBehaviour.StartGameCountdown());
+        //instance.StartCoroutine(LobbyBehaviour.StartGameCountdown());
+        CountdownUI.Instance.OnCountdownFinished += StartGame;
+        CountdownUI.Instance.PlayCountdown();
+    }
+    private static void StartGame()
+    {
+        CountdownUI.Instance.OnCountdownFinished -= StartGame;
+        EventStateController.Instance.Play();
+        LobbyBehaviour.Instance.gameObject.SetActive(false);
     }
 
     public static void PauseGame()

@@ -52,17 +52,19 @@ public class PlayerJoinUI : MonoBehaviour
     /// Change the ui to the repective state.
     /// </summary>
     /// <param name="join">true if the player has joined</param>
-    public void ToggleJoin(bool join)
+    public void ToggleJoin(bool join, int playerIndex)
     {
+        text.text = string.Concat("Player ", playerIndex + 1, ":\n");
+
         if(join)
         {
-            text.text = joinedText;
+            text.text += joinedText;
             text.color = joinedTextColor;
             background.color = joinedBackgroundColor;
         }
         else
         {
-            text.text = idleText;
+            text.text += idleText;
             text.color = idleTextColor;
             background.color = idleBackgroundColor;
         }
