@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     {
         //TitleBehaviour.DisableTitleScreen();
         instance.StartCoroutine(LobbyBehaviour.EnableLobbyUI(secondsToWait: 3.0f));
+        GameCamera.Instance.State = GameCamera.CameraState.Lobby;
     }
 
     public static void StartCountdown()
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour
         //instance.StartCoroutine(LobbyBehaviour.StartGameCountdown());
         CountdownUI.Instance.OnCountdownFinished += StartGame;
         CountdownUI.Instance.PlayCountdown();
+        GameCamera.Instance.State = GameCamera.CameraState.InGame;
     }
     private static void StartGame()
     {

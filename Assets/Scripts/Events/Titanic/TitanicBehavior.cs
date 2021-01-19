@@ -7,6 +7,9 @@
 /// </summary>
 public class TitanicBehavior: EventBehavior
 {
+    private static TitanicBehavior instance;
+    public static TitanicBehavior Instance { get { return instance; } }
+
     [SerializeField] private Rigidbody rigid = null;
     [SerializeField] private Transform destroyCollider = null;
 
@@ -70,6 +73,11 @@ public class TitanicBehavior: EventBehavior
 
 
     //---------------------------------------------------------------------------------------------//
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Update()
     {
         if(desiredVelocity.sqrMagnitude > 0)

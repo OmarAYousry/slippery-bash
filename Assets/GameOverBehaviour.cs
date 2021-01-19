@@ -40,6 +40,7 @@ public class GameOverBehaviour : MonoBehaviour
         // show game over only first before zooming to the winner
         instance.gameOverText.SetActive(true);
         instance.playerWinsText.SetActive(false);
+        GameCamera.Instance.State = GameCamera.CameraState.Stop;
 
         yield return new WaitForSecondsRealtime(3.0f);
 
@@ -54,6 +55,7 @@ public class GameOverBehaviour : MonoBehaviour
             // declare winner
             instance.gameOverText.SetActive(false);
             instance.playerWinsText.SetActive(true);
+            GameCamera.Instance.State = GameCamera.CameraState.Winner;
 
             int index = GameController.players.IndexOf(winner);
             for(int i = 0; i < instance.numberText.Length; i++)

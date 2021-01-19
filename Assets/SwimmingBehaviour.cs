@@ -51,7 +51,7 @@ public class SwimmingBehaviour : MonoBehaviour
     void Update()
     {
         // needed to keep slider facing the camera
-        strengthBar.transform.rotation = Quaternion.identity;
+        strengthBar.transform.LookAt(GameCamera.Instance.transform);
 
         AdjustSwimTimer();
 

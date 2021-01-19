@@ -5,8 +5,10 @@ using UnityEngine;
 /// [AUTHOR] Akbar Suriaganda
 /// This script spawns lightning objects at the player positions.
 /// </summary>
-public class StormBehavior : EventBehavior
+public class StormBehavior: EventBehavior
 {
+    private static StormBehavior instance;
+
     [SerializeField] private GameObject prefab;
 
     /// <summary>
@@ -25,10 +27,7 @@ public class StormBehavior : EventBehavior
     private int amountLeft;
 
     private List<LightningBehavior> lightnings = new List<LightningBehavior>();
-    private LightningBehavior currentLightning;
-    private Vector3 hitPoint;
-    private float currentRadius;
-    private Vector2 randomOffset;
+    private List<Vector3> lightningPositions = new List<Vector3>();
 
 
     //---------------------------------------------------------------------------------------------//
@@ -44,8 +43,25 @@ public class StormBehavior : EventBehavior
         amountLeft = 0;
     }
 
+    /// <summary>
+    /// Get the world positions of all active lightnings.
+    /// </summary>
+    /// <returns>list of the world positions</returns>
+    public static List<Vector3> GetLightningPositions()
+    {
+        if(!instance)
+            return null;
+
+        return instance.lightningPositions;
+    }
+
 
     //---------------------------------------------------------------------------------------------//
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Update()
     {
         if(amountLeft > 0)
@@ -60,12 +76,24 @@ public class StormBehavior : EventBehavior
             Spawn();
             amountLeft--;
         }
+
+        // update the positions list
+        if(lightningPositions.Count > 0)
+            lightningPositions.Clear();
+        for(int i = 0; i < lightnings.Count; i++)
+        {
+            if(lightnings[i].gameObject.activeInHierarchy)
+            {
+                lightningPositions.Add(lightnings[i].transform.position);
+            }
+        }
+
     }
 
     private void Spawn()
     {
         // check first if a lightning is available
-        currentLightning = null;
+        LightningBehavior currentLightning = null;
         for(int i = 0; i < lightnings.Count; i++)
         {
             if(!lightnings[i].gameObject.activeInHierarchy)
@@ -83,7 +111,8 @@ public class StormBehavior : EventBehavior
         }
 
         // search a point to hit
-        hitPoint = Vector3.zero;
+        Vector3 hitPoint = Vector3.zero;
+        float currentRadius = 0;
         if(GameController.players != null)
         {
             for(int i = 0; i < GameController.players.Count; i++)
@@ -93,7 +122,7 @@ public class StormBehavior : EventBehavior
             }
             hitPoint /= GameController.players.Count;
         }
-        randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
+        Vector2 randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
         hitPoint.x += randomOffset.x;
         hitPoint.z += randomOffset.y;
 

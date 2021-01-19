@@ -201,3 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c95bcddc3d1764185587c72e23b844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 1
+  lobbyDistance: 20
+  lobbyCenterOffset: -10
+  distanceRange: {x: 10, y: 50}
+  winnerDistance: 5
+  borderMargin: 5
+  smoothTime: 0.5
