@@ -17,8 +17,8 @@ public class LobbyBehaviour : MonoBehaviour
     [SerializeField]
     private Button startGameButton = null;
 
-    [SerializeField]
-    private GameObject tutorialInfo = null;
+    //[SerializeField]
+    //private GameObject tutorialInfo = null;
 
     //[SerializeField]
     //private Text countdownText = null;

@@ -26,7 +26,6 @@ public class CountdownUI: MonoBehaviour
         }
 
         Instance = this;
-        Debug.LogWarning("instance");
     }
 
 

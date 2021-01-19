@@ -2,14 +2,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Created by Omar
+/// Modified by Akbar
+/// </summary>
 public class GameOverBehaviour : MonoBehaviour
 {
     private static GameOverBehaviour instance = null;
 
-    [SerializeField]
-    private Text gameOverText = null;
-    [SerializeField]
-    private Text winnerText = null;
+    //[SerializeField]
+    //private Text gameOverText = null;
+    //[SerializeField]
+    //private Text winnerText = null;
+
+    [SerializeField] private GameObject gameOverText = null;
+    [SerializeField] private GameObject playerWinsText = null;
+    [SerializeField] private GameObject[] numberText = null;
 
 
     private void Awake()
@@ -29,22 +37,38 @@ public class GameOverBehaviour : MonoBehaviour
 
     public static IEnumerator EndGame(PlayerBehaviour winner)
     {
+        // show game over only first before zooming to the winner
+        instance.gameOverText.SetActive(true);
+        instance.playerWinsText.SetActive(false);
+
+        yield return new WaitForSecondsRealtime(3.0f);
+
         if (winner == null)
         {
             // no winner
-            instance.winnerText.gameObject.SetActive(false);
-            instance.gameOverText.gameObject.SetActive(true);
+            //instance.winnerText.gameObject.SetActive(false);
+            //instance.gameOverText.gameObject.SetActive(true);
         }
         else
         {
             // declare winner
-            instance.winnerText.text = $"Player {GameController.players.IndexOf(winner) + 1} Wins!";
-            instance.winnerText.gameObject.SetActive(true);
-            instance.gameOverText.gameObject.SetActive(true);
+            instance.gameOverText.SetActive(false);
+            instance.playerWinsText.SetActive(true);
+
+            int index = GameController.players.IndexOf(winner);
+            for(int i = 0; i < instance.numberText.Length; i++)
+            {
+                instance.numberText[i].SetActive(i == index);
+            }
+
+            //instance.winnerText.text = $"Player {GameController.players.IndexOf(winner) + 1} Wins!";
+            //instance.winnerText.gameObject.SetActive(true);
+            //instance.gameOverText.gameObject.SetActive(true);
+
+            // After x seconds, reset to lobby...
+            yield return new WaitForSecondsRealtime(5.0f);
         }
 
-        // After x seconds, reset to lobby...
-        yield return new WaitForSecondsRealtime(5.0f);
         GameController.ResetToTitle();
     }
 

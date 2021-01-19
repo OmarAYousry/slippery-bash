@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenuBehaviour : MonoBehaviour
 {
     private static PauseMenuBehaviour instance = null;
+
+    public Button resumeButton;
 
     void Awake()
     {
@@ -21,6 +24,7 @@ public class PauseMenuBehaviour : MonoBehaviour
             return;
 
         instance.gameObject.SetActive(true);
+        instance.resumeButton.Select();
 
         Debug.LogError("????");
     }
