@@ -212,11 +212,11 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightAmplitude: 0.022
-    - _HeightCenter: 0.09090909
+    - _HeightAmplitude: 0.002
+    - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
-    - _HeightMax: 2
-    - _HeightMin: -0.2
+    - _HeightMax: 0.1
+    - _HeightMin: -0.1
     - _HeightOffset: 0
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
