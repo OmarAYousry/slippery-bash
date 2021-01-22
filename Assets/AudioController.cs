@@ -1,17 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using static EventStateSwitcher;
 
-public enum EventBackgroundType
+public enum SoundEffectType
 {
-    NONE, STORM, SNOW, SHIP
-}
-
-public enum PlayerEffectType
-{
-    JUMP, PUNCH, HIT
+    PLAYER_JUMP, PLAYER_PUNCH, PLAYER_HIT, LIGHTNING_STRIKE, TITANIC_CRASH
 }
 
 public class AudioController : MonoBehaviour
@@ -23,6 +16,9 @@ public class AudioController : MonoBehaviour
 
     [SerializeField]
     private AudioSource EventsAudioSource = null;
+
+    [SerializeField]
+    private AudioSource defaultSfxSource = null;
 
     #region background-music-clips
 
@@ -37,6 +33,12 @@ public class AudioController : MonoBehaviour
 
     [SerializeField]
     private AudioClip snowEventMusic;
+
+    [SerializeField]
+    private AudioClip lightningStrikeSfx;    
+    
+    [SerializeField]
+    private AudioClip titanicCrashSfx;
 
     #endregion
 
@@ -104,31 +106,61 @@ public class AudioController : MonoBehaviour
 
     #region sound-effect-functions
 
-    //public static void PlaySoundEffect(PlayerEffectType playerSoundEffectType)
-    //{
-    //    PlayBackgroundMusic(playerSoundEffectType, instance.default);
-    //}
+    public static void PlaySoundEffect(SoundEffectType soundEffectType)
+    {
+        PlaySoundEffect(soundEffectType, instance.defaultSfxSource);
+    }
 
-    public static void PlaySoundEffect(PlayerEffectType playerSoundEffectType, AudioSource audioSrc)
+    public static void PlaySoundEffect(SoundEffectType soundEffectType, AudioSource audioSrc, bool handleAudioSourceDestruction = false)
     {
         audioSrc.Stop();
 
-        switch (playerSoundEffectType)
+        switch (soundEffectType)
         {
-            case PlayerEffectType.JUMP:
+            case SoundEffectType.PLAYER_JUMP:
                 audioSrc.PlayOneShot(instance.playerJumpClip);
                 break;
-            case PlayerEffectType.PUNCH:
+            case SoundEffectType.PLAYER_PUNCH:
                 audioSrc.PlayOneShot(instance.playerPunchClip);
                 break;
-            case PlayerEffectType.HIT:
+            case SoundEffectType.PLAYER_HIT:
                 audioSrc.PlayOneShot(instance.playerGetHitClip);
+                break;
+            case SoundEffectType.LIGHTNING_STRIKE:
+                audioSrc.PlayOneShot(instance.lightningStrikeSfx);
+                break;
+            case SoundEffectType.TITANIC_CRASH:
+                audioSrc.PlayOneShot(instance.titanicCrashSfx);
                 break;
             default:
                 break;
         }
+
+        if (handleAudioSourceDestruction)
+        {
+            instance.StartCoroutine(instance.destroyAudioSourceWhenDone(audioSrc));
+        }
     }
 
     #endregion
+
+    private IEnumerator destroyAudioSourceWhenDone(AudioSource sourceToBeDestroyed)
+    {
+        // disable looping to ensure isPlaying turns false (eventually)
+        sourceToBeDestroyed.loop = false;
+
+        // remove audio source from parent to avoid parents' destruction affecting it
+        sourceToBeDestroyed.transform.parent = transform;
+
+        while (sourceToBeDestroyed.isPlaying)
+        {
+            // wait for 1 second at a time while
+            // the audio source is still playing something
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+
+        // destroy the audio source after it's done playing
+        Destroy(sourceToBeDestroyed.gameObject);
+    }
 
 }
