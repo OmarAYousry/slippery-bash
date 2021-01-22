@@ -120,6 +120,8 @@ public class EventStateController: MonoBehaviour
 
     private void PlayEvent(EventStateSwitcher.EventState eventState)
     {
+        AudioController.PlayEventMusic(eventState);
+
         eventTimer = 0;
         currentEventDuration = Mathf.Lerp(
             maxMinEventDuration.x,
