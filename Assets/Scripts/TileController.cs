@@ -4,48 +4,71 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    //[SerializeField]
-    //MeshDestroy destroyer;
     [SerializeField]
     GameObject tileMesh;
     [SerializeField]
     GameObject brokenMeshParent;
     [SerializeField]
-    float explosionForce;
+    ParticleSystem destroyEffect;
+    [SerializeField]
+    float explosionForce = 100f;
+    [SerializeField]
+    int hitsTillDestroy = 3;
 
-    int timesAlreadySteppedOn = 0;
-    const int MaxStepsBeforeBreaking = 3;
+    int hitsTaken = 0;
+    bool destroyed = false;
 
-    void Awake()
+    void Reset()
     {
-        //if (destroyer == null)
-        //    destroyer = GetComponent<MeshDestroy>();
+        tileMesh = transform.GetChild(0).gameObject;
+        brokenMeshParent = transform.GetChild(1).gameObject;
+        foreach (Transform child in brokenMeshParent.transform)
+        {
+            DestroyImmediate(child.gameObject.GetComponent<Rigidbody>());
+        }
     }
 
-    public IEnumerator DestroyMesh(float secondsToWait)
+    public IEnumerator DestroyMesh(float secondsToWait, bool scatterPieces = false)
     {
-        //transform.localScale *= 0.9f;
-        //destroyer.DestroyMesh();
-
         yield return new WaitForSeconds(secondsToWait);
-        
+
         tileMesh.SetActive(false);
         brokenMeshParent.SetActive(true);
 
-        foreach (Transform brokenPiece in brokenMeshParent.transform)
+        if (destroyEffect != null)
         {
-            Rigidbody rb = brokenPiece.GetComponent<Rigidbody>();
-            float randomFloat = Random.Range(1f, 2f);
-            //rb.AddExplosionForce(explosionForce * randomFloat, brokenPiece.transform.position, 1f);
-            rb.AddForce(Vector3.up * explosionForce);
+            destroyEffect = Instantiate(destroyEffect);
+            destroyEffect.Play();
+        }
+
+        if (scatterPieces)
+        {
+            foreach (Transform brokenPiece in brokenMeshParent.transform)
+            {
+                Rigidbody rb = brokenPiece.gameObject.AddComponent<Rigidbody>();
+                rb.mass = 0.1f;
+                float randomFloat = Random.Range(1f, 2f);
+                rb.AddForce(Vector3.up * explosionForce);
+            }
         }
 
         yield return null;
     }
 
+    public void DamageTile(float waitTime)
+    {
+        if (destroyed)
+            return;
+
+        hitsTaken++;
+        destroyed = (hitsTaken >= hitsTillDestroy);
+
+        StartCoroutine(DestroyMesh(waitTime, destroyed));
+    }
+
     public void DestroyMeshCascading(float cascadeRadius = 2.0f, int maxNumCascades = 999)
     {
-        StartCoroutine(DestroyMesh(0.0f));
+        DamageTile(0.0f);
 
         Collider[] collidersInContact = Physics.OverlapSphere(transform.position, cascadeRadius);
 
@@ -58,7 +81,7 @@ public class TileController : MonoBehaviour
 
             if(contactedCollider.name.Contains("tile"))
             {
-                StartCoroutine(contactedCollider.GetComponent<TileController>().DestroyMesh(0.0f));
+                contactedCollider.GetComponent<TileController>().DamageTile(0.0f);
             }
         }
     }
@@ -71,17 +94,15 @@ public class TileController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-
             // ideally load a different sprite every step or 2 to show damage
-            if (timesAlreadySteppedOn++ >= MaxStepsBeforeBreaking)
-                StartCoroutine(DestroyMesh(secondsToWait: 1.0f));
+            DamageTile(1.0f);
         }
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.LogError(collision.gameObject);
+        //Debug.LogError(collision.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
