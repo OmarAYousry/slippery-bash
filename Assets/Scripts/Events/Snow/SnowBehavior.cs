@@ -24,7 +24,7 @@ public class SnowBehavior: EventBehavior
 
     private void Freeze(bool freeze)
     {
-        TileController[] tiles = PlatformController.tiles;
+        TileController[] tiles = PlatformController.tiles.ToArray();
         Rigidbody currentRb;
         if(tiles != null)
         {
