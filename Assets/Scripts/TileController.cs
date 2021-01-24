@@ -22,10 +22,6 @@ public class TileController : MonoBehaviour
     {
         tileMesh = transform.GetChild(0).gameObject;
         brokenMeshParent = transform.GetChild(1).gameObject;
-        foreach (Transform child in brokenMeshParent.transform)
-        {
-            DestroyImmediate(child.gameObject.GetComponent<Rigidbody>());
-        }
     }
 
     public IEnumerator DestroyMesh(float secondsToWait, bool scatterPieces = false)
@@ -45,6 +41,7 @@ public class TileController : MonoBehaviour
         {
             foreach (Transform brokenPiece in brokenMeshParent.transform)
             {
+                brokenPiece.gameObject.AddComponent<TimedDestroyer>();
                 Rigidbody rb = brokenPiece.gameObject.AddComponent<Rigidbody>();
                 rb.mass = 0.1f;
                 float randomFloat = Random.Range(1f, 2f);
