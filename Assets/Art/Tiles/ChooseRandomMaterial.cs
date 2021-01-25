@@ -5,10 +5,12 @@ using UnityEngine;
 public class ChooseRandomMaterial : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int selectedMat;
     public List<Material> materials = new List<Material>();
     void Awake()
     {
-        GetComponent<Renderer>().material = materials[(int)Random.Range(0f, materials.Count)];
+        selectedMat = (int)Random.Range(0f, materials.Count);
+        GetComponent<Renderer>().material = materials[selectedMat];
     }
 
     void Start()

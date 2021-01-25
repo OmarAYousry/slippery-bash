@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5352edee4baafbb4987d237f947887c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedMat: 0
   materials:
   - {fileID: 2100000, guid: 19435241d3e2a7b4fb5d9a629c8c9e4a, type: 2}
   - {fileID: 2100000, guid: 1ad7e2dba2e437546a7c2eada3a6e3d9, type: 2}
@@ -37,6 +38,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 283410201799842507}
+  - component: {fileID: 8995546027260041270}
+  - component: {fileID: 6759945425713317590}
   m_Layer: 0
   m_Name: OuterRing_02_prefab
   m_TagString: Untagged
@@ -60,6 +63,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8995546027260041270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995832935002152720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8c04b5559f22042af3468bd6a5bc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physicMaterials:
+  - {fileID: 13400000, guid: 7958b6df963de0c45abd79c927a9a513, type: 2}
+  - {fileID: 13400000, guid: 63ae5784ee6e07343a3aad3a4b78973c, type: 2}
+--- !u!65 &6759945425713317590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995832935002152720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2110219016366432446
 PrefabInstance:
   m_ObjectHideFlags: 0
