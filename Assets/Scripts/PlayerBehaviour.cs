@@ -9,6 +9,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private Animator playerAnimator = null;
     [SerializeField]
+    private AudioSource playerAudioSrc = null;
+    [SerializeField]
     private Transform punchTransform = null;
 
     [SerializeField]
@@ -100,6 +102,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void PerformPunch()
     {
         playerAnimator.SetTrigger("Punch");
+        AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
         Vector3 punchContactPoint = punchTransform.transform.position;
         const float punchRadius = 1.0f;
@@ -130,6 +133,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void GetHit(Vector3 forceVector)
     {
+        AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.SetTrigger("Hit");
 
         const float hitPower = 5.0f;
@@ -146,6 +150,8 @@ public class PlayerBehaviour : MonoBehaviour
             return;
 
         isJumping = true;
+
+        AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
 
         playerAnimator.SetTrigger("Jump");
 

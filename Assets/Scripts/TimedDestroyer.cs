@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimedDestroyer : MonoBehaviour
 {
     public float duration = 5f;
+    public float scaleDownDuration = 1f;
     public bool scaleDown = true;
 
     float timer = 0;
@@ -22,13 +23,12 @@ public class TimedDestroyer : MonoBehaviour
             destroyed = true;
             if (scaleDown)
             {
-                StartCoroutine(ScaleDownOverTime(duration));
+                StartCoroutine(ScaleDownOverTime(scaleDownDuration));
             } else
             {
                 Destroy(this.gameObject);
             }
         }
-
     }
 
     void OnDestroy()

@@ -15,7 +15,7 @@ public class ClickTester : MonoBehaviour
                 TileController tile = hit.collider.gameObject.GetComponentInParent<TileController>();
                 if (tile != null)
                 {
-                    tile.DestroyMesh(secondsToWait: 0.0f);
+                    tile.DamageTile(0.0f);
                 }
             }
         }

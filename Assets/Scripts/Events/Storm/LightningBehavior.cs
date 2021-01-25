@@ -93,6 +93,10 @@ public class LightningBehavior: MonoBehaviour
     [Tooltip("The time ratio of the strike in which the players can get hit.")]
     [Range(0,1)] public float hitDuration = .5f;
 
+    [SerializeField]
+    private AudioSource sfxAudioSource = null;
+
+
     private float strikeTimer = -1;
     private Vector3[] strikePoints;
     private float distance;
@@ -242,6 +246,8 @@ public class LightningBehavior: MonoBehaviour
 
     private void Strike()
     {
+        AudioController.PlaySoundEffect(SoundEffectType.LIGHTNING_STRIKE, sfxAudioSource, handleAudioSourceDestruction: true);
+
         strike.gameObject.SetActive(true);
         strikeLight.gameObject.SetActive(true);
         strikeRibbon.Play();
