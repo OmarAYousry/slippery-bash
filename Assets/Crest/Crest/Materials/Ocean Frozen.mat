@@ -57,7 +57,7 @@ Material:
     - _FoamIntensityAlbedo: 0
     - _FoamIntensityEmissive: 0
     - _FoamNormalStrength: 0
-    - _FoamScale: 25
+    - _FoamScale: 5
     - _FoamSmoothness: 1
     - _MinReflectionDirectionY: -1
     - _NormalsScale: 40
