@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -104,31 +105,38 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
-        Vector3 punchContactPoint = punchTransform.transform.position;
-        const float punchRadius = 1.0f;
+        StartCoroutine(WaitThenDoAction(0.5f, ()=> {
+            Vector3 punchContactPoint = punchTransform.transform.position;
+            const float punchRadius = 1.0f;
 
-        Collider[] collidersInContact =  Physics.OverlapSphere(punchContactPoint, punchRadius);
+            Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
-        foreach (Collider contactedCollider in collidersInContact)
-        {
-            if (contactedCollider.CompareTag("Player"))
+            foreach (Collider contactedCollider in collidersInContact)
             {
-                PlayerBehaviour hitPlayer = contactedCollider.GetComponent<PlayerBehaviour>();
+                if (contactedCollider.CompareTag("Player"))
+                {
+                    PlayerBehaviour hitPlayer = contactedCollider.GetComponent<PlayerBehaviour>();
 
-                // avoid overlap behaviour of player punching oneself
-                if (hitPlayer == this)
-                    continue;
+                    // avoid overlap behaviour of player punching oneself
+                    if (hitPlayer == this)
+                        continue;
 
-                // get closest point on contacting collider
-                Vector3 contactPoint = hitPlayer.transform.position;
-                // set up force vector from contact point with direction
-                // equal to the punching player's (normalized) foward vector
-                Vector3 forceVector = (contactPoint - transform.position).normalized;
-                // Let the player behaviour of the hit player
-                // handle its own getting hit behaviour
-                hitPlayer.GetHit(forceVector);
+                    // get closest point on contacting collider
+                    Vector3 contactPoint = hitPlayer.transform.position;
+                    // set up force vector from contact point with direction
+                    // equal to the punching player's (normalized) foward vector
+                    Vector3 forceVector = (contactPoint - transform.position).normalized;
+                    // Let the player behaviour of the hit player
+                    // handle its own getting hit behaviour
+                    hitPlayer.GetHit(forceVector);
+                }
+                if (contactedCollider.CompareTag("Tile"))
+                {
+                    TileController hitTile = contactedCollider.GetComponent<TileController>();
+                    hitTile.DamageTile();
+                }
             }
-        }        
+        }));     
     }
 
     public void GetHit(Vector3 forceVector)
@@ -188,4 +196,9 @@ public class PlayerBehaviour : MonoBehaviour
         isJumping = false;
     }
 
+    IEnumerator WaitThenDoAction(float duration, System.Action action)
+    {
+        yield return new WaitForSeconds(duration);
+        action();
+    }
 }
