@@ -13,9 +13,9 @@ public class TileController : MonoBehaviour
     [SerializeField]
     float tilePieceMass = 0.01f;
     [SerializeField]
-    float explosionForce = 10f;
+    float explosionForce = 5f;
     [SerializeField]
-    int hitsTillDestroy = 3;
+    int hitsTillDestroy = 2;
 
     [Header("Neighbor Tiles")]
     public TileController upTile;
@@ -51,6 +51,7 @@ public class TileController : MonoBehaviour
         if (destroyEffect != null)
         {
             destroyEffect = Instantiate(destroyEffect);
+            destroyEffect.transform.position = transform.position;
             destroyEffect.Play();
         }
 
@@ -66,6 +67,7 @@ public class TileController : MonoBehaviour
             }
 
             PlatformController.instance.SplitTileGroups();
+            GetComponent<BoxCollider>().enabled = false;
 
             if (onDestroy != null)
             {
@@ -137,13 +139,13 @@ public class TileController : MonoBehaviour
         transform.rotation = oldRot;
     }
 
-    public void DamageTile(float waitTime)
+    public void DamageTile(float waitTime = 0.0f, bool destroy = false)
     {
         if (destroyed)
             return;
 
         hitsTaken++;
-        destroyed = (hitsTaken >= hitsTillDestroy);
+        destroyed = (hitsTaken >= hitsTillDestroy) || destroy;
 
         StartCoroutine(DestroyMesh(waitTime, destroyed));
     }
