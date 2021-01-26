@@ -400,13 +400,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3422735715267663449}
   brokenMeshParent: {fileID: 5996554095171694383}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3779862144217884329}
+  downTile: {fileID: 5061305709769621939}
+  rightTile: {fileID: 5600935625804746025}
+  leftTile: {fileID: 8918941055132746487}
 --- !u!64 &2976363790959786659
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -533,13 +535,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1634646744142209677}
   brokenMeshParent: {fileID: 7213105245324716866}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8265942334648413206}
+  downTile: {fileID: 5030825974611093359}
+  rightTile: {fileID: 505487379411244906}
+  leftTile: {fileID: 5459452021579821334}
 --- !u!64 &5103443401077253882
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -736,13 +740,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3254114631880960512}
   brokenMeshParent: {fileID: 5867915257378722678}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8417752225016474901}
+  downTile: {fileID: 3128528714071617698}
+  rightTile: {fileID: 1650145549053814800}
+  leftTile: {fileID: 7534535923524843762}
 --- !u!64 &5678175019422428571
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -995,13 +1001,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1085076292364511163}
   brokenMeshParent: {fileID: 1291983739964135894}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7786935469248181573}
+  downTile: {fileID: 6365262675919371085}
+  rightTile: {fileID: 2366396403949357237}
+  leftTile: {fileID: 1124355234972118953}
 --- !u!64 &385701617452667326
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1212,12 +1220,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 9162995489210790391}
   brokenMeshParent: {fileID: 536924344110135379}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4560015232470901930}
+  downTile: {fileID: 6792018722219520540}
+  rightTile: {fileID: 4297115385948722067}
   leftTile: {fileID: 0}
 --- !u!64 &1852957572642525377
 MeshCollider:
@@ -1569,6 +1579,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8457543142494406912, guid: 51e1def04e94b814e846bb71eb9efda8, type: 3}
+--- !u!65 &1942502443005163859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634793603170220539}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8265942334648413206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,26 +1606,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7318573546470390532}
   brokenMeshParent: {fileID: 1953281951728683260}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
---- !u!65 &1942502443005163859
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634793603170220539}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  downTile: {fileID: 6990332650164593726}
+  rightTile: {fileID: 73526966355154823}
+  leftTile: {fileID: 6815343074203669612}
 --- !u!64 &2553673677386918278
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1743,13 +1755,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2847569919459472025}
   brokenMeshParent: {fileID: 6612247507742559215}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 505487379411244906}
+  downTile: {fileID: 984169340729011207}
+  rightTile: {fileID: 3952931359953785380}
+  leftTile: {fileID: 5030825974611093359}
 --- !u!64 &3704538824959467943
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2156,13 +2170,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 112747178222826256}
   brokenMeshParent: {fileID: 2265439840748637565}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3173957790232120735}
+  downTile: {fileID: 1605207865289878451}
+  rightTile: {fileID: 551244881275178801}
+  leftTile: {fileID: 4871185406775084460}
 --- !u!64 &6114072046736297830
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2261,13 +2277,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 444894482780518539}
   brokenMeshParent: {fileID: 1786924453244487398}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1766245628941490956}
+  downTile: {fileID: 6763345186540786899}
+  rightTile: {fileID: 4871185406775084460}
+  leftTile: {fileID: 3827407236318614931}
 --- !u!64 &7279354243219960760
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2618,13 +2636,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2344686563940516169}
   brokenMeshParent: {fileID: 6687271311837984831}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5008448603575995178}
+  downTile: {fileID: 3711858191475583630}
+  rightTile: {fileID: 8918941055132746487}
+  leftTile: {fileID: 1783300477075470142}
 --- !u!64 &6054001531343932589
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2989,13 +3009,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2071181695289545772}
   brokenMeshParent: {fileID: 3867611710823416424}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 3352388724921596817}
+  rightTile: {fileID: 3083195035028165060}
+  leftTile: {fileID: 592505673013053524}
 --- !u!64 &1825773278426825047
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3276,12 +3298,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2072340908077271441}
   brokenMeshParent: {fileID: 4262472150559508059}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 834686688029752143}
+  downTile: {fileID: 3709367583674293955}
+  rightTile: {fileID: 177011381770617340}
   leftTile: {fileID: 0}
 --- !u!64 &1030518104008370775
 MeshCollider:
@@ -3423,13 +3447,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1837262992322233282}
   brokenMeshParent: {fileID: 549368284439887279}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6789341387109029688}
+  downTile: {fileID: 177011381770617340}
+  rightTile: {fileID: 1457699572259577859}
+  leftTile: {fileID: 834686688029752143}
 --- !u!114 &7489147440050796454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3444,13 +3470,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 540006372269776684}
   brokenMeshParent: {fileID: 8487890445447730915}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7736530271017349042}
+  downTile: {fileID: 2939379433809534107}
+  rightTile: {fileID: 6013384744801308561}
+  leftTile: {fileID: 8803941098896874000}
 --- !u!64 &1390282467334400905
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3549,13 +3577,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4419305707085445613}
   brokenMeshParent: {fileID: 4689218021856772251}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5845440212525176057}
+  downTile: {fileID: 6013384744801308561}
+  rightTile: {fileID: 4905447258216950050}
+  leftTile: {fileID: 7736530271017349042}
 --- !u!64 &3472123809978328957
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3738,13 +3768,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4210841252394654864}
   brokenMeshParent: {fileID: 5055321492955751910}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8832906377675932975}
+  downTile: {fileID: 9086591589326151443}
+  rightTile: {fileID: 5998776973786851302}
+  leftTile: {fileID: 7589480206392079565}
 --- !u!64 &2928571238725560792
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3955,13 +3987,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2030354750531675329}
   brokenMeshParent: {fileID: 202028240368736940}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5030825974611093359}
+  downTile: {fileID: 5204365192424999962}
+  rightTile: {fileID: 984169340729011207}
+  leftTile: {fileID: 551244881275178801}
 --- !u!64 &830315307180049863
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4214,13 +4248,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4149545413647330381}
   brokenMeshParent: {fileID: 5031031247284065595}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4871185406775084460}
+  downTile: {fileID: 3779862144217884329}
+  rightTile: {fileID: 1605207865289878451}
+  leftTile: {fileID: 6763345186540786899}
 --- !u!64 &4780506320928352222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4711,13 +4747,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1549060364171616125}
   brokenMeshParent: {fileID: 4354288879966423353}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2901876631927619349}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 7187822455498101525}
+  leftTile: {fileID: 3516609627063980477}
 --- !u!64 &6990962112807600158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4900,13 +4938,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1075686347146969564}
   brokenMeshParent: {fileID: 8960171510427846675}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 574252355799720841}
+  downTile: {fileID: 6209204790953125401}
+  rightTile: {fileID: 4547131807336744736}
+  leftTile: {fileID: 4905447258216950050}
 --- !u!64 &1143312820087173645
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5075,13 +5115,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3863072002821280647}
   brokenMeshParent: {fileID: 5322012684779416305}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2161724450218784560}
+  downTile: {fileID: 1523569679358813272}
+  rightTile: {fileID: 7004609620386443400}
+  leftTile: {fileID: 2341803275672831579}
 --- !u!64 &1232152781070520691
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5110,13 +5152,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1087916134763000358}
   brokenMeshParent: {fileID: 9055747612777954281}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6990332650164593726}
+  downTile: {fileID: 6318400279905145091}
+  rightTile: {fileID: 3193638191028949221}
+  leftTile: {fileID: 5281198099489045002}
 --- !u!64 &4844320054078311674
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5271,13 +5315,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7866545542653283486}
   brokenMeshParent: {fileID: 7866545543147578069}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  downTile: {fileID: 4009192202141274611}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 73526966355154823}
 --- !u!64 &3235321788535917925
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5306,13 +5352,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1643674746176564156}
   brokenMeshParent: {fileID: 589824247909799377}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5600935625804746025}
+  downTile: {fileID: 7455031675140754582}
+  rightTile: {fileID: 1023452283172668384}
+  leftTile: {fileID: 5061305709769621939}
 --- !u!64 &4868784936742977516
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5635,13 +5683,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1161296364263958990}
   brokenMeshParent: {fileID: 4033246312002184708}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4009192202141274611}
+  downTile: {fileID: 8653949530224165541}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 3193638191028949221}
 --- !u!64 &3444788245807517599
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5810,6 +5860,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 585913370933337003, guid: 242b18d22bafeae4dbf5ff42981c71c8, type: 3}
+--- !u!65 &2549888005507797855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2270869217715201218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &592505673013053524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5824,26 +5887,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8276570702218143293}
   brokenMeshParent: {fileID: 889444951897036229}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
---- !u!65 &2549888005507797855
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2270869217715201218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  downTile: {fileID: 2341803275672831579}
+  rightTile: {fileID: 2161724450218784560}
+  leftTile: {fileID: 7297420319505843159}
 --- !u!64 &3334239433678477982
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5984,13 +6036,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1046717245320249916}
   brokenMeshParent: {fileID: 8268989467002141514}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1523569679358813272}
+  downTile: {fileID: 1124355234972118953}
+  rightTile: {fileID: 7786935469248181573}
+  leftTile: {fileID: 5998776973786851302}
 --- !u!114 &8803941098896874000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6005,13 +6059,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3812542298713403427}
   brokenMeshParent: {fileID: 5070394065262541292}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3711858191475583630}
+  downTile: {fileID: 7187822455498101525}
+  rightTile: {fileID: 7489147440050796454}
+  leftTile: {fileID: 2901876631927619349}
 --- !u!64 &190428230997876188
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6054,13 +6110,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3177904841407239904}
   brokenMeshParent: {fileID: 362815775470354596}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4506150879862726817}
+  downTile: {fileID: 4292681624821900891}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 944829816507007202}
 --- !u!64 &5612225747045881037
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6131,13 +6189,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1117205957512910077}
   brokenMeshParent: {fileID: 8342611769919597963}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3193638191028949221}
+  downTile: {fileID: 8417752225016474901}
+  rightTile: {fileID: 8653949530224165541}
+  leftTile: {fileID: 6318400279905145091}
 --- !u!114 &3779862144217884329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6152,13 +6212,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1118668423721780403}
   brokenMeshParent: {fileID: 8341153400988057029}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1124355234972118953}
+  downTile: {fileID: 5845440212525176057}
+  rightTile: {fileID: 6365262675919371085}
+  leftTile: {fileID: 6334143457137182141}
 --- !u!64 &8752324093843775541
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6355,12 +6417,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8653352311990645431}
   brokenMeshParent: {fileID: 1152473224375297151}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  downTile: {fileID: 6823440697485906714}
+  rightTile: {fileID: 4366677205851720052}
   leftTile: {fileID: 0}
 --- !u!64 &121496128237864205
 MeshCollider:
@@ -6502,13 +6566,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 972502902527155236}
   brokenMeshParent: {fileID: 8158538931926197586}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8153640892149455512}
+  downTile: {fileID: 1023452283172668384}
+  rightTile: {fileID: 8945066576678583918}
+  leftTile: {fileID: 5600935625804746025}
 --- !u!64 &8712820145757181838
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6733,13 +6799,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2893272688130545111}
   brokenMeshParent: {fileID: 86743448922571667}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 505487379411244906}
+  rightTile: {fileID: 6818634275413020247}
+  leftTile: {fileID: 8265942334648413206}
 --- !u!64 &1489354840409255956
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6852,13 +6920,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2976756131678079341}
   brokenMeshParent: {fileID: 26277731278806825}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7455031675140754582}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 8791789380004187979}
+  leftTile: {fileID: 7026410050325246105}
 --- !u!64 &7394178357625659997
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7251,13 +7321,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6820302037664347887}
   brokenMeshParent: {fileID: 2809228640246628171}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6818634275413020247}
+  downTile: {fileID: 3952931359953785380}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 505487379411244906}
 --- !u!64 &6046163420972443399
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7454,13 +7526,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4328073367423766107}
   brokenMeshParent: {fileID: 5666953605355210644}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4905447258216950050}
+  downTile: {fileID: 7900568461160354846}
+  rightTile: {fileID: 6209204790953125401}
+  leftTile: {fileID: 6013384744801308561}
 --- !u!64 &6186008228059624066
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7503,13 +7577,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 465389789829082013}
   brokenMeshParent: {fileID: 8805258956396434155}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 9136628620057821278}
+  downTile: {fileID: 6565040364004162532}
+  rightTile: {fileID: 7624285378344567411}
+  leftTile: {fileID: 8945066576678583918}
 --- !u!64 &6444216069566347983
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7538,13 +7614,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2508237060129629712}
   brokenMeshParent: {fileID: 4336956749325932669}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6365262675919371085}
+  downTile: {fileID: 4905447258216950050}
+  rightTile: {fileID: 574252355799720841}
+  leftTile: {fileID: 5845440212525176057}
 --- !u!64 &5187531070582733549
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7895,12 +7973,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2702836268943772666}
   brokenMeshParent: {fileID: 173212118601106480}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3156385482246442332}
+  downTile: {fileID: 7387687754364209430}
+  rightTile: {fileID: 7589480206392079565}
   leftTile: {fileID: 0}
 --- !u!64 &2278361514919792736
 MeshCollider:
@@ -8014,6 +8094,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3001609045500248159, guid: 242b18d22bafeae4dbf5ff42981c71c8, type: 3}
+--- !u!65 &6102358496101623970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164690228971039642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8653949530224165541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8028,26 +8121,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5094919492214024549}
   brokenMeshParent: {fileID: 4053083550116289181}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3952931359953785380}
+  downTile: {fileID: 3804041976774904774}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
---- !u!65 &6102358496101623970
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3164690228971039642}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  leftTile: {fileID: 984169340729011207}
 --- !u!64 &2397992409442213877
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9084,13 +9166,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2744651406371482925}
   brokenMeshParent: {fileID: 6098861691158799586}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4547131807336744736}
+  downTile: {fileID: 3358384889282210062}
+  rightTile: {fileID: 944829816507007202}
+  leftTile: {fileID: 6209204790953125401}
 --- !u!114 &2901876631927619349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9105,13 +9189,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2802044289217890049}
   brokenMeshParent: {fileID: 6077515217656401614}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 177011381770617340}
+  downTile: {fileID: 5738583368253068088}
+  rightTile: {fileID: 8803941098896874000}
+  leftTile: {fileID: 3709367583674293955}
 --- !u!64 &8329475097295590954
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9502,13 +9588,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2100709624633106968}
   brokenMeshParent: {fileID: 7016834255033277294}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 73526966355154823}
+  downTile: {fileID: 3193638191028949221}
+  rightTile: {fileID: 4009192202141274611}
+  leftTile: {fileID: 6990332650164593726}
 --- !u!64 &1593053150630851730
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9551,13 +9639,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2339687341160883583}
   brokenMeshParent: {fileID: 5966507205431733424}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7004609620386443400}
+  downTile: {fileID: 7786935469248181573}
+  rightTile: {fileID: 5281198099489045002}
+  leftTile: {fileID: 1523569679358813272}
 --- !u!64 &8913704516210884819
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9964,13 +10054,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4603200210148438803}
   brokenMeshParent: {fileID: 2378218695497846142}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7534535923524843762}
+  downTile: {fileID: 4547131807336744736}
+  rightTile: {fileID: 3128528714071617698}
+  leftTile: {fileID: 574252355799720841}
 --- !u!64 &5398501313416802256
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10307,6 +10399,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8008960720599752664, guid: 242b18d22bafeae4dbf5ff42981c71c8, type: 3}
+--- !u!65 &8209783600098071008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3968909981601354662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3156385482246442332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10321,26 +10426,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6506452621888278873}
   brokenMeshParent: {fileID: 2648160993649566369}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6823440697485906714}
+  downTile: {fileID: 4560015232470901930}
+  rightTile: {fileID: 8562724306009642107}
   leftTile: {fileID: 0}
---- !u!65 &8209783600098071008
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3968909981601354662}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &3443880163918576252
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11475,13 +11569,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 3017288297190580190}
   brokenMeshParent: {fileID: 6587350310496409105}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1023452283172668384}
+  downTile: {fileID: 8791789380004187979}
+  rightTile: {fileID: 2064912794478431981}
+  leftTile: {fileID: 7455031675140754582}
 --- !u!64 &4472323757204162982
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11552,13 +11648,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2990910528431439488}
   brokenMeshParent: {fileID: 6572069946982922063}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5204365192424999962}
+  downTile: {fileID: 8945066576678583918}
+  rightTile: {fileID: 9136628620057821278}
+  leftTile: {fileID: 8153640892149455512}
 --- !u!114 &7736530271017349042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11573,13 +11671,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2998959740093212965}
   brokenMeshParent: {fileID: 6569351568233750762}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8918941055132746487}
+  downTile: {fileID: 7489147440050796454}
+  rightTile: {fileID: 5061305709769621939}
+  leftTile: {fileID: 3711858191475583630}
 --- !u!64 &3526130479948223493
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11733,13 +11833,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6019516902726841757}
   brokenMeshParent: {fileID: 3243197500596045413}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7624285378344567411}
+  downTile: {fileID: 7131837779062908071}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 6565040364004162532}
 --- !u!64 &5782427707864787091
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11908,13 +12010,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5109595537639479813}
   brokenMeshParent: {fileID: 4517699837431894945}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 6525229989098022320}
+  rightTile: {fileID: 7297420319505843159}
+  leftTile: {fileID: 5140898497839983217}
 --- !u!64 &4873087172584958751
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11971,13 +12075,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7981160610943801541}
   brokenMeshParent: {fileID: 1334528493759242675}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6565040364004162532}
+  downTile: {fileID: 4313036087383659631}
+  rightTile: {fileID: 7131837779062908071}
+  leftTile: {fileID: 2064912794478431981}
 --- !u!64 &6910685358163141456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12328,13 +12434,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5515166981903637140}
   brokenMeshParent: {fileID: 7740834415503791454}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1650145549053814800}
+  downTile: {fileID: 4506150879862726817}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 3128528714071617698}
 --- !u!64 &2202837895195853029
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12405,13 +12513,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4291768812896570476}
   brokenMeshParent: {fileID: 4887983387162641864}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 944829816507007202}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 4292681624821900891}
+  leftTile: {fileID: 3358384889282210062}
 --- !u!64 &9002021552010047277
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12594,13 +12704,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5310420059750478767}
   brokenMeshParent: {fileID: 6292264900202335682}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1783300477075470142}
+  downTile: {fileID: 2901876631927619349}
+  rightTile: {fileID: 3711858191475583630}
+  leftTile: {fileID: 3551295944886127112}
 --- !u!114 &8562724306009642107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12615,13 +12727,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6319957141917128656}
   brokenMeshParent: {fileID: 2666562012144180767}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6525229989098022320}
+  downTile: {fileID: 7589480206392079565}
+  rightTile: {fileID: 8832906377675932975}
+  leftTile: {fileID: 3156385482246442332}
 --- !u!64 &9199340312347911684
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13112,12 +13226,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4471955423844890700}
   brokenMeshParent: {fileID: 5068068842068783592}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3551295944886127112}
+  downTile: {fileID: 3516609627063980477}
+  rightTile: {fileID: 2901876631927619349}
   leftTile: {fileID: 0}
 --- !u!64 &486105513339049892
 MeshCollider:
@@ -13511,13 +13627,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6724376138755228626}
   brokenMeshParent: {fileID: 3451094269573466653}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 592505673013053524}
+  downTile: {fileID: 1766245628941490956}
+  rightTile: {fileID: 3352388724921596817}
+  leftTile: {fileID: 2098025915608030471}
 --- !u!64 &4235300675768038187
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13574,13 +13692,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4828373691657350762}
   brokenMeshParent: {fileID: 6764740016655749127}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4366677205851720052}
+  downTile: {fileID: 8562724306009642107}
+  rightTile: {fileID: 2098025915608030471}
+  leftTile: {fileID: 6823440697485906714}
 --- !u!64 &3693251389818225012
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13623,6 +13743,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4674566861798410437, guid: ec54e8c6544b48f4ebd36c92102b329b, type: 3}
+--- !u!65 &4225420862056081005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315091457616673425}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &834686688029752143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13637,26 +13770,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2638275073011808366}
   brokenMeshParent: {fileID: 6491571042386611094}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6792018722219520540}
+  downTile: {fileID: 3551295944886127112}
+  rightTile: {fileID: 1783300477075470142}
   leftTile: {fileID: 0}
---- !u!65 &4225420862056081005
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5315091457616673425}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &3706391977419956262
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14161,13 +14283,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6427243364543264554}
   brokenMeshParent: {fileID: 3136563926701457125}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 9086591589326151443}
+  downTile: {fileID: 1457699572259577859}
+  rightTile: {fileID: 6334143457137182141}
+  leftTile: {fileID: 6789341387109029688}
 --- !u!64 &7838752534100505017
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14476,13 +14600,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7049694284342048616}
   brokenMeshParent: {fileID: 2130904437554810398}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 984169340729011207}
+  downTile: {fileID: 9136628620057821278}
+  rightTile: {fileID: 3804041976774904774}
+  leftTile: {fileID: 5204365192424999962}
 --- !u!64 &5580813247576501726
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14679,13 +14805,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6822882730290974404}
   brokenMeshParent: {fileID: 8739946961488609550}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2064912794478431981}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 4313036087383659631}
+  leftTile: {fileID: 8791789380004187979}
 --- !u!64 &3185600570666886291
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14756,13 +14884,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6542257857153208823}
   brokenMeshParent: {fileID: 4911808323651710874}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7589480206392079565}
+  downTile: {fileID: 6789341387109029688}
+  rightTile: {fileID: 9086591589326151443}
+  leftTile: {fileID: 7387687754364209430}
 --- !u!64 &8895541575359930533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14805,13 +14935,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 2890664433227671962}
   brokenMeshParent: {fileID: 5784669202505785406}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3804041976774904774}
+  downTile: {fileID: 7624285378344567411}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 9136628620057821278}
 --- !u!64 &369211659254328038
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14896,6 +15028,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3198922694987422306, guid: ec54e8c6544b48f4ebd36c92102b329b, type: 3}
+--- !u!65 &4509762861372707147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866534106792439892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8791789380004187979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14910,26 +15055,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4338632228642042539}
   brokenMeshParent: {fileID: 4809373042831343955}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6209204790953125401}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
---- !u!65 &4509762861372707147
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5866534106792439892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  rightTile: {fileID: 3358384889282210062}
+  leftTile: {fileID: 7900568461160354846}
 --- !u!64 &8062359336526456033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15490,13 +15624,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4677925310049992432}
   brokenMeshParent: {fileID: 3629377676333610815}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 4297115385948722067}
+  downTile: {fileID: 1783300477075470142}
+  rightTile: {fileID: 5008448603575995178}
+  leftTile: {fileID: 6792018722219520540}
 --- !u!114 &7297420319505843159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15511,13 +15647,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6504084025903266142}
   brokenMeshParent: {fileID: 9053956205775238804}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 2098025915608030471}
+  rightTile: {fileID: 592505673013053524}
+  leftTile: {fileID: 4366677205851720052}
 --- !u!64 &4904355503249245272
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15826,13 +15964,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4788910665977886044}
   brokenMeshParent: {fileID: 3513044569623018643}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6318400279905145091}
+  downTile: {fileID: 7534535923524843762}
+  rightTile: {fileID: 8417752225016474901}
+  leftTile: {fileID: 2366396403949357237}
 --- !u!64 &1190908705747868163
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16029,13 +16169,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6471530768641765864}
   brokenMeshParent: {fileID: 9091156001608678946}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7489147440050796454}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 7026410050325246105}
+  leftTile: {fileID: 7187822455498101525}
 --- !u!64 &6851114901748895709
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16120,13 +16262,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4892781456586285008}
   brokenMeshParent: {fileID: 3554414618191320607}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6763345186540786899}
+  downTile: {fileID: 8918941055132746487}
+  rightTile: {fileID: 3779862144217884329}
+  leftTile: {fileID: 5008448603575995178}
 --- !u!64 &8161069502778027955
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16337,13 +16481,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5492438054377303723}
   brokenMeshParent: {fileID: 4507110110219298660}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5998776973786851302}
+  downTile: {fileID: 6334143457137182141}
+  rightTile: {fileID: 1124355234972118953}
+  leftTile: {fileID: 9086591589326151443}
 --- !u!64 &8480597402736176643
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17254,13 +17400,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8352256769724370793}
   brokenMeshParent: {fileID: 1130078693726156319}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3352388724921596817}
+  downTile: {fileID: 4871185406775084460}
+  rightTile: {fileID: 3173957790232120735}
+  leftTile: {fileID: 1766245628941490956}
 --- !u!114 &9086591589326151443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17275,13 +17423,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5295319980749943611}
   brokenMeshParent: {fileID: 4308175711709870836}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3827407236318614931}
+  downTile: {fileID: 5008448603575995178}
+  rightTile: {fileID: 6763345186540786899}
+  leftTile: {fileID: 4297115385948722067}
 --- !u!64 &2552526843432751914
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17408,13 +17558,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5271633464814439957}
   brokenMeshParent: {fileID: 4295850445137364954}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2341803275672831579}
+  downTile: {fileID: 5998776973786851302}
+  rightTile: {fileID: 1523569679358813272}
+  leftTile: {fileID: 8832906377675932975}
 --- !u!64 &8262044706623707041
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17583,13 +17735,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5937780296367448374}
   brokenMeshParent: {fileID: 8896279574464739186}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8653949530224165541}
+  downTile: {fileID: 1650145549053814800}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 8417752225016474901}
 --- !u!64 &2221929824567019322
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17814,13 +17968,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5455460231649786295}
   brokenMeshParent: {fileID: 4107502357670998136}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1605207865289878451}
+  downTile: {fileID: 5600935625804746025}
+  rightTile: {fileID: 8153640892149455512}
+  leftTile: {fileID: 3779862144217884329}
 --- !u!64 &4165771273052048462
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18381,13 +18537,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5597424261912817107}
   brokenMeshParent: {fileID: 3596685498987992229}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5281198099489045002}
+  downTile: {fileID: 2366396403949357237}
+  rightTile: {fileID: 6318400279905145091}
+  leftTile: {fileID: 7786935469248181573}
 --- !u!64 &733096437888949918
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18570,13 +18728,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8132183474512374710}
   brokenMeshParent: {fileID: 175119509958615673}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6815343074203669612}
+  downTile: {fileID: 5281198099489045002}
+  rightTile: {fileID: 6990332650164593726}
+  leftTile: {fileID: 7004609620386443400}
 --- !u!64 &8277818772198429537
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19025,12 +19185,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7706215064635298321}
   brokenMeshParent: {fileID: 4891803504548168789}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7387687754364209430}
+  downTile: {fileID: 834686688029752143}
+  rightTile: {fileID: 6789341387109029688}
   leftTile: {fileID: 0}
 --- !u!64 &6116633752447611432
 MeshCollider:
@@ -19060,13 +19222,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8221134927355236335}
   brokenMeshParent: {fileID: 45635385356617248}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2366396403949357237}
+  downTile: {fileID: 574252355799720841}
+  rightTile: {fileID: 7534535923524843762}
+  leftTile: {fileID: 6365262675919371085}
 --- !u!64 &1411576960989581383
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19697,13 +19861,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 9103707233406408111}
   brokenMeshParent: {fileID: 928773906080832608}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 1457699572259577859}
+  downTile: {fileID: 8803941098896874000}
+  rightTile: {fileID: 7736530271017349042}
+  leftTile: {fileID: 177011381770617340}
 --- !u!64 &9034803543263267147
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19858,12 +20024,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7352361147413885040}
   brokenMeshParent: {fileID: 5699869486992057908}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5140898497839983217}
+  downTile: {fileID: 3156385482246442332}
+  rightTile: {fileID: 6525229989098022320}
   leftTile: {fileID: 0}
 --- !u!64 &6532655153095352290
 MeshCollider:
@@ -19977,13 +20145,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7002670927224646752}
   brokenMeshParent: {fileID: 9209447156360876557}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8562724306009642107}
+  downTile: {fileID: 4297115385948722067}
+  rightTile: {fileID: 3827407236318614931}
+  leftTile: {fileID: 4560015232470901930}
 --- !u!64 &6748864690696521376
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20404,13 +20574,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1479760606024467212}
   brokenMeshParent: {fileID: 7841853747489622696}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 7004609620386443400}
+  rightTile: {fileID: 6815343074203669612}
+  leftTile: {fileID: 2161724450218784560}
 --- !u!64 &7988982408270576032
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20439,13 +20611,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4855613095241157947}
   brokenMeshParent: {fileID: 4550165801425482829}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5061305709769621939}
+  downTile: {fileID: 7026410050325246105}
+  rightTile: {fileID: 7455031675140754582}
+  leftTile: {fileID: 7489147440050796454}
 --- !u!64 &9155238475202873980
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20698,13 +20872,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8836253740178110103}
   brokenMeshParent: {fileID: 582611941219254104}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7297420319505843159}
+  downTile: {fileID: 8832906377675932975}
+  rightTile: {fileID: 2341803275672831579}
+  leftTile: {fileID: 6525229989098022320}
 --- !u!64 &7840061992437878453
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20761,13 +20937,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8878132615925077505}
   brokenMeshParent: {fileID: 684548380307251150}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8945066576678583918}
+  downTile: {fileID: 2064912794478431981}
+  rightTile: {fileID: 6565040364004162532}
+  leftTile: {fileID: 1023452283172668384}
 --- !u!64 &1386275448477425888
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21314,13 +21492,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 854698493818700503}
   brokenMeshParent: {fileID: 8324492424860388211}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6013384744801308561}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  rightTile: {fileID: 7900568461160354846}
+  leftTile: {fileID: 2939379433809534107}
 --- !u!64 &2038478738086584236
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21531,13 +21711,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 6933680998635581855}
   brokenMeshParent: {fileID: 1336467023726835792}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 5459452021579821334}
+  downTile: {fileID: 551244881275178801}
+  rightTile: {fileID: 5030825974611093359}
+  leftTile: {fileID: 3173957790232120735}
 --- !u!64 &1112968290703522539
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21762,13 +21944,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8895536197302059399}
   brokenMeshParent: {fileID: 6671647232346623565}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
   upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  downTile: {fileID: 5459452021579821334}
+  rightTile: {fileID: 8265942334648413206}
+  leftTile: {fileID: 3083195035028165060}
 --- !u!64 &705081371346374726
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22245,13 +22429,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 9048119716641075279}
   brokenMeshParent: {fileID: 7165679521396968994}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 6334143457137182141}
+  downTile: {fileID: 7736530271017349042}
+  rightTile: {fileID: 5845440212525176057}
+  leftTile: {fileID: 1457699572259577859}
 --- !u!64 &2729626408618199644
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22910,13 +23096,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7527499861949452710}
   brokenMeshParent: {fileID: 1928238492714981481}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 551244881275178801}
+  downTile: {fileID: 8153640892149455512}
+  rightTile: {fileID: 5204365192424999962}
+  leftTile: {fileID: 1605207865289878451}
 --- !u!64 &9211852678351027813
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22931,6 +23119,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3168183937163325589, guid: 989b9aed92e605546b9a668a89c12179, type: 3}
+--- !u!65 &795318435555087620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953751994205124045}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.35, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7187822455498101525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22945,26 +23146,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1233400574567528242}
   brokenMeshParent: {fileID: 8040705456359097546}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 8803941098896874000}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
---- !u!65 &795318435555087620
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953751994205124045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.35, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  rightTile: {fileID: 2939379433809534107}
+  leftTile: {fileID: 5738583368253068088}
 --- !u!64 &3027957473238143150
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23035,13 +23225,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 4337647786011366922}
   brokenMeshParent: {fileID: 7942292707827890101}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 7131837779062908071}
   downTile: {fileID: 0}
   rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  leftTile: {fileID: 4313036087383659631}
 --- !u!64 &171761640367531810
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23280,13 +23472,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 5985996789778066206}
   brokenMeshParent: {fileID: 3410770347863347816}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3128528714071617698}
+  downTile: {fileID: 944829816507007202}
+  rightTile: {fileID: 4506150879862726817}
+  leftTile: {fileID: 4547131807336744736}
 --- !u!64 &1743605833371150984
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23329,12 +23523,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 1151154026318188356}
   brokenMeshParent: {fileID: 50926107754498094}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3709367583674293955}
   downTile: {fileID: 0}
-  rightTile: {fileID: 0}
+  rightTile: {fileID: 5738583368253068088}
   leftTile: {fileID: 0}
 --- !u!64 &3227187214372139950
 MeshCollider:
@@ -23448,13 +23644,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 7745494984060331088}
   brokenMeshParent: {fileID: 1858000009395580319}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 2098025915608030471}
+  downTile: {fileID: 3827407236318614931}
+  rightTile: {fileID: 1766245628941490956}
+  leftTile: {fileID: 8562724306009642107}
 --- !u!114 &7004609620386443400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23469,13 +23667,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMesh: {fileID: 8452349161046496350}
   brokenMeshParent: {fileID: 7758644126472366643}
-  destroyEffect: {fileID: 0}
-  explosionForce: 100
-  hitsTillDestroy: 3
-  upTile: {fileID: 0}
-  downTile: {fileID: 0}
-  rightTile: {fileID: 0}
-  leftTile: {fileID: 0}
+  destroyEffect: {fileID: 569951399793358931, guid: 534150c34f596e641ba4ba1d1b99e502,
+    type: 3}
+  tilePieceMass: 0.0001
+  explosionForce: 1
+  hitsTillDestroy: 2
+  upTile: {fileID: 3083195035028165060}
+  downTile: {fileID: 3173957790232120735}
+  rightTile: {fileID: 5459452021579821334}
+  leftTile: {fileID: 3352388724921596817}
 --- !u!64 &2437578526974766104
 MeshCollider:
   m_ObjectHideFlags: 0
