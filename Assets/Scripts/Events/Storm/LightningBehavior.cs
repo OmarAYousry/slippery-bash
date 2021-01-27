@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
 /// <summary>
@@ -189,12 +190,21 @@ public class LightningBehavior: MonoBehaviour
 
             if(strikeTimer >= strikeTime)
             {
-                strikeTimer = -1;
-                strike.gameObject.SetActive(false);
-                strikeLight.gameObject.SetActive(false);
-                gameObject.SetActive(false);
+                StartCoroutine(WaitForDisable());
             }
         }
+    }
+
+    private IEnumerator WaitForDisable()
+    {
+        strikeTimer = -1;
+        strike.gameObject.SetActive(false);
+        strikeLight.gameObject.SetActive(false);
+
+        while(sfxAudioSource.isPlaying)
+            yield return null;
+
+        gameObject.SetActive(false);
     }
 
     private void AdjustToOcean()
