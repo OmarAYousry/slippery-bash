@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// [AUTHOR] Akbar Suriaganda
@@ -12,8 +13,8 @@ public class SnowBehavior: EventBehavior
     //---------------------------------------------------------------------------------------------//
     public override void StartBehavior(float duration)
     {
-        col.enabled = true;
         Freeze(true);
+        StartCoroutine(EnablingIceOcean());
     }
 
     public override void ResetBehavior()
@@ -24,7 +25,7 @@ public class SnowBehavior: EventBehavior
 
     private void Freeze(bool freeze)
     {
-        TileController[] tiles = PlatformController.tiles.ToArray();
+        OceanBuoyancy[] tiles = FindObjectsOfType<OceanBuoyancy>();
         Rigidbody currentRb;
         if(tiles != null)
         {
@@ -33,6 +34,7 @@ public class SnowBehavior: EventBehavior
                 currentRb = tiles[i].GetComponent<Rigidbody>();
                 if(currentRb)
                 {
+                    tiles[i].enabled = !freeze;
                     currentRb.useGravity = !freeze;
                     currentRb.isKinematic = freeze;
                     if(freeze)
@@ -40,13 +42,21 @@ public class SnowBehavior: EventBehavior
                 }
             }
         }
-        if(PlatformController.rigid)
-        {
-            currentRb = PlatformController.rigid;
-            currentRb.useGravity = !freeze;
-            currentRb.isKinematic = freeze;
-            if(freeze)
-                currentRb.velocity = Vector3.zero;
-        }
+        //if(PlatformController.rigid)
+        //{
+        //    currentRb = PlatformController.rigid;
+        //    currentRb.useGravity = !freeze;
+        //    currentRb.isKinematic = freeze;
+        //    if(freeze)
+        //        currentRb.velocity = Vector3.zero;
+        //}
+    }
+
+    private IEnumerator EnablingIceOcean()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+        col.enabled = true;
     }
 }

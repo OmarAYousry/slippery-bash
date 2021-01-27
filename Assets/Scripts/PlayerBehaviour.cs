@@ -169,7 +169,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
-        Debug.Log(GetComponent<UnityEngine.InputSystem.PlayerInput>().currentActionMap);
+        //Debug.Log(GetComponent<UnityEngine.InputSystem.PlayerInput>().currentActionMap);
     }
 
     public void ChangeInputToUI()

@@ -37,6 +37,12 @@ public class EventStateController: MonoBehaviour
     public float timeUntilCompleteFalloff = 600;
 
     [Header("Probabilities")]
+    /// <summary>
+    /// True: the next state will be chosen randomly using the following probabilities. False: The events occurs in the order fixedOrder.
+    /// </summary>
+    [Tooltip("True: the next state will be chosen randomly using the following probabilities. False: The events occurs in the order fixedOrder.")]
+    public bool useProbabilities = true;
+    public EventStateSwitcher.EventState[] fixedOrder;
     public AnimationCurve idleProbability = new AnimationCurve(new Keyframe[] { new Keyframe(1, 1), new Keyframe(1, 1) });
     public AnimationCurve titanicProbability = new AnimationCurve(new Keyframe[] { new Keyframe(1, 1), new Keyframe(1, 1) });
     public AnimationCurve stormProbability = new AnimationCurve(new Keyframe[] { new Keyframe(1, 1), new Keyframe(1, 1) });
@@ -45,6 +51,7 @@ public class EventStateController: MonoBehaviour
     private float timer;
     private float eventTimer;
     private float currentEventDuration;
+    private int fixedOrderIteration = -1;
 
     private float currentIdleProbability;
     private float currentTitanicProbability;
@@ -177,41 +184,49 @@ public class EventStateController: MonoBehaviour
         {
             eventTimer = timer / timeUntilCompleteFalloff;
 
-            // the probablities might not add up to one
-            currentIdleProbability = idleProbability.Evaluate(eventTimer);
-            currentTitanicProbability = titanicProbability.Evaluate(eventTimer);
-            currentStormProbability = stormProbability.Evaluate(eventTimer);
-            currentSnowProbability = snowProbability.Evaluate(eventTimer);
-
-            currentRandom = Random.Range(0, currentIdleProbability
-                + currentTitanicProbability
-                + currentStormProbability
-                + currentSnowProbability);
-
-            // switch to the chosen event
-            if(currentRandom > currentIdleProbability)
+            if(useProbabilities)
             {
-                currentRandom -= currentIdleProbability;
-                if(currentRandom > currentTitanicProbability)
+                // the probablities might not add up to one
+                currentIdleProbability = idleProbability.Evaluate(eventTimer);
+                currentTitanicProbability = titanicProbability.Evaluate(eventTimer);
+                currentStormProbability = stormProbability.Evaluate(eventTimer);
+                currentSnowProbability = snowProbability.Evaluate(eventTimer);
+
+                currentRandom = Random.Range(0, currentIdleProbability
+                    + currentTitanicProbability
+                    + currentStormProbability
+                    + currentSnowProbability);
+
+                // switch to the chosen event
+                if(currentRandom > currentIdleProbability)
                 {
-                    currentRandom -= currentTitanicProbability;
-                    if(currentRandom > currentStormProbability)
+                    currentRandom -= currentIdleProbability;
+                    if(currentRandom > currentTitanicProbability)
                     {
-                        PlayEvent(EventStateSwitcher.EventState.Snow);
+                        currentRandom -= currentTitanicProbability;
+                        if(currentRandom > currentStormProbability)
+                        {
+                            PlayEvent(EventStateSwitcher.EventState.Snow);
+                        }
+                        else
+                        {
+                            PlayEvent(EventStateSwitcher.EventState.Storm);
+                        }
                     }
                     else
                     {
-                        PlayEvent(EventStateSwitcher.EventState.Storm);
+                        PlayEvent(EventStateSwitcher.EventState.Titanic);
                     }
                 }
                 else
                 {
-                    PlayEvent(EventStateSwitcher.EventState.Titanic);
+                    PlayEvent(EventStateSwitcher.EventState.Idle);
                 }
             }
             else
             {
-                PlayEvent(EventStateSwitcher.EventState.Idle);
+                fixedOrderIteration = (fixedOrderIteration + 1) % fixedOrder.Length;
+                PlayEvent(fixedOrder[fixedOrderIteration]);
             }
         }
     }

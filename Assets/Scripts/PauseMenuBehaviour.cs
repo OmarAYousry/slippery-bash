@@ -26,12 +26,12 @@ public class PauseMenuBehaviour : MonoBehaviour
         instance.gameObject.SetActive(true);
         instance.resumeButton.Select();
 
-        Debug.LogError("????");
+        //Debug.LogError("????");
     }
 
     public static void HidePauseMenu()
     {
-        Debug.LogError("???");
+        //Debug.LogError("???");
         instance.gameObject.SetActive(false);
         //instance.OnResumeButtonPressed();
     }

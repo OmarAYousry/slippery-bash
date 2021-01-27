@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switcher: {fileID: 6341384700895949144}
-  initialIdleDuration: 1
-  maxMinEventDuration: {x: 10, y: 5}
+  initialIdleDuration: 5
+  maxMinEventDuration: {x: 10, y: 10}
   eventDurationCurve:
     serializedVersion: 2
     m_Curve:
@@ -107,6 +107,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timeUntilCompleteFalloff: 180
+  useProbabilities: 0
+  fixedOrder: 020000000100000003000000
   idleProbability:
     serializedVersion: 2
     m_Curve:
@@ -625,11 +627,6 @@ PrefabInstance:
         type: 3}
       propertyPath: targets.Array.size
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2560596643998668238, guid: 59e5a9c87a702e04491197e9ae6531b3,
-        type: 3}
-      propertyPath: spawnDistance
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7629979119061632901, guid: 59e5a9c87a702e04491197e9ae6531b3,
         type: 3}

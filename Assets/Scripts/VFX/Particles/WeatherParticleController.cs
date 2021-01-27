@@ -12,7 +12,19 @@ public class WeatherParticleController : BlendState
     [SerializeField] private ParticleSystem rain = null;
     [SerializeField] private ParticleSystem snow = null;
 
+    /// <summary>
+    /// The emission settings for each state.
+    /// </summary>
+    [Tooltip("The emission settings for each state.")]
     public ParticlesProfile[] states;
+    /// <summary>
+    /// The emission size depending on the current camera distance.
+    /// </summary>
+    [Tooltip("The emission size depending on the current camera distance.")]
+    public float sizeMultiplier = 1;
+
+    private ParticleSystem.ShapeModule rainShape;
+    private ParticleSystem.ShapeModule snowShape;
 
 
     //---------------------------------------------------------------------------------------------//
@@ -43,6 +55,11 @@ public class WeatherParticleController : BlendState
             }
         }
     }
+    private void Awake()
+    {
+        rainShape = rain.shape;
+        snowShape = snow.shape;
+    }
 
     public override int StateAmount()
     {
@@ -51,7 +68,8 @@ public class WeatherParticleController : BlendState
 
     private void LateUpdate()
     {
-        //Debug.Log(rain.emission.rateOverTime.constant + "/" + rainEmission.rateOverTime.constant);
+        rain.transform.position = snow.transform.position = GameCamera.Instance.GetBounds().center;
+        rainShape.scale = snowShape.scale = new Vector3(1, 1, 0) *GameCamera.Instance.GetDistance() * sizeMultiplier;
     }
 
 

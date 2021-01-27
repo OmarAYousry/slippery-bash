@@ -55,6 +55,7 @@ public class GameCamera: MonoBehaviour
 
     private Vector3 velocity;
     private Bounds bounds = new Bounds();
+    private bool firstFocusSet;
     private List<Vector3> lightningObjects = new List<Vector3>();
     private CameraState state = CameraState.Lobby;
 
@@ -104,6 +105,7 @@ public class GameCamera: MonoBehaviour
     {
         bounds.center = Vector3.zero;
         bounds.extents = Vector3.zero;
+        firstFocusSet = false;
 
         if(GameController.players != null)
         {
@@ -112,14 +114,30 @@ public class GameCamera: MonoBehaviour
                 // check if the player hasn't despawned yet (not expected)
                 if(GameController.players[i])
                 {
-                    bounds.Encapsulate(GameController.players[i].transform.position);
+                    if(!firstFocusSet)
+                    {
+                        bounds.center = GameController.players[i].transform.position;
+                        firstFocusSet = true;
+                    }
+                    else
+                    {
+                        bounds.Encapsulate(GameController.players[i].transform.position);
+                    }
                 }
             }
         }
 
         if(TitanicBehavior.Instance && TitanicBehavior.Instance.gameObject.activeInHierarchy)
         {
-            bounds.Encapsulate(TitanicBehavior.Instance.transform.position);
+            if(!firstFocusSet)
+            {
+                bounds.center = TitanicBehavior.Instance.transform.position;
+                firstFocusSet = true;
+            }
+            else
+            {
+                bounds.Encapsulate(TitanicBehavior.Instance.transform.position);
+            }
         }
 
         lightningObjects = StormBehavior.GetLightningPositions();
@@ -127,7 +145,15 @@ public class GameCamera: MonoBehaviour
         {
             for(int i = 0; i < lightningObjects.Count; i++)
             {
-                bounds.Encapsulate(lightningObjects[i]);
+                if(!firstFocusSet)
+                {
+                    bounds.center = lightningObjects[i];
+                    firstFocusSet = true;
+                }
+                else
+                {
+                    bounds.Encapsulate(lightningObjects[i]);
+                }
             }
         }
 
@@ -174,6 +200,24 @@ public class GameCamera: MonoBehaviour
                     break;
             }
         }
+    }
+
+    /// <summary>
+    /// Get the current bounds that the camera is dependent on.
+    /// </summary>
+    /// <returns>bounds encapsulating all importand objects</returns>
+    public Bounds GetBounds()
+    {
+        return bounds;
+    }
+
+    /// <summary>
+    /// Get the current distance dependent on the current bounds.
+    /// </summary>
+    /// <returns>distance of the camera to the focus point</returns>
+    public float GetDistance()
+    {
+        return desiredDistance;
     }
 
 

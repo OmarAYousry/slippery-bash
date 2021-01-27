@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 9153129676072078303}
   destroyCollider: {fileID: 2838910307959158611}
-  spawnDistance: 100
+  spawnDistance: 50
   destroyLifetime: 0.1
 --- !u!54 &9153129676072078303
 Rigidbody:

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 524.6742, g: 650.1001, b: 860.4391, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1925,6 +1925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EventStateController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: fixedOrder.Array.data[3]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da13107105d6a5440901cf089f2715d1, type: 3}

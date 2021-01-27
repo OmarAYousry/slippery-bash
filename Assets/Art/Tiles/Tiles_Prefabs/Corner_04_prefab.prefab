@@ -16,20 +16,6 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 19435241d3e2a7b4fb5d9a629c8c9e4a, type: 2}
   - {fileID: 2100000, guid: 1ad7e2dba2e437546a7c2eada3a6e3d9, type: 2}
---- !u!114 &8927807082638546367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2263525775628105778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5352edee4baafbb4987d237f947887c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedMat: 0
-  materials: []
 --- !u!1 &5022554824363409416
 GameObject:
   m_ObjectHideFlags: 0

@@ -246,7 +246,7 @@ public class LightningBehavior: MonoBehaviour
 
     private void Strike()
     {
-        AudioController.PlaySoundEffect(SoundEffectType.LIGHTNING_STRIKE, sfxAudioSource, handleAudioSourceDestruction: true);
+        AudioController.PlaySoundEffect(SoundEffectType.LIGHTNING_STRIKE, sfxAudioSource);
 
         strike.gameObject.SetActive(true);
         strikeLight.gameObject.SetActive(true);

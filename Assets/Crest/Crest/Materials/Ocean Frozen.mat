@@ -63,7 +63,7 @@ Material:
     - _NormalsScale: 40
     - _NormalsStrength: 1
     - _Occlusion: 0
-    - _RefractionStrength: 0
+    - _RefractionStrength: 2
     - _SSSIntensityBase: 0
     - _SSSIntensitySun: 0
     - _SSSSunFalloff: 0.01
@@ -75,7 +75,7 @@ Material:
     - _SmoothnessFarDistance: 8000
     - _Specular: 1
     m_Colors:
-    - _DepthFogDensity: {r: 1, g: 1, b: 1, a: 0}
+    - _DepthFogDensity: {r: 10, g: 10, b: 10, a: 0}
     - _FoamBubbleColor: {r: 1, g: 1, b: 1, a: 0}
     - _SSSTint: {r: 0, g: 0, b: 0, a: 0}
     - _ScatterColourBase: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 0}

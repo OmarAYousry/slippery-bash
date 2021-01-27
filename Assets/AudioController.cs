@@ -152,7 +152,7 @@ public class AudioController : MonoBehaviour
         // remove audio source from parent to avoid parents' destruction affecting it
         sourceToBeDestroyed.transform.parent = transform;
 
-        while (sourceToBeDestroyed.isPlaying)
+        while (sourceToBeDestroyed && sourceToBeDestroyed.isPlaying)
         {
             // wait for 1 second at a time while
             // the audio source is still playing something
@@ -160,7 +160,8 @@ public class AudioController : MonoBehaviour
         }
 
         // destroy the audio source after it's done playing
-        Destroy(sourceToBeDestroyed.gameObject);
+        if(sourceToBeDestroyed)
+            Destroy(sourceToBeDestroyed.gameObject);
     }
 
 }

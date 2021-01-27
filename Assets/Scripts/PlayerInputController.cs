@@ -32,18 +32,18 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnNavigate()
     {
-        Debug.LogWarning("Navigating...");
+        //Debug.LogWarning("Navigating...");
     }
 
     public void OnPause()
     {
-        Debug.Log("Here already?");
+        //Debug.Log("Here already?");
         GameController.PauseGame();
     }
 
     public void OnSubmit()
     {
-        Debug.LogError("Submitting...");
+        //Debug.LogError("Submitting...");
     }
 
     public void OnLobbyStart()

@@ -104,6 +104,8 @@ public class WaveController: BlendState
         oceanMat.SetColor("_FoamBubbleColor", Color.Lerp(oceanMat.GetColor("_FoamBubbleColor"), toMaterial.GetColor("_FoamBubbleColor"), transition));
         oceanMat.SetFloat("_FoamBubbleParallax", Mathf.Lerp(oceanMat.GetFloat("_FoamBubbleParallax"), toMaterial.GetFloat("_FoamBubbleParallax"), transition));
         oceanMat.SetFloat("_FoamBubblesCoverage", Mathf.Lerp(oceanMat.GetFloat("_FoamBubblesCoverage"), toMaterial.GetFloat("_FoamBubblesCoverage"), transition));
+        oceanMat.SetFloat("_RefractionStrength", Mathf.Lerp(oceanMat.GetFloat("_RefractionStrength"), toMaterial.GetFloat("_RefractionStrength"), transition));
+        oceanMat.SetVector("_DepthFogDensity", Vector4.Lerp(oceanMat.GetVector("_DepthFogDensity"), toMaterial.GetVector("_DepthFogDensity"), transition));
     }
 
     protected override void ApplyState(int toState)
@@ -146,6 +148,8 @@ public class WaveController: BlendState
         oceanMat.SetColor("_FoamBubbleColor", toMaterial.GetColor("_FoamBubbleColor"));
         oceanMat.SetFloat("_FoamBubbleParallax", toMaterial.GetFloat("_FoamBubbleParallax"));
         oceanMat.SetFloat("_FoamBubblesCoverage", toMaterial.GetFloat("_FoamBubblesCoverage"));
+        oceanMat.SetFloat("_RefractionStrength", toMaterial.GetFloat("_RefractionStrength"));
+        oceanMat.SetVector("_DepthFogDensity", toMaterial.GetVector("_DepthFogDensity"));
     }
 
     protected override void DisableState(int previousState) { }
