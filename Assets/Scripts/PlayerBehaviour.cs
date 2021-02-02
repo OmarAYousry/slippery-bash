@@ -102,6 +102,10 @@ public class PlayerBehaviour : MonoBehaviour
         //playerSpeed *= 5f;
         //Debug.LogError(playerspe);
         // Move the player according to its current speed
+
+        if (swimBehaviour.CheckForSwimming())
+            isJumping = false;
+
         if (!isStunned)
         {
             if (playerSpeed.magnitude > 0.0f)
@@ -110,7 +114,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (!isJumping)
                     MovePlayer(playerSpeed);
             }
-            else if (!isStopped)
+            else if (!isStopped && !isJumping)
             {
                 isStopped = true;
                 // good place to add the stopping 'slippiness' speed
@@ -121,11 +125,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             MovePlayer(new Vector3());
         }
-    }
-
-    private void Update()
-    {
-        swimBehaviour.CheckForSwimming();
     }
 
     public void PerformPunch()

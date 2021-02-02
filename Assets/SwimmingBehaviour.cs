@@ -72,19 +72,21 @@ public class SwimmingBehaviour : MonoBehaviour
         }
     }
 
-    public void CheckForSwimming()
+    public bool CheckForSwimming()
     {
         if (!IsSwimming && transform.position.y < OceanHeightSampler.SampleHeight(gameObject, transform.position) + surfaceOffset)
         {
             playerRigidBody.velocity = new Vector3();
             playerAnimator.SetBool("Swimming", true);
             StartSwimming();
+            return true;
         }
         else if (IsSwimming && transform.position.y > OceanHeightSampler.SampleHeight(gameObject, transform.position) + surfaceOffset)
         {
             playerAnimator.SetBool("Swimming", false);
             EndSwimming();
         }
+        return false;
     }
 
     private void AdjustSwimTimer()
