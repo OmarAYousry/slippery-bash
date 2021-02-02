@@ -57,7 +57,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void UpdateSpeed(Vector2 inputDirection)
     {
         playerAnimator.SetFloat("Speed", inputDirection.magnitude);
-        
+
         // Slipping animation... tricky...
         //if (inputDirection.magnitude < 0.01f)
         //{
@@ -75,24 +75,52 @@ public class PlayerBehaviour : MonoBehaviour
 
         // dampen user input slightly to avoid
         // janky movement (that is way too fast)
-        float dampFactor = 0.2f;
-        inputDirection *= dampFactor;
+        //float dampFactor = 0.2f;
+        //inputDirection *= dampFactor;
 
+        inputDirection *= 5.0f;
         // update the player speed with the new input
         playerSpeed = new Vector3(inputDirection.x, 0f, inputDirection.y);
     }
 
     public void MovePlayer(Vector3 moveDirection)
     {
-        playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
+        //playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
+        playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+
+
 
         transform.LookAt(transform.position + moveDirection);
     }
-
+    bool isStopped = false;
     private void FixedUpdate()
     {
+        //if (Mathf.Abs(playerSpeed.x) > 0.25f)
+        //    playerSpeed.x = 4.0f * (playerSpeed.x / Mathf.Abs(playerSpeed.x));
+        //if (Mathf.Abs(playerSpeed.z) > 0.25f)
+        //    playerSpeed.z = 4.0f * (playerSpeed.z / Mathf.Abs(playerSpeed.z));
+        //playerSpeed *= 5f;
+        //Debug.LogError(playerspe);
         // Move the player according to its current speed
-        MovePlayer(playerSpeed);
+        if (!isStunned)
+        {
+            if (playerSpeed.magnitude > 0.0f)
+            {
+                isStopped = false;
+                if (!isJumping)
+                    MovePlayer(playerSpeed);
+            }
+            else if (!isStopped)
+            {
+                isStopped = true;
+                // good place to add the stopping 'slippiness' speed
+                MovePlayer(transform.forward * 0.0f);
+            }
+        }
+        else
+        {
+            MovePlayer(new Vector3());
+        }
     }
 
     private void Update()
@@ -102,6 +130,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformPunch()
     {
+        // cannot punch if swimming
+        if (swimBehaviour.IsSwimming)
+            return;
+
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
@@ -147,6 +179,14 @@ public class PlayerBehaviour : MonoBehaviour
         const float hitPower = 5.0f;
         Vector3 scaledForceVector = forceVector * hitPower;
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
+        StartCoroutine(applyStun());
+    }
+    private bool isStunned = false;
+    private IEnumerator applyStun(float stunDuration = 2.0f)
+    {
+        isStunned = true;
+        yield return new WaitForSecondsRealtime(stunDuration);
+        isStunned = false;
     }
 
     [SerializeField]
@@ -156,7 +196,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (isJumping)
             return;
-
+        
         isJumping = true;
 
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
