@@ -135,7 +135,7 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
-        StartCoroutine(WaitThenDoAction(0.5f, ()=> {
+        StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
             const float punchRadius = 1.0f;
 
@@ -158,7 +158,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector);
+                    hitPlayer.GetHit(forceVector,transform.rotation);
                 }
                 if (contactedCollider.CompareTag("Tile"))
                 {
@@ -169,12 +169,14 @@ public class PlayerBehaviour : MonoBehaviour
         }));     
     }
 
-    public void GetHit(Vector3 forceVector)
+    public void GetHit(Vector3 forceVector, Quaternion newRot)
     {
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
-        playerAnimator.SetTrigger("Hit");
-
-        const float hitPower = 5.0f;
+        playerAnimator.Play("Hit");
+        //playerAnimator.SetTrigger("Hit");
+        //Debug.Log("Play Hit Animation");
+        const float hitPower = 20.0f;
+        transform.rotation = newRot;
         Vector3 scaledForceVector = forceVector * hitPower;
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
         StartCoroutine(applyStun());
