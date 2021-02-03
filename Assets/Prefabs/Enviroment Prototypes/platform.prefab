@@ -9370,7 +9370,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3675140105723869445}
   serializedVersion: 2
-  m_Mass: 30
+  m_Mass: 300
   m_Drag: 0.5
   m_AngularDrag: 3
   m_UseGravity: 1
@@ -9415,7 +9415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459cffc9b7715a24f8988c6ab64a7a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancyForce: 50
+  buoyancyForce: 500
   depthFactor: 1
   surfaceOffset: 1.5
   buoyancyElements:

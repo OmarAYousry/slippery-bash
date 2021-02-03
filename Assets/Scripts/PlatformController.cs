@@ -167,14 +167,14 @@ public class PlatformController : MonoBehaviour
         }
 
         Rigidbody rb = parentObj.AddComponent<Rigidbody>();
-        rb.mass = (float)tiles.Count * 0.25f;
+        rb.mass = (float)tiles.Count * 2.5f;
         rb.angularDrag = 3f;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         OceanBuoyancy buoyancy = parentObj.AddComponent<OceanBuoyancy>();
         buoyancy.buoyancyElements = buoyancyElements;
-        buoyancy.buoyancyForce = (float)tiles.Count * 0.5f;
+        buoyancy.buoyancyForce = (float)tiles.Count * 5f;
         buoyancy.depthFactor = 1;
         buoyancy.surfaceOffset = 1f;
 
