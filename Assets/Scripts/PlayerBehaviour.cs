@@ -137,7 +137,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 1.0f;
+            const float punchRadius = 2.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -175,10 +175,11 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator.Play("Hit");
         //playerAnimator.SetTrigger("Hit");
         //Debug.Log("Play Hit Animation");
-        const float hitPower = 20.0f;
+        const float hitPower = 4000.0f;
         transform.rotation = newRot;
         Vector3 scaledForceVector = forceVector * hitPower;
-        playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
+        playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
+        //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
         StartCoroutine(applyStun());
     }
     private bool isStunned = false;
