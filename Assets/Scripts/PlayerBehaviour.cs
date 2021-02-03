@@ -111,8 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (playerSpeed.magnitude > 0.0f)
             {
                 isStopped = false;
-                if (!isJumping)
-                    MovePlayer(playerSpeed);
+                MovePlayer(playerSpeed);
             }
             else if (!isStopped && !isJumping)
             {
