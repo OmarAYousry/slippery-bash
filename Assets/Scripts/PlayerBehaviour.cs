@@ -57,7 +57,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void UpdateSpeed(Vector2 inputDirection)
     {
         playerAnimator.SetFloat("Speed", inputDirection.magnitude);
-        
+
         // Slipping animation... tricky...
         //if (inputDirection.magnitude < 0.01f)
         //{
@@ -75,39 +75,79 @@ public class PlayerBehaviour : MonoBehaviour
 
         // dampen user input slightly to avoid
         // janky movement (that is way too fast)
-        float dampFactor = 0.2f;
-        inputDirection *= dampFactor;
+        //float dampFactor = 0.2f;
+        //inputDirection *= dampFactor;
 
+        inputDirection *= 5.0f;
         // update the player speed with the new input
         playerSpeed = new Vector3(inputDirection.x, 0f, inputDirection.y);
     }
 
     public void MovePlayer(Vector3 moveDirection)
     {
-        playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
+        //playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
+        playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+
+
 
         transform.LookAt(transform.position + moveDirection);
     }
-
+    bool isStopped = false;
     private void FixedUpdate()
     {
+        //if (Mathf.Abs(playerSpeed.x) > 0.25f)
+        //    playerSpeed.x = 4.0f * (playerSpeed.x / Mathf.Abs(playerSpeed.x));
+        //if (Mathf.Abs(playerSpeed.z) > 0.25f)
+        //    playerSpeed.z = 4.0f * (playerSpeed.z / Mathf.Abs(playerSpeed.z));
+        //playerSpeed *= 5f;
+        //Debug.LogError(playerspe);
         // Move the player according to its current speed
-        MovePlayer(playerSpeed);
-    }
 
-    private void Update()
-    {
-        swimBehaviour.CheckForSwimming();
+        if (swimBehaviour.CheckForSwimming())
+        {
+            isJumping = false;
+            isOnIce = false;
+        }
+
+        if (!isStunned)
+        {
+            if (playerSpeed.magnitude > 0.0f)
+            {
+                isStopped = false;
+                MovePlayer(playerSpeed);
+            }
+            else if (!isStopped && !isJumping)
+            {
+                isStopped = true;
+                // good place to add the stopping 'slippiness' speed
+                if (isOnIce)
+                {
+                    MovePlayer(transform.forward * iceSlipSpeed);
+                }
+                else
+                {
+                    MovePlayer(transform.forward * 0.0f);
+                }
+            }
+        }
+        else
+        {
+            MovePlayer(new Vector3());
+        }
     }
 
     public void PerformPunch()
     {
+        // cannot punch if swimming
+        if (swimBehaviour.IsSwimming)
+            return;
+
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
-        StartCoroutine(WaitThenDoAction(0.5f, ()=> {
+        StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 1.0f;
+            const float punchRadius = 2.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -128,7 +168,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector);
+                    hitPlayer.GetHit(forceVector,transform.rotation);
                 }
                 if (contactedCollider.CompareTag("Tile"))
                 {
@@ -139,24 +179,38 @@ public class PlayerBehaviour : MonoBehaviour
         }));     
     }
 
-    public void GetHit(Vector3 forceVector)
+    public void GetHit(Vector3 forceVector, Quaternion newRot)
     {
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
-        playerAnimator.SetTrigger("Hit");
-
-        const float hitPower = 5.0f;
+        playerAnimator.Play("Hit");
+        //playerAnimator.SetTrigger("Hit");
+        //Debug.Log("Play Hit Animation");
+        const float hitPower = 4000.0f;
+        transform.rotation = newRot;
         Vector3 scaledForceVector = forceVector * hitPower;
-        playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
+        playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
+        //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
+        StartCoroutine(applyStun());
+    }
+    private bool isStunned = false;
+    private IEnumerator applyStun(float stunDuration = 2.0f)
+    {
+        isStunned = true;
+        yield return new WaitForSecondsRealtime(stunDuration);
+        isStunned = false;
     }
 
     [SerializeField]
     private float jumpPower = 0.0f;
 
+    [SerializeField]
+    private float iceSlipSpeed = 3.0f;
+
     public void PerformJump()
     {
         if (isJumping)
             return;
-
+        
         isJumping = true;
 
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
@@ -188,12 +242,23 @@ public class PlayerBehaviour : MonoBehaviour
         GameController.CheckEndGameCondition(this);
     }
 
+    bool isOnIce = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.LogError(collision.gameObject.SetActive(false));
         //collision.gameObject.SetActive(false);
         // should maybe check "Floor" tag -- not yet implemented
         isJumping = false;
+
+        if (collision.collider.material.name.ToLower().Contains("snow"))
+        {
+            isOnIce = false;
+        }
+        else if (collision.collider.material.name.ToLower().Contains("ice"))
+        {
+            isOnIce = true;
+        }
     }
 
     IEnumerator WaitThenDoAction(float duration, System.Action action)
