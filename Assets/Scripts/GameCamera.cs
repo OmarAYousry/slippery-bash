@@ -59,6 +59,8 @@ public class GameCamera: MonoBehaviour
     private List<Vector3> lightningObjects = new List<Vector3>();
     private CameraState state = CameraState.Lobby;
 
+    private int winnerIndex;
+
 
     //---------------------------------------------------------------------------------------------//
     private void Awake()
@@ -163,7 +165,7 @@ public class GameCamera: MonoBehaviour
     private void SetWinnerValues()
     {
         desiredDistance = winnerDistance;
-        bounds.center = GameController.players[0].transform.position;
+        bounds.center = GameController.players[winnerIndex].transform.position;
     }
 
 
@@ -218,6 +220,15 @@ public class GameCamera: MonoBehaviour
     public float GetDistance()
     {
         return desiredDistance;
+    }
+
+    /// <summary>
+    /// Set the winner the camera will zoom to.
+    /// </summary>
+    /// <param name="index">index of the player in the list</param>
+    public void SetWinnerIndex(int index)
+    {
+        winnerIndex = index;
     }
 
 

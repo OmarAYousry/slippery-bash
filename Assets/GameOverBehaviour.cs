@@ -55,13 +55,16 @@ public class GameOverBehaviour : MonoBehaviour
             // declare winner
             instance.gameOverText.SetActive(false);
             instance.playerWinsText.SetActive(true);
-            GameCamera.Instance.State = GameCamera.CameraState.Winner;
 
             int index = GameController.players.IndexOf(winner);
             for(int i = 0; i < instance.numberText.Length; i++)
             {
                 instance.numberText[i].SetActive(i == index);
             }
+
+            // move camera to winner
+            GameCamera.Instance.State = GameCamera.CameraState.Winner;
+            GameCamera.Instance.SetWinnerIndex(index);
 
             //instance.winnerText.text = $"Player {GameController.players.IndexOf(winner) + 1} Wins!";
             //instance.winnerText.gameObject.SetActive(true);
