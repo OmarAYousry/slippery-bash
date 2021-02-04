@@ -130,11 +130,18 @@ public class EventStateController: MonoBehaviour
         AudioController.PlayEventMusic(eventState);
 
         eventTimer = 0;
-        currentEventDuration = Mathf.Lerp(
-            maxMinEventDuration.x,
-            maxMinEventDuration.y,
-            eventDurationCurve.Evaluate(timer / timeUntilCompleteFalloff));
         switcher.State = (int)eventState;
+        if(switcher.OverrideDuration > 0)
+        {
+            currentEventDuration = switcher.OverrideDuration;
+        }
+        else
+        {
+            currentEventDuration = Mathf.Lerp(
+                maxMinEventDuration.x,
+                maxMinEventDuration.y,
+                eventDurationCurve.Evaluate(timer / timeUntilCompleteFalloff));
+        }
         switcher.EventDuration = currentEventDuration;
 
         Phase = EventStatePhase.Playing;

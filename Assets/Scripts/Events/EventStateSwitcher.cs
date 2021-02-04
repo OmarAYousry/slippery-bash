@@ -82,6 +82,17 @@ public class EventStateSwitcher: BlendState
     /// The event's behavior depends on the duration;
     /// </summary>
     public float EventDuration { get; set; }
+
+    /// <summary>
+    /// Get the prefered time of the current state. -1 if there is no prefered time.
+    /// </summary>
+    public float OverrideDuration 
+    { 
+        get
+        {
+            return profiles[State].overrideTime;
+        } 
+    }
     #endregion
 
 

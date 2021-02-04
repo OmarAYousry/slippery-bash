@@ -213,6 +213,11 @@ public class LightningBehavior: MonoBehaviour
         updatingValue = OceanHeightSampler.SampleHeight(gameObject, currentPosition);
         currentPosition.y = updatingValue;
         transform.position = currentPosition;
+
+        toPosition = lightning.transform.position;
+        toPosition.y = GameCamera.Instance.transform.position.y * 3f;
+        lightning.transform.position = toPosition;
+        distance = lightning.transform.localPosition.y;
     }
 
     private void LateUpdate()

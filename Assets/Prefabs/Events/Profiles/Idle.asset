@@ -21,3 +21,4 @@ MonoBehaviour:
   particlesProperties:
     state: 0
     transitionDuration: 5
+  overrideTime: 10
