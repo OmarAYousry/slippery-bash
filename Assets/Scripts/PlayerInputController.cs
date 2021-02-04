@@ -48,6 +48,9 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnLobbyStart()
     {
+        if(GameCamera.Instance.State != GameCamera.CameraState.Lobby)
+            return;
+
         LobbyBehaviour.virtualStartGameButtonClick();
     }
 

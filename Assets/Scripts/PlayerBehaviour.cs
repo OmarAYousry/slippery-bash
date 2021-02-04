@@ -168,7 +168,7 @@ public class PlayerBehaviour : MonoBehaviour
                     // handle its own getting hit behaviour
                     hitPlayer.GetHit(forceVector,transform.rotation);
                 }
-                if (contactedCollider.CompareTag("Tile"))
+                if (!LobbyBehaviour.isInLobby && contactedCollider.CompareTag("Tile"))
                 {
                     TileController hitTile = contactedCollider.GetComponent<TileController>();
                     hitTile.DamageTile();
