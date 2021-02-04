@@ -7,7 +7,6 @@ public class SwimmingBehaviour : MonoBehaviour
     [SerializeField]
     private PlayerBehaviour playerBehaviour = null;
 
-    [SerializeField]
     private Animator playerAnimator = null;
 
     [SerializeField]
@@ -35,6 +34,8 @@ public class SwimmingBehaviour : MonoBehaviour
 
     void Start()
     {
+        playerAnimator = GetComponentInChildren<Animator>();
+
         InitSlider();
 
         // start out not swimming

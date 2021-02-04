@@ -19,12 +19,15 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    public static void RegisterPlayer(PlayerBehaviour playerToRegister)
+    public static int RegisterPlayer(PlayerBehaviour playerToRegister)
     {
         if (players.Count == 0)
             StartLobby();
 
         players.Add(playerToRegister);
+
+        // return player id (player 1, id: 0, etc.)
+        return players.Count - 1;
     }
 
     public static void CheckEndGameCondition(PlayerBehaviour playerJustDied)

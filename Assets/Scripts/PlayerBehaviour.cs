@@ -8,28 +8,37 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRigidbody = null;
     [SerializeField]
-    private Animator playerAnimator = null;
-    [SerializeField]
     private AudioSource playerAudioSrc = null;
-    [SerializeField]
-    private Transform punchTransform = null;
-
     [SerializeField]
     private SwimmingBehaviour swimBehaviour = null;
 
+    [SerializeField]
+    private GameObject[] playerAvatarPrefabs = null;
+
+    private Animator playerAnimator = null;
+
+    private Transform punchTransform = null;
+
+    private GameObject playerAvatar = null;
+
     private Vector3 playerSpeed = new Vector3();
+
+    int playerId = 0;
 
     bool isJumping = false;
 
     private void Awake()
     {
-        SpawnPlayerWithRandomOffset();
+        // Register with the GameController
+        // to be considered for global changes
+        playerId = GameController.RegisterPlayer(this);
+
+        SpawnPlayerAvatar();
     }
 
-    // currently 'spawning' is handled by PlayerManager
     // this method simply adds a random offset to the
     // player's position for a little variety
-    private void SpawnPlayerWithRandomOffset()
+    private void AddRandomOffsetToPlayerSpawn()
     {
         // Add random offset to spawn
         float minSpawnX = -2.0f;
@@ -47,11 +56,13 @@ public class PlayerBehaviour : MonoBehaviour
         transform.position = new Vector3(spawnX, spawnY, spawnZ);
     }
 
-    private void Start()
+    public void SpawnPlayerAvatar()
     {
-        // Register with the GameController
-        // to be considered for global changes
-        GameController.RegisterPlayer(this);
+        int prefabIndex = playerId % playerAvatarPrefabs.Length;
+        playerAvatar = Instantiate(playerAvatarPrefabs[prefabIndex], transform);
+        playerAnimator = playerAvatar.GetComponent<Animator>();
+        punchTransform = playerAvatar.transform.Find("PunchPoint");
+        AddRandomOffsetToPlayerSpawn();
     }
 
     public void UpdateSpeed(Vector2 inputDirection)
@@ -145,7 +156,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 2.0f;
+            const float punchRadius = 1.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -164,6 +175,7 @@ public class PlayerBehaviour : MonoBehaviour
                     // set up force vector from contact point with direction
                     // equal to the punching player's (normalized) foward vector
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
+                    forceVector.y = 0f;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
                     hitPlayer.GetHit(forceVector,transform.rotation);
@@ -227,8 +239,6 @@ public class PlayerBehaviour : MonoBehaviour
         playerInputController.ChangeInputMap("Player");
     }
 
-    [SerializeField]
-    private GameObject playerAvatar = null;
 
     bool isDead = false;
 
