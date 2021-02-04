@@ -156,7 +156,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 1.0f;
+            const float punchRadius = 2.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -175,7 +175,6 @@ public class PlayerBehaviour : MonoBehaviour
                     // set up force vector from contact point with direction
                     // equal to the punching player's (normalized) foward vector
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
-                    forceVector.y = 0f;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
                     hitPlayer.GetHit(forceVector,transform.rotation);
