@@ -1914,6 +1914,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676691517113852087}
     m_Modifications:
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6426337922722849275, guid: 18438ddccc094b542a1f975560ac6f48,
         type: 3}
       propertyPath: m_Name
@@ -2041,6 +2051,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676691517113852087}
     m_Modifications:
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6426337922722849275, guid: 18438ddccc094b542a1f975560ac6f48,
         type: 3}
       propertyPath: m_Name
@@ -2168,6 +2193,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676691517113852087}
     m_Modifications:
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6426337922722849275, guid: 18438ddccc094b542a1f975560ac6f48,
         type: 3}
       propertyPath: m_Name
@@ -2470,6 +2500,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676691517113852087}
     m_Modifications:
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381929990993904498, guid: 18438ddccc094b542a1f975560ac6f48,
+        type: 3}
+      propertyPath: joinedBackgroundColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 6426337922722849275, guid: 18438ddccc094b542a1f975560ac6f48,
         type: 3}
       propertyPath: m_Name

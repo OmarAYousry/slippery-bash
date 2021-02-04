@@ -29,7 +29,7 @@ public class SwimmingBehaviour : MonoBehaviour
 
     public bool IsSwimming { get; private set; } = false;
 
-    private readonly float drownTime = 10.0f;
+    private readonly float drownTime = 5.0f;
     private float swimTimer = 0.0f;
 
     void Start()

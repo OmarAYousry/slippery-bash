@@ -224,7 +224,7 @@ MonoBehaviour:
   text: {fileID: 5391852109278853978}
   background: {fileID: 1135088033340083269}
   idleText: Press any button to join!
-  idleBackgroundColor: {r: 1, g: 0, b: 0, a: 1}
+  idleBackgroundColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   idleTextColor: {r: 1, g: 1, b: 1, a: 1}
   joinedText: <b>READY!
   joinedBackgroundColor: {r: 0, g: 1, b: 0, a: 1}
