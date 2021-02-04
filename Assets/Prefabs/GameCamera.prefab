@@ -360,7 +360,7 @@ MonoBehaviour:
   titanicEventMusic: {fileID: 8300000, guid: 629f56a44da2d7c488b319e5c291f601, type: 3}
   stormEventMusic: {fileID: 8300000, guid: 88534ae67ececd54e892474ac648a21d, type: 3}
   snowEventMusic: {fileID: 8300000, guid: 8c3faae4928fc0f45a6687107d365032, type: 3}
-  lightningStrikeSfx: {fileID: 8300000, guid: d65a66c3f481f0d4782f03faa7864b48, type: 3}
+  lightningStrikeSfx: {fileID: 8300000, guid: 72ab635d7f5f7fa4184212bf0610a3c0, type: 3}
   titanicCrashSfx: {fileID: 0}
   playerJumpClip: {fileID: 8300000, guid: b360d187ba4ef5c41bf17eb896f720b1, type: 3}
   playerPunchClip: {fileID: 8300000, guid: 2bb41f7de1a0929478b669f0f54965b1, type: 3}

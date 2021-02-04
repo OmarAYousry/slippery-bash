@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &338053556
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  m_Radius: 5
+  m_Radius: 3
   m_Height: 500
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -98,7 +98,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 10
+    widthMultiplier: 40
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -315,7 +315,7 @@ Transform:
   m_GameObject: {fileID: 5322628121809420495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7461238232009030359}
   - {fileID: 5858473779418350725}
@@ -383,25 +383,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  amount: 10
+  amount: 3
   strike: {fileID: 338053557}
   strikeLight: {fileID: 1748093003}
   strikeRibbon: {fileID: 7614857367580894024}
@@ -524,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5322628123688844268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 500, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5322628121809420465}
@@ -782,8 +782,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1473,7 +1473,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 10
+        scalar: 2
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -6056,7 +6056,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2.5
+      value: 3
       mode: 0
       spread: 0
       speed:
@@ -10142,7 +10142,7 @@ PrefabInstance:
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
@@ -10162,7 +10162,27 @@ PrefabInstance:
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: ForceModule.y.minScalar
-      value: 10
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2041199512760788577, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
@@ -10263,7 +10283,37 @@ PrefabInstance:
     - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
       propertyPath: ForceModule.y.minScalar
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523401242054634895, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2041199512760788577, guid: 212bdadd2c1fe864cac9f2bb8274d30d,
         type: 3}
@@ -10351,11 +10401,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightningLight
       objectReference: {fileID: 0}
-    - target: {fileID: 3193582105877943602, guid: d5841ce02b9fed14b82810b8cfe7af09,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 100000
-      objectReference: {fileID: 0}
     - target: {fileID: 3193582105877943603, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10414,17 +10459,22 @@ PrefabInstance:
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1
+      value: 8e-43
       objectReference: {fileID: 0}
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193582105877943605, guid: d5841ce02b9fed14b82810b8cfe7af09,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5841ce02b9fed14b82810b8cfe7af09, type: 3}

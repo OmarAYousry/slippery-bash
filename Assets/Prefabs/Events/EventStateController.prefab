@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switcher: {fileID: 6341384700895949144}
-  initialIdleDuration: 5
-  maxMinEventDuration: {x: 10, y: 10}
+  initialIdleDuration: 20
+  maxMinEventDuration: {x: 30, y: 10}
   eventDurationCurve:
     serializedVersion: 2
     m_Curve:
@@ -106,7 +106,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeUntilCompleteFalloff: 180
+  timeUntilCompleteFalloff: 300
   useProbabilities: 0
   fixedOrder: 020000000100000003000000
   idleProbability:
