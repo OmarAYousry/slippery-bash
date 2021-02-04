@@ -95,13 +95,8 @@ public class PlayerBehaviour : MonoBehaviour
     bool isStopped = false;
     private void FixedUpdate()
     {
-        //if (Mathf.Abs(playerSpeed.x) > 0.25f)
-        //    playerSpeed.x = 4.0f * (playerSpeed.x / Mathf.Abs(playerSpeed.x));
-        //if (Mathf.Abs(playerSpeed.z) > 0.25f)
-        //    playerSpeed.z = 4.0f * (playerSpeed.z / Mathf.Abs(playerSpeed.z));
-        //playerSpeed *= 5f;
-        //Debug.LogError(playerspe);
-        // Move the player according to its current speed
+        if (isDead)
+            return;
 
         if (swimBehaviour.CheckForSwimming())
         {
@@ -138,6 +133,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformPunch()
     {
+        if (isDead)
+            return;
+
         // cannot punch if swimming
         if (swimBehaviour.IsSwimming)
             return;
@@ -183,8 +181,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.Play("Hit");
-        //playerAnimator.SetTrigger("Hit");
-        //Debug.Log("Play Hit Animation");
         const float hitPower = 4000.0f;
         transform.rotation = newRot;
         Vector3 scaledForceVector = forceVector * hitPower;
@@ -221,11 +217,6 @@ public class PlayerBehaviour : MonoBehaviour
         playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
     }
 
-    private void LateUpdate()
-    {
-        //Debug.Log(GetComponent<UnityEngine.InputSystem.PlayerInput>().currentActionMap);
-    }
-
     public void ChangeInputToUI()
     {
         playerInputController.ChangeInputMap("UI");
@@ -236,10 +227,18 @@ public class PlayerBehaviour : MonoBehaviour
         playerInputController.ChangeInputMap("Player");
     }
 
+    [SerializeField]
+    private GameObject playerAvatar = null;
+
+    bool isDead = false;
+
     public void KillPlayer()
     {
-        Destroy(gameObject);
+        Destroy(playerAvatar);
+        swimBehaviour.Drown();
         GameController.CheckEndGameCondition(this);
+        Destroy(playerInputController);
+        isDead = true;
     }
 
     bool isOnIce = false;

@@ -153,6 +153,8 @@ MonoBehaviour:
   punchTransform: {fileID: 290746079227503670}
   swimBehaviour: {fileID: 7700249134392567917}
   jumpPower: 9
+  iceSlipSpeed: 3
+  playerAvatar: {fileID: 2191170904512791850}
 --- !u!114 &7700249134392567917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +900,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91a80b9f2d1d15e4ab0bae93dd0b635e, type: 3}
+--- !u!1 &2191170904512791850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2019306161879653025, guid: 91a80b9f2d1d15e4ab0bae93dd0b635e,
+    type: 3}
+  m_PrefabInstance: {fileID: 175251250327068555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2896873995187975993 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3052699036421122226, guid: 91a80b9f2d1d15e4ab0bae93dd0b635e,
