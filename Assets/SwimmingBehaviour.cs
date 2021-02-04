@@ -127,6 +127,13 @@ public class SwimmingBehaviour : MonoBehaviour
         StartCoroutine(ApplyWalkingMaterial());
     }
 
+    public void Drown()
+    {
+        IsSwimming = false;
+        Destroy(strengthBar);
+        Destroy(this);
+    }
+
     private IEnumerator ApplySwimmingMaterial()
     {
         yield return new WaitForSeconds(1.0f);
