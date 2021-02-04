@@ -104,7 +104,10 @@ public class PlayerBehaviour : MonoBehaviour
         // Move the player according to its current speed
 
         if (swimBehaviour.CheckForSwimming())
+        {
             isJumping = false;
+            isOnIce = false;
+        }
 
         if (!isStunned)
         {
@@ -117,7 +120,14 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 isStopped = true;
                 // good place to add the stopping 'slippiness' speed
-                MovePlayer(transform.forward * 0.0f);
+                if (isOnIce)
+                {
+                    MovePlayer(transform.forward * iceSlipSpeed);
+                }
+                else
+                {
+                    MovePlayer(transform.forward * 0.0f);
+                }
             }
         }
         else
@@ -190,6 +200,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private float jumpPower = 0.0f;
 
+    [SerializeField]
+    private float iceSlipSpeed = 3.0f;
+
     public void PerformJump()
     {
         if (isJumping)
@@ -226,12 +239,23 @@ public class PlayerBehaviour : MonoBehaviour
         GameController.CheckEndGameCondition(this);
     }
 
+    bool isOnIce = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.LogError(collision.gameObject.SetActive(false));
         //collision.gameObject.SetActive(false);
         // should maybe check "Floor" tag -- not yet implemented
         isJumping = false;
+
+        if (collision.collider.material.name.ToLower().Contains("snow"))
+        {
+            isOnIce = false;
+        }
+        else if (collision.collider.material.name.ToLower().Contains("ice"))
+        {
+            isOnIce = true;
+        }
     }
 
     IEnumerator WaitThenDoAction(float duration, System.Action action)
