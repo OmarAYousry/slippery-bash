@@ -145,9 +145,9 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
-        StartCoroutine(WaitThenDoAction(0.5f, ()=> {
+        StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 1.0f;
+            const float punchRadius = 2.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -168,7 +168,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector);
+                    hitPlayer.GetHit(forceVector,transform.rotation);
                 }
                 if (contactedCollider.CompareTag("Tile"))
                 {
@@ -179,14 +179,17 @@ public class PlayerBehaviour : MonoBehaviour
         }));     
     }
 
-    public void GetHit(Vector3 forceVector)
+    public void GetHit(Vector3 forceVector, Quaternion newRot)
     {
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
-        playerAnimator.SetTrigger("Hit");
-
-        const float hitPower = 5.0f;
+        playerAnimator.Play("Hit");
+        //playerAnimator.SetTrigger("Hit");
+        //Debug.Log("Play Hit Animation");
+        const float hitPower = 4000.0f;
+        transform.rotation = newRot;
         Vector3 scaledForceVector = forceVector * hitPower;
-        playerRigidbody.AddForce(scaledForceVector, ForceMode.Impulse);
+        playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
+        //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
         StartCoroutine(applyStun());
     }
     private bool isStunned = false;
