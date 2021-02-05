@@ -142,18 +142,28 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    bool isPunchOnCD = false;
+    float punchCD = 0.5f;
+
     public void PerformPunch()
     {
         if (isDead)
+            return;
+
+        // cannot punch if on cooldown
+        if (isPunchOnCD)
             return;
 
         // cannot punch if swimming
         if (swimBehaviour.IsSwimming)
             return;
 
+
         playerAnimator.SetTrigger("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
+        StartCoroutine(ApplyPunchCooldown());
+        
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
             const float punchRadius = 2.0f;
@@ -186,6 +196,13 @@ public class PlayerBehaviour : MonoBehaviour
                 }
             }
         }));     
+    }
+
+    public IEnumerator ApplyPunchCooldown()
+    {
+        isPunchOnCD = true;
+        yield return new WaitForSeconds(punchCD);
+        isPunchOnCD = false;
     }
 
     public void GetHit(Vector3 forceVector, Quaternion newRot)
