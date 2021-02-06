@@ -23,7 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Vector3 playerSpeed = new Vector3();
 
-    int playerId = 0;
+    public int playerId { get; private set; }
 
     bool isJumping = false;
 
