@@ -262,6 +262,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Destroy(playerAvatar);
         swimBehaviour.Drown();
+        GameController.DeregisterPlayer(this);
         GameController.CheckEndGameCondition(this);
         Destroy(playerInputController);
         isDead = true;

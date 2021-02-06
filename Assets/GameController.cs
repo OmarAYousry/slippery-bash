@@ -30,6 +30,11 @@ public class GameController : MonoBehaviour
         return players.Count - 1;
     }
 
+    public static void DeregisterPlayer(PlayerBehaviour playerToDeregister)
+    {
+        players.Remove(playerToDeregister);
+    }
+
     public static void CheckEndGameCondition(PlayerBehaviour playerJustDied)
     {
         GameOverBehaviour.CheckEndGameCondition(playerJustDied);

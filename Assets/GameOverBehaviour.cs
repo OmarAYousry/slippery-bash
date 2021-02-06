@@ -19,6 +19,14 @@ public class GameOverBehaviour : MonoBehaviour
     [SerializeField] private GameObject playerWinsText = null;
     [SerializeField] private GameObject[] numberText = null;
 
+    public static bool IsGameOver
+    {
+        get
+        {
+            return instance.gameObject.activeInHierarchy;
+        }
+    }
+
 
     private void Awake()
     {
@@ -28,7 +36,7 @@ public class GameOverBehaviour : MonoBehaviour
 
     public static void CheckEndGameCondition(PlayerBehaviour playerJustDied)
     {
-        if (GameController.players.Count <= 2)
+        if (GameController.players.Count <= 1)
         {
             instance.gameObject.SetActive(true);
             instance.StartCoroutine(EndGame(GameController.players.Find(player => playerJustDied != player)));

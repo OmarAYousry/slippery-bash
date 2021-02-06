@@ -95,6 +95,16 @@ public class SwimmingBehaviour : MonoBehaviour
         if (LobbyBehaviour.isInLobby)
             return;
 
+        if(GameOverBehaviour.IsGameOver)
+        {
+            if(strengthBar.gameObject.activeInHierarchy)
+            {
+                strengthBar.gameObject.SetActive(false);
+            }
+            swimTimer = 0;
+            return;
+        }
+
         if (IsSwimming)
         {
             if (swimTimer >= drownTime)
@@ -131,7 +141,7 @@ public class SwimmingBehaviour : MonoBehaviour
     public void Drown()
     {
         IsSwimming = false;
-        Destroy(strengthBar);
+        Destroy(strengthBar.transform.parent.gameObject);
         Destroy(this);
     }
 
