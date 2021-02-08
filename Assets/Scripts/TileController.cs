@@ -59,6 +59,7 @@ public class TileController : MonoBehaviour
         {
             foreach (Transform brokenPiece in brokenMeshParent.transform)
             {
+                brokenPiece.GetComponent<MeshCollider>().enabled = true;
                 brokenPiece.gameObject.AddComponent<TimedDestroyer>();
                 Rigidbody rb = brokenPiece.gameObject.AddComponent<Rigidbody>();
                 rb.mass = 0.001f;
