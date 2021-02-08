@@ -270,6 +270,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     bool isOnIce = false;
 
+    public bool IsOnGround { get; set; } = true;
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.LogError(collision.gameObject.SetActive(false));
@@ -280,10 +282,18 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.collider.material.name.ToLower().Contains("snow"))
         {
             isOnIce = false;
+            if (collision.transform.position.y < transform.position.y)
+            {
+                IsOnGround = true;
+            }
         }
         else if (collision.collider.material.name.ToLower().Contains("ice"))
         {
             isOnIce = true;
+            if (collision.transform.position.y < transform.position.y)
+            {
+                IsOnGround = true;
+            }
         }
     }
 

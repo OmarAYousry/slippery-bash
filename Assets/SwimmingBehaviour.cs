@@ -112,7 +112,7 @@ public class SwimmingBehaviour : MonoBehaviour
             else
                 swimTimer += Time.deltaTime;
         }
-        else
+        else if (playerBehaviour.IsOnGround)
         {
             swimTimer -= Time.deltaTime;
         }
@@ -122,6 +122,8 @@ public class SwimmingBehaviour : MonoBehaviour
 
     public void StartSwimming()
     {
+        playerBehaviour.IsOnGround = false;
+
         IsSwimming = true;
         strengthBar.gameObject.SetActive(true);
 
