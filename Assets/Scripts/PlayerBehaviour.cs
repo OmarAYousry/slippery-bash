@@ -180,6 +180,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             MovePlayer(new Vector3());
         }
+
+        playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, 10f);
     }
 
     bool isPunchOnCD = false;
@@ -199,7 +201,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
 
 
-        playerAnimator.SetTrigger("Punch");
+        playerAnimator.Play("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
         StartCoroutine(ApplyPunchCooldown());
@@ -259,15 +261,18 @@ public class PlayerBehaviour : MonoBehaviour
         //playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Acceleration);
         //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
-        StartCoroutine(applyStun());
+        if(stunCoroutine != null)
+            StopCoroutine(stunCoroutine);
+        stunCoroutine = StartCoroutine(applyStun());
     }
+    private Coroutine stunCoroutine;
     private bool isStunned = false;
     private IEnumerator applyStun(float stunDuration = 2.0f)
     {
         isStunned = true;
         //yield return new WaitForSecondsRealtime(stunDuration);
 
-        while(hitBehaviour.HitState < 2)
+        while(hitBehaviour.HitState == 1)
             yield return null;
         hitBehaviour.SetAnimSpeed(0);
         while(!IsOnGround && !swimBehaviour.IsSwimming)
@@ -277,6 +282,7 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
 
         isStunned = false;
+        stunCoroutine = null;
     }
 
     [SerializeField]
@@ -294,7 +300,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
 
-        playerAnimator.SetTrigger("Jump");
+        playerAnimator.Play("Jump");
 
         Vector3 jumpDirection = transform.up; // <-- Global up or local up better? unsure, but global up *should* be the same as local up
         playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
