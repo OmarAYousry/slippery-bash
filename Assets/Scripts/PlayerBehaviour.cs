@@ -270,7 +270,7 @@ public class PlayerBehaviour : MonoBehaviour
         while(hitBehaviour.HitState < 2)
             yield return null;
         hitBehaviour.SetAnimSpeed(0);
-        while(!IsOnGround)
+        while(!IsOnGround && !swimBehaviour.IsSwimming)
             yield return null;
         hitBehaviour.SetAnimSpeed(1);
         while(hitBehaviour.HitState > 0)
@@ -287,7 +287,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformJump()
     {
-        if (isJumping)
+        if (isJumping || isStunned)
             return;
         
         isJumping = true;
