@@ -125,6 +125,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             isJumping = false;
             isOnIce = false;
+
+            if(hitBehaviour.HitState > 0)
+            {
+                hitBehaviour.SetHitState(0);
+                hitBehaviour.SetAnimSpeed(1);
+            }
         }
         else
         {
