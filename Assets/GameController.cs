@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
     {
         CountdownUI.Instance.OnCountdownFinished -= StartGame;
         EventStateController.Instance.Play();
+        LobbyBehaviour.Instance.gameWall.SetActive(false);
         LobbyBehaviour.Instance.gameObject.SetActive(false);
     }
 

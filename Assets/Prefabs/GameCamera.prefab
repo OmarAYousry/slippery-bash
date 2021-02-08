@@ -334,8 +334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 1
-  lobbyDistance: 20
-  lobbyCenterOffset: -10
+  lobbyDistance: 25
+  lobbyCenterOffset: -8.5
   distanceRange: {x: 10, y: 50}
   winnerDistance: 5
   borderMargin: 5

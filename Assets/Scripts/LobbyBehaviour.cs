@@ -26,6 +26,8 @@ public class LobbyBehaviour : MonoBehaviour
     //[SerializeField]
     //private Text countdownTimerText = null;
 
+    public GameObject gameWall;
+
     public static bool isInLobby { get { return instance.gameObject.activeSelf; } }
 
     private void Awake()
@@ -39,6 +41,7 @@ public class LobbyBehaviour : MonoBehaviour
         instance.gameObject.SetActive(true);
         instance.startGameButton.interactable = false;
         instance.anim.Animate(true);
+        instance.gameWall.SetActive(true);
 
         yield return new WaitForSeconds(secondsToWait);
 
