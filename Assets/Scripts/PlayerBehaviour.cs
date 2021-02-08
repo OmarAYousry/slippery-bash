@@ -23,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Vector3 playerSpeed = new Vector3();
 
+    private PlayerAnimBehaviour hitBehaviour;
+
     public int playerId { get; private set; }
 
     bool isJumping = false;
@@ -34,6 +36,8 @@ public class PlayerBehaviour : MonoBehaviour
         playerId = GameController.RegisterPlayer(this);
 
         SpawnPlayerAvatar();
+
+        hitBehaviour = playerAvatar.GetComponent<PlayerAnimBehaviour>();
     }
 
     // this method simply adds a random offset to the
@@ -97,13 +101,21 @@ public class PlayerBehaviour : MonoBehaviour
     public void MovePlayer(Vector3 moveDirection)
     {
         //playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
-        playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+        //playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
 
-
+        if(IsOnGround && !isOnIce)
+        {
+            playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+        }
+        else
+        {
+            playerRigidbody.AddForce(moveDirection, ForceMode.Acceleration);
+        }
 
         transform.LookAt(transform.position + moveDirection);
     }
     bool isStopped = false;
+    [SerializeField] private LayerMask groundLayer;
     private void FixedUpdate()
     {
         if (isDead)
@@ -114,36 +126,58 @@ public class PlayerBehaviour : MonoBehaviour
             isJumping = false;
             isOnIce = false;
         }
+        else
+        {
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit, 1f, groundLayer))
+            {
+                if(hit.collider.material.name.ToLower().Contains("snow"))
+                {
+                    isOnIce = false;
+                }
+                else if(hit.collider.material.name.ToLower().Contains("ice"))
+                {
+                    isOnIce = true;
+                }
+                IsOnGround = true;
+            }
+            else
+            {
+                IsOnGround = false;
+            }
+        }
 
         if (!isStunned)
         {
-            if (playerSpeed.magnitude > 0.0f)
-            {
-                isStopped = false;
-                MovePlayer(playerSpeed);
-            }
-            else if (!isStopped && !isJumping)
-            {
-                isStopped = true;
-                // good place to add the stopping 'slippiness' speed
-                if (isOnIce)
-                {
-                    MovePlayer(transform.forward * iceSlipSpeed);
-                }
-                else
-                {
-                    MovePlayer(transform.forward * 0.0f);
-                }
-            }
+            //if (playerSpeed.magnitude > 0.0f)
+            //{
+            //    isStopped = false;
+            //    MovePlayer(playerSpeed);
+            //}
+            //else if (!isStopped && !isJumping)
+            //{
+            //    isStopped = true;
+            //    // good place to add the stopping 'slippiness' speed
+            //    if (isOnIce)
+            //    {
+            //        MovePlayer(transform.forward * iceSlipSpeed);
+            //    }
+            //    else
+            //    {
+            //        MovePlayer(transform.forward * 0.0f);
+            //    }
+            //}
+            MovePlayer(playerSpeed);
         }
-        else
+        else if(IsOnGround && hitBehaviour.HitState > 2)
         {
             MovePlayer(new Vector3());
         }
     }
 
     bool isPunchOnCD = false;
-    float punchCD = 0.5f;
+    float punchCD = 1f;
 
     public void PerformPunch()
     {
@@ -166,7 +200,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 2.0f;
+            const float punchRadius = 1.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -187,7 +221,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector,transform.rotation);
+                    hitPlayer.GetHit(forceVector,transform.position);
                 }
                 if (!LobbyBehaviour.isInLobby && contactedCollider.CompareTag("Tile"))
                 {
@@ -205,14 +239,19 @@ public class PlayerBehaviour : MonoBehaviour
         isPunchOnCD = false;
     }
 
-    public void GetHit(Vector3 forceVector, Quaternion newRot)
+    public void GetHit(Vector3 forceVector, Vector3 hitOrigin)
     {
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.Play("Hit");
-        const float hitPower = 4000.0f;
-        transform.rotation = newRot;
+        //const float hitPower = 4000.0f;
+        const float hitPower = 200.0f;
+        Vector3 newEulerAngles = Quaternion.LookRotation((transform.position - hitOrigin).normalized, Vector3.up).eulerAngles;
+        newEulerAngles.x = newEulerAngles.z = 0;
+        transform.eulerAngles = newEulerAngles;
+        forceVector.y = 1;
         Vector3 scaledForceVector = forceVector * hitPower;
-        playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
+        //playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
+        playerRigidbody.AddForce(scaledForceVector, ForceMode.Acceleration);
         //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
         StartCoroutine(applyStun());
     }
@@ -220,7 +259,17 @@ public class PlayerBehaviour : MonoBehaviour
     private IEnumerator applyStun(float stunDuration = 2.0f)
     {
         isStunned = true;
-        yield return new WaitForSecondsRealtime(stunDuration);
+        //yield return new WaitForSecondsRealtime(stunDuration);
+
+        while(hitBehaviour.HitState < 2)
+            yield return null;
+        hitBehaviour.SetAnimSpeed(0);
+        while(!IsOnGround)
+            yield return null;
+        hitBehaviour.SetAnimSpeed(1);
+        while(hitBehaviour.HitState > 0)
+            yield return null;
+
         isStunned = false;
     }
 
@@ -279,22 +328,22 @@ public class PlayerBehaviour : MonoBehaviour
         // should maybe check "Floor" tag -- not yet implemented
         isJumping = false;
 
-        if (collision.collider.material.name.ToLower().Contains("snow"))
-        {
-            isOnIce = false;
-            if (collision.transform.position.y < transform.position.y)
-            {
-                IsOnGround = true;
-            }
-        }
-        else if (collision.collider.material.name.ToLower().Contains("ice"))
-        {
-            isOnIce = true;
-            if (collision.transform.position.y < transform.position.y)
-            {
-                IsOnGround = true;
-            }
-        }
+        //if (collision.collider.material.name.ToLower().Contains("snow"))
+        //{
+        //    isOnIce = false;
+        //    if (collision.transform.position.y < transform.position.y)
+        //    {
+        //        IsOnGround = true;
+        //    }
+        //}
+        //else if (collision.collider.material.name.ToLower().Contains("ice"))
+        //{
+        //    isOnIce = true;
+        //    if (collision.transform.position.y < transform.position.y)
+        //    {
+        //        IsOnGround = true;
+        //    }
+        //}
     }
 
     IEnumerator WaitThenDoAction(float duration, System.Action action)

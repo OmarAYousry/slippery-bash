@@ -285,7 +285,7 @@ public class LightningBehavior: MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerBehaviour>().GetHit((other.transform.position - transform.position).normalized, other.transform.rotation);
+            other.GetComponent<PlayerBehaviour>().GetHit((other.transform.position - transform.position).normalized, transform.position);
         }
     }
 
