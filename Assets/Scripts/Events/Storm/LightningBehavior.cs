@@ -285,7 +285,12 @@ public class LightningBehavior: MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerBehaviour>().GetHit((other.transform.position - transform.position).normalized, transform.position);
+            Vector3 direction = (other.transform.position - transform.position).normalized;
+            if(direction.x == 0 && direction.z == 0)
+            {
+                direction = Random.insideUnitSphere;
+            }
+            other.GetComponent<PlayerBehaviour>().GetHit(direction, transform.position);
         }
     }
 

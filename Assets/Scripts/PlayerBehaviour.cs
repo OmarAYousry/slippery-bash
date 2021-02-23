@@ -26,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
     private PlayerAnimBehaviour hitBehaviour;
 
     public int playerId { get; private set; }
+    public float distanceMoved { get; private set; }
 
     bool isJumping = false;
 
@@ -34,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
         // Register with the GameController
         // to be considered for global changes
         playerId = GameController.RegisterPlayer(this);
+        distanceMoved = 0;
 
         SpawnPlayerAvatar();
 
@@ -112,6 +114,7 @@ public class PlayerBehaviour : MonoBehaviour
             playerRigidbody.AddForce(moveDirection, ForceMode.Acceleration);
         }
 
+        distanceMoved += moveDirection.sqrMagnitude;
         transform.LookAt(transform.position + moveDirection);
     }
     bool isStopped = false;
@@ -249,18 +252,28 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void GetHit(Vector3 forceVector, Vector3 hitOrigin)
     {
+        // play sound
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.Play("Hit");
+
+        // add force
         //const float hitPower = 4000.0f;
         const float hitPower = 200.0f;
-        Vector3 newEulerAngles = Quaternion.LookRotation((transform.position - hitOrigin).normalized, Vector3.up).eulerAngles;
-        newEulerAngles.x = newEulerAngles.z = 0;
-        transform.eulerAngles = newEulerAngles;
+        forceVector.y = 0;
+        forceVector.Normalize();
         forceVector.y = 1;
+        forceVector.Normalize();
         Vector3 scaledForceVector = forceVector * hitPower;
         //playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Acceleration);
         //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
+
+        // rotate
+        Vector3 newEulerAngles = Quaternion.LookRotation(forceVector, Vector3.up).eulerAngles;
+        newEulerAngles.x = newEulerAngles.z = 0;
+        transform.eulerAngles = newEulerAngles;
+
+        // stun
         if(stunCoroutine != null)
             StopCoroutine(stunCoroutine);
         stunCoroutine = StartCoroutine(applyStun());
