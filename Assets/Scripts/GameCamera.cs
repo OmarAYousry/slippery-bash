@@ -142,6 +142,19 @@ public class GameCamera: MonoBehaviour
             }
         }
 
+        if(CrystalBehavior.Instance && CrystalBehavior.Instance.gameObject.activeInHierarchy)
+        {
+            if(!firstFocusSet)
+            {
+                bounds.center = CrystalBehavior.Instance.transform.position;
+                firstFocusSet = true;
+            }
+            else
+            {
+                bounds.Encapsulate(CrystalBehavior.Instance.transform.position);
+            }
+        }
+
         lightningObjects = StormBehavior.GetLightningPositions();
         if(lightningObjects != null)
         {
