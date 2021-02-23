@@ -292,6 +292,10 @@ public class LightningBehavior: MonoBehaviour
             }
             other.GetComponent<PlayerBehaviour>().GetHit(direction, transform.position);
         }
+        if(other.CompareTag("Tile"))
+        {
+            other.GetComponent<TileController>().DamageTile();
+        }
     }
 
 
