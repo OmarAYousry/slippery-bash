@@ -306,7 +306,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformJump()
     {
-        if (isJumping || isStunned)
+        if (isJumping || isStunned || swimBehaviour.IsSwimming)
             return;
         
         isJumping = true;
@@ -369,6 +369,24 @@ public class PlayerBehaviour : MonoBehaviour
         //        IsOnGround = true;
         //    }
         //}
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(swimBehaviour.IsSwimming && !isJumping && collision.gameObject.CompareTag("Tile"))
+        {
+            Vector3 collisionHit = collision.GetContact(0).point;
+            Vector3 direction = (collisionHit - transform.position).normalized;
+            if(direction.x * direction.x + direction.z * direction.z > direction.y * direction.y)
+            {
+                // copied from jump method
+                isJumping = true;
+                AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
+                playerAnimator.Play("Jump");
+                Vector3 jumpDirection = transform.up; // <-- Global up or local up better? unsure, but global up *should* be the same as local up
+                playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
+            }
+        }
     }
 
     IEnumerator WaitThenDoAction(float duration, System.Action action)
