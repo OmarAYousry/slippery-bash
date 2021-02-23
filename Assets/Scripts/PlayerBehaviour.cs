@@ -197,7 +197,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
 
         // cannot punch if swimming
-        if (swimBehaviour.IsSwimming)
+        if (swimBehaviour.IsSwimming || isStunned)
             return;
 
 
