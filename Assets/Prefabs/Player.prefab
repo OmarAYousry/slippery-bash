@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2510574607005026541}
   - component: {fileID: 1047300810339054363}
   - component: {fileID: 4464128484117372418}
+  - component: {fileID: 3244669537654301553}
   - component: {fileID: 7700249134392567917}
   - component: {fileID: 2413989426128204149}
   - component: {fileID: 738746950501056213}
@@ -149,6 +150,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 1601137340226164720}
   playerAudioSrc: {fileID: 9022580948829515494}
   swimBehaviour: {fileID: 7700249134392567917}
+  staminaBar: {fileID: 3244669537654301553}
   playerAvatarPrefabs:
   - {fileID: 2433332969624688295, guid: 86ab0d4671c767d48b2978dba86a1f4e, type: 3}
   - {fileID: 6854866128670184511, guid: 946b7325f6a0384478c78b341615aadb, type: 3}
@@ -159,6 +161,20 @@ MonoBehaviour:
     m_Bits: 1
   jumpPower: 9
   iceSlipSpeed: 3
+--- !u!114 &3244669537654301553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880591033494072722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf2847c38b4cac4c899e1648eff4c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBehaviour: {fileID: 4464128484117372418}
+  actualStaminaBar: {fileID: 1726834262622375321}
 --- !u!114 &7700249134392567917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,11 +188,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBehaviour: {fileID: 4464128484117372418}
+  staminaBar: {fileID: 3244669537654301553}
   playerRigidBody: {fileID: 1601137340226164720}
   buoyancyForce: 50
   depthFactor: 1
   surfaceOffset: 0.2
-  strengthBar: {fileID: 1726834262622375321}
   playerWalkingMaterial: {fileID: 13400000, guid: d19495e1d18bf07478ee2f776523df62,
     type: 2}
   playerSwimmingMaterial: {fileID: 13400000, guid: 9dea6063a3971b445952c96bea4dc3a5,
@@ -333,7 +349,7 @@ GameObject:
   - component: {fileID: 3818908246003532531}
   - component: {fileID: 1726834262622375321}
   m_Layer: 5
-  m_Name: Strength Bar
+  m_Name: Stamina Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

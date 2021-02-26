@@ -120,7 +120,7 @@ public class TitanicBehavior: EventBehavior
         }
         else if(collision.gameObject.tag.Equals("Player"))
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().GetHit(transform.forward, transform.position);
+            collision.gameObject.GetComponent<PlayerBehaviour>().GetHit(transform.forward);
         }
     }
 

@@ -11,6 +11,8 @@ public class PlayerBehaviour : MonoBehaviour
     private AudioSource playerAudioSrc = null;
     [SerializeField]
     private SwimmingBehaviour swimBehaviour = null;
+    [SerializeField]
+    private StaminaBarBehaviour staminaBar = null;
 
     [SerializeField]
     private GameObject[] playerAvatarPrefabs = null;
@@ -75,26 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerAnimator.SetFloat("Speed", inputDirection.magnitude);
 
-        // Slipping animation... tricky...
-        //if (inputDirection.magnitude < 0.01f)
-        //{
-        //    if (playerRigidbody.velocity.magnitude > 0)
-        //    {
-        //        playerAnimator.SetBool("Slipping", true);
-
-        //    }
-        //    else
-        //    {
-        //        playerAnimator.SetBool("Slipping", true);
-        //    }
-        //}
-
-
-        // dampen user input slightly to avoid
-        // janky movement (that is way too fast)
-        //float dampFactor = 0.2f;
-        //inputDirection *= dampFactor;
-
+        // scale direction to get a reasonable player speed
         inputDirection *= 5.0f;
         // update the player speed with the new input
         playerSpeed = new Vector3(inputDirection.x, 0f, inputDirection.y);
@@ -102,9 +85,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void MovePlayer(Vector3 moveDirection)
     {
-        //playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
-        //playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
-
         if(IsOnGround && !isOnIce)
         {
             playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
@@ -117,7 +97,7 @@ public class PlayerBehaviour : MonoBehaviour
         distanceMoved += moveDirection.sqrMagnitude;
         transform.LookAt(transform.position + moveDirection);
     }
-    bool isStopped = false;
+
     [SerializeField] private LayerMask groundLayer;
     private void FixedUpdate()
     {
@@ -159,24 +139,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (!isStunned)
         {
-            //if (playerSpeed.magnitude > 0.0f)
-            //{
-            //    isStopped = false;
-            //    MovePlayer(playerSpeed);
-            //}
-            //else if (!isStopped && !isJumping)
-            //{
-            //    isStopped = true;
-            //    // good place to add the stopping 'slippiness' speed
-            //    if (isOnIce)
-            //    {
-            //        MovePlayer(transform.forward * iceSlipSpeed);
-            //    }
-            //    else
-            //    {
-            //        MovePlayer(transform.forward * 0.0f);
-            //    }
-            //}
             MovePlayer(playerSpeed);
         }
         else if(IsOnGround && hitBehaviour.HitState > 2)
@@ -232,7 +194,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector,transform.position);
+                    hitPlayer.GetHit(forceVector);
                 }
                 if (!LobbyBehaviour.isInLobby && contactedCollider.CompareTag("Tile"))
                 {
@@ -250,23 +212,20 @@ public class PlayerBehaviour : MonoBehaviour
         isPunchOnCD = false;
     }
 
-    public void GetHit(Vector3 forceVector, Vector3 hitOrigin)
+    public void GetHit(Vector3 forceVector)
     {
         // play sound
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.Play("Hit");
 
         // add force
-        //const float hitPower = 4000.0f;
         const float hitPower = 200.0f;
         forceVector.y = 0;
         forceVector.Normalize();
         forceVector.y = 1;
         forceVector.Normalize();
         Vector3 scaledForceVector = forceVector * hitPower;
-        //playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
         playerRigidbody.AddForce(scaledForceVector, ForceMode.Acceleration);
-        //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
 
         // rotate
         Vector3 newEulerAngles = Quaternion.LookRotation(forceVector, Vector3.up).eulerAngles;
@@ -276,14 +235,18 @@ public class PlayerBehaviour : MonoBehaviour
         // stun
         if(stunCoroutine != null)
             StopCoroutine(stunCoroutine);
+
         stunCoroutine = StartCoroutine(applyStun());
+
+        // apply max stamina modification
+        float maxStaminaChangeRatio = -0.05f;
+        staminaBar.modifyMaxStaminaByRatio(maxStaminaChangeRatio);
     }
     private Coroutine stunCoroutine;
     private bool isStunned = false;
-    private IEnumerator applyStun(float stunDuration = 2.0f)
+    private IEnumerator applyStun()
     {
         isStunned = true;
-        //yield return new WaitForSecondsRealtime(stunDuration);
 
         while(hitBehaviour.HitState == 1)
             yield return null;
@@ -348,27 +311,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.LogError(collision.gameObject.SetActive(false));
-        //collision.gameObject.SetActive(false);
         // should maybe check "Floor" tag -- not yet implemented
         isJumping = false;
-
-        //if (collision.collider.material.name.ToLower().Contains("snow"))
-        //{
-        //    isOnIce = false;
-        //    if (collision.transform.position.y < transform.position.y)
-        //    {
-        //        IsOnGround = true;
-        //    }
-        //}
-        //else if (collision.collider.material.name.ToLower().Contains("ice"))
-        //{
-        //    isOnIce = true;
-        //    if (collision.transform.position.y < transform.position.y)
-        //    {
-        //        IsOnGround = true;
-        //    }
-        //}
     }
 
     private void OnCollisionStay(Collision collision)

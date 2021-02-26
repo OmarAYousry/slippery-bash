@@ -290,7 +290,7 @@ public class LightningBehavior: MonoBehaviour
             {
                 direction = Random.insideUnitSphere;
             }
-            other.GetComponent<PlayerBehaviour>().GetHit(direction, transform.position);
+            other.GetComponent<PlayerBehaviour>().GetHit(direction);
         }
         if(other.CompareTag("Tile"))
         {
