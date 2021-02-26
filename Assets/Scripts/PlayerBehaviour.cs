@@ -196,10 +196,16 @@ public class PlayerBehaviour : MonoBehaviour
                     // handle its own getting hit behaviour
                     hitPlayer.GetHit(forceVector);
                 }
-                if (!LobbyBehaviour.isInLobby && contactedCollider.CompareTag("Tile"))
+                else if (contactedCollider.CompareTag("Tile") && LobbyBehaviour.isInLobby)
                 {
                     TileController hitTile = contactedCollider.GetComponent<TileController>();
                     hitTile.DamageTile();
+                }
+                else if (contactedCollider.CompareTag("Crystal"))
+                {
+                    float maxStaminaToRegain = 0.25f;
+                    staminaBar.modifyMaxStaminaByRatio(maxStaminaToRegain);
+                    contactedCollider.GetComponent<CrystalBehavior>().Destroy();
                 }
             }
         }));     
