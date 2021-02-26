@@ -76,7 +76,7 @@ public class StaminaBarBehaviour : MonoBehaviour
             playerBehaviour.KillPlayer();
     }
 
-    public void Drown()
+    public void Destroy()
     {
         Destroy(actualStaminaBar.transform.parent.gameObject);
         Destroy(this);

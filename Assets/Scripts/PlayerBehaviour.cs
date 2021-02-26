@@ -305,6 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Destroy(playerAvatar);
         swimBehaviour.Drown();
+        staminaBar.Destroy();
         GameController.DeregisterPlayer(this);
         GameController.CheckEndGameCondition(this);
         Destroy(playerInputController);

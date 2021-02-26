@@ -109,7 +109,6 @@ public class SwimmingBehaviour : MonoBehaviour
     public void Drown()
     {
         IsSwimming = false;
-        staminaBar.Drown();
         Destroy(this);
     }
 
