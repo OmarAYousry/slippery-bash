@@ -9,12 +9,12 @@ public class StaminaBarBehaviour : MonoBehaviour
     [SerializeField]
     private Slider actualStaminaBar = null;
 
+    [SerializeField]
+    private Slider maxStaminaDepletionBar = null;
+
     private readonly float initialMaxStamina = 5.0f;
     private float maxStamina = 5.0f;
     private float currentStamina = 0.0f;
-
-    private RectTransform staminaBarRectTransform = null;
-    private float initialBarWidth = 0f;
 
     void Start()
     {
@@ -30,8 +30,7 @@ public class StaminaBarBehaviour : MonoBehaviour
         currentStamina = maxStamina;
         actualStaminaBar.value = currentStamina;
 
-        staminaBarRectTransform = actualStaminaBar.GetComponent<RectTransform>();
-        initialBarWidth = staminaBarRectTransform.sizeDelta.x;
+        maxStaminaDepletionBar.normalizedValue = 0;
 
         actualStaminaBar.gameObject.SetActive(true);
     }
@@ -40,8 +39,6 @@ public class StaminaBarBehaviour : MonoBehaviour
     {
         // needed to keep slider facing the camera
         actualStaminaBar.transform.LookAt(GameCamera.Instance.transform);
-
-        //AdjustSwimTimer();
 
         actualStaminaBar.value = currentStamina;
     }
@@ -54,12 +51,10 @@ public class StaminaBarBehaviour : MonoBehaviour
         float oldRatio = maxStamina / initialMaxStamina;
         float newRatio = Mathf.Clamp01(oldRatio + ratioChange);
 
-
         maxStamina = Mathf.Clamp(initialMaxStamina * newRatio, 0, initialMaxStamina);
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
 
-        // TODO: Maybe this can have a better look, i.e. a black bar overlaying to be better visualized for players
-        staminaBarRectTransform.sizeDelta = new Vector2(initialBarWidth * newRatio, staminaBarRectTransform.sizeDelta.y);
+        maxStaminaDepletionBar.normalizedValue = 1 - newRatio;
 
         updateStaminaBar();
     }
@@ -75,7 +70,6 @@ public class StaminaBarBehaviour : MonoBehaviour
 
     private void updateStaminaBar()
     {
-        actualStaminaBar.maxValue = maxStamina;
         actualStaminaBar.value = currentStamina;
 
         if (currentStamina <= 0)
