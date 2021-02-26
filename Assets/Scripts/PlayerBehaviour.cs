@@ -317,8 +317,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // should maybe check "Floor" tag -- not yet implemented
-        isJumping = false;
+        if (collision.gameObject.CompareTag("Tile"))
+        {
+            isJumping = false;
+        }
     }
 
     private void OnCollisionStay(Collision collision)
