@@ -104,7 +104,7 @@ public class TitanicBehavior: EventBehavior
         // TODO: check if collision with tile
         if(collision.collider.GetComponentInParent<TileController>())
         {
-            collision.collider.GetComponentInParent<TileController>().DestroyMeshCascading();
+            collision.collider.GetComponentInParent<TileController>().DamageTile(0, true);
 
             if(desiredVelocity.sqrMagnitude > 0)
             {
@@ -117,6 +117,10 @@ public class TitanicBehavior: EventBehavior
 
                 Sink();
             }
+        }
+        else if(collision.gameObject.tag.Equals("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerBehaviour>().GetHit(transform.forward);
         }
     }
 

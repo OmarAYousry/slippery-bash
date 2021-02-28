@@ -122,6 +122,7 @@ public class PlatformController : MonoBehaviour
 
         GameObject parentObj = new GameObject();
         parentObj.name = "sub-platform";
+        parentObj.tag = "Tile";
 
         Vector3 centerPos = new Vector3();
         foreach(GameObject be in buoyancyTiles)

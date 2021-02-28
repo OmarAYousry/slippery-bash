@@ -112,24 +112,48 @@ public class StormBehavior: EventBehavior
 
         // search a point to hit
         Vector3 hitPoint = Vector3.zero;
-        float currentRadius = 0;
-        int playerAmount = 0;
+        //float currentRadius = 0;
+        //int playerAmount = 0;
+        //if(GameController.players != null)
+        //{
+        //    for(int i = 0; i < GameController.players.Count; i++)
+        //    {
+        //        if(GameController.players[i])
+        //        {
+        //            playerAmount++;
+        //            hitPoint += GameController.players[i].transform.position;
+        //            currentRadius = Vector3.Distance(GameController.players[i].transform.position, hitPoint / playerAmount);
+        //        }
+        //    }
+        //    hitPoint /= playerAmount;
+        //}
+        //Vector2 randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
+        //hitPoint.x += randomOffset.x;
+        //hitPoint.z += randomOffset.y;
+        float minDistanceMoved = float.MaxValue;
         if(GameController.players != null)
         {
             for(int i = 0; i < GameController.players.Count; i++)
             {
                 if(GameController.players[i])
                 {
-                    playerAmount++;
-                    hitPoint += GameController.players[i].transform.position;
-                    currentRadius = Vector3.Distance(GameController.players[i].transform.position, hitPoint / playerAmount);
+                    if(GameController.players[i].distanceMoved < minDistanceMoved)
+                    {
+                        minDistanceMoved = GameController.players[i].distanceMoved;
+                        hitPoint = GameController.players[i].transform.position;
+                    }
+                    else if(GameController.players[i].distanceMoved == minDistanceMoved)
+                    {
+                        float random = Random.Range(0f, 1f);
+                        if(random < .5f)
+                        {
+                            minDistanceMoved = GameController.players[i].distanceMoved;
+                            hitPoint = GameController.players[i].transform.position;
+                        }
+                    }
                 }
             }
-            hitPoint /= playerAmount;
         }
-        Vector2 randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
-        hitPoint.x += randomOffset.x;
-        hitPoint.z += randomOffset.y;
 
         currentLightning.SetLightning(hitPoint);
     }

@@ -11,6 +11,8 @@ public class PlayerBehaviour : MonoBehaviour
     private AudioSource playerAudioSrc = null;
     [SerializeField]
     private SwimmingBehaviour swimBehaviour = null;
+    [SerializeField]
+    private StaminaBarBehaviour staminaBar = null;
 
     [SerializeField]
     private GameObject[] playerAvatarPrefabs = null;
@@ -23,7 +25,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Vector3 playerSpeed = new Vector3();
 
+    private PlayerAnimBehaviour hitBehaviour;
+
     public int playerId { get; private set; }
+    public float distanceMoved { get; private set; }
 
     bool isJumping = false;
 
@@ -32,8 +37,11 @@ public class PlayerBehaviour : MonoBehaviour
         // Register with the GameController
         // to be considered for global changes
         playerId = GameController.RegisterPlayer(this);
+        distanceMoved = 0;
 
         SpawnPlayerAvatar();
+
+        hitBehaviour = playerAvatar.GetComponent<PlayerAnimBehaviour>();
     }
 
     // this method simply adds a random offset to the
@@ -69,26 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerAnimator.SetFloat("Speed", inputDirection.magnitude);
 
-        // Slipping animation... tricky...
-        //if (inputDirection.magnitude < 0.01f)
-        //{
-        //    if (playerRigidbody.velocity.magnitude > 0)
-        //    {
-        //        playerAnimator.SetBool("Slipping", true);
-
-        //    }
-        //    else
-        //    {
-        //        playerAnimator.SetBool("Slipping", true);
-        //    }
-        //}
-
-
-        // dampen user input slightly to avoid
-        // janky movement (that is way too fast)
-        //float dampFactor = 0.2f;
-        //inputDirection *= dampFactor;
-
+        // scale direction to get a reasonable player speed
         inputDirection *= 5.0f;
         // update the player speed with the new input
         playerSpeed = new Vector3(inputDirection.x, 0f, inputDirection.y);
@@ -96,14 +85,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void MovePlayer(Vector3 moveDirection)
     {
-        //playerRigidbody.AddForce(moveDirection, ForceMode.VelocityChange);
-        playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+        if(IsOnGround && !isOnIce)
+        {
+            playerRigidbody.velocity = new Vector3(moveDirection.x, playerRigidbody.velocity.y, moveDirection.z);
+        }
+        else
+        {
+            playerRigidbody.AddForce(moveDirection, ForceMode.Acceleration);
+        }
 
-
-
+        distanceMoved += moveDirection.sqrMagnitude;
         transform.LookAt(transform.position + moveDirection);
     }
-    bool isStopped = false;
+
+    [SerializeField] private LayerMask groundLayer;
     private void FixedUpdate()
     {
         if (isDead)
@@ -113,37 +108,49 @@ public class PlayerBehaviour : MonoBehaviour
         {
             isJumping = false;
             isOnIce = false;
-        }
 
-        if (!isStunned)
-        {
-            if (playerSpeed.magnitude > 0.0f)
+            if(hitBehaviour.HitState > 0)
             {
-                isStopped = false;
-                MovePlayer(playerSpeed);
-            }
-            else if (!isStopped && !isJumping)
-            {
-                isStopped = true;
-                // good place to add the stopping 'slippiness' speed
-                if (isOnIce)
-                {
-                    MovePlayer(transform.forward * iceSlipSpeed);
-                }
-                else
-                {
-                    MovePlayer(transform.forward * 0.0f);
-                }
+                hitBehaviour.SetHitState(0);
+                hitBehaviour.SetAnimSpeed(1);
             }
         }
         else
         {
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit, 1f, groundLayer))
+            {
+                if(hit.collider.material.name.ToLower().Contains("snow"))
+                {
+                    isOnIce = false;
+                }
+                else if(hit.collider.material.name.ToLower().Contains("ice"))
+                {
+                    isOnIce = true;
+                }
+                IsOnGround = true;
+            }
+            else
+            {
+                IsOnGround = false;
+            }
+        }
+
+        if (!isStunned)
+        {
+            MovePlayer(playerSpeed);
+        }
+        else if(IsOnGround && hitBehaviour.HitState > 2)
+        {
             MovePlayer(new Vector3());
         }
+
+        playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, 10f);
     }
 
     bool isPunchOnCD = false;
-    float punchCD = 0.5f;
+    float punchCD = 1f;
 
     public void PerformPunch()
     {
@@ -155,18 +162,18 @@ public class PlayerBehaviour : MonoBehaviour
             return;
 
         // cannot punch if swimming
-        if (swimBehaviour.IsSwimming)
+        if (swimBehaviour.IsSwimming || isStunned)
             return;
 
 
-        playerAnimator.SetTrigger("Punch");
+        playerAnimator.Play("Punch");
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_PUNCH, playerAudioSrc);
 
         StartCoroutine(ApplyPunchCooldown());
         
         StartCoroutine(WaitThenDoAction(0.4f, ()=> {
             Vector3 punchContactPoint = punchTransform.transform.position;
-            const float punchRadius = 2.0f;
+            const float punchRadius = 1.0f;
 
             Collider[] collidersInContact = Physics.OverlapSphere(punchContactPoint, punchRadius);
 
@@ -187,12 +194,18 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector3 forceVector = (contactPoint - transform.position).normalized;
                     // Let the player behaviour of the hit player
                     // handle its own getting hit behaviour
-                    hitPlayer.GetHit(forceVector,transform.rotation);
+                    hitPlayer.GetHit(forceVector);
                 }
-                if (!LobbyBehaviour.isInLobby && contactedCollider.CompareTag("Tile"))
+                else if (contactedCollider.CompareTag("Tile") && LobbyBehaviour.isInLobby)
                 {
                     TileController hitTile = contactedCollider.GetComponent<TileController>();
                     hitTile.DamageTile();
+                }
+                else if (contactedCollider.CompareTag("Crystal"))
+                {
+                    float maxStaminaToRegain = 0.25f;
+                    staminaBar.modifyMaxStaminaByRatio(maxStaminaToRegain);
+                    contactedCollider.GetComponent<CrystalBehavior>().Destroy();
                 }
             }
         }));     
@@ -205,23 +218,53 @@ public class PlayerBehaviour : MonoBehaviour
         isPunchOnCD = false;
     }
 
-    public void GetHit(Vector3 forceVector, Quaternion newRot)
+    public void GetHit(Vector3 forceVector)
     {
+        // play sound
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         playerAnimator.Play("Hit");
-        const float hitPower = 4000.0f;
-        transform.rotation = newRot;
+
+        // add force
+        const float hitPower = 200.0f;
+        forceVector.y = 0;
+        forceVector.Normalize();
+        forceVector.y = 1;
+        forceVector.Normalize();
         Vector3 scaledForceVector = forceVector * hitPower;
-        playerRigidbody.AddForce(new Vector3(scaledForceVector.x,1f,scaledForceVector.z), ForceMode.Acceleration);
-        //playerRigidbody.AddExplosionForce(400f, transform.position, 100f);
-        StartCoroutine(applyStun());
+        playerRigidbody.AddForce(scaledForceVector, ForceMode.Acceleration);
+
+        // rotate
+        Vector3 newEulerAngles = Quaternion.LookRotation(forceVector, Vector3.up).eulerAngles;
+        newEulerAngles.x = newEulerAngles.z = 0;
+        transform.eulerAngles = newEulerAngles;
+
+        // stun
+        if(stunCoroutine != null)
+            StopCoroutine(stunCoroutine);
+
+        stunCoroutine = StartCoroutine(applyStun());
+
+        // apply max stamina modification
+        float maxStaminaChangeRatio = -0.05f;
+        staminaBar.modifyMaxStaminaByRatio(maxStaminaChangeRatio);
     }
+    private Coroutine stunCoroutine;
     private bool isStunned = false;
-    private IEnumerator applyStun(float stunDuration = 2.0f)
+    private IEnumerator applyStun()
     {
         isStunned = true;
-        yield return new WaitForSecondsRealtime(stunDuration);
+
+        while(hitBehaviour.HitState == 1)
+            yield return null;
+        hitBehaviour.SetAnimSpeed(0);
+        while(!IsOnGround && !swimBehaviour.IsSwimming)
+            yield return null;
+        hitBehaviour.SetAnimSpeed(1);
+        while(hitBehaviour.HitState > 0)
+            yield return null;
+
         isStunned = false;
+        stunCoroutine = null;
     }
 
     [SerializeField]
@@ -232,14 +275,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PerformJump()
     {
-        if (isJumping)
+        if (isJumping || isStunned || swimBehaviour.IsSwimming)
             return;
         
         isJumping = true;
 
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
 
-        playerAnimator.SetTrigger("Jump");
+        playerAnimator.Play("Jump");
 
         Vector3 jumpDirection = transform.up; // <-- Global up or local up better? unsure, but global up *should* be the same as local up
         playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
@@ -262,6 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Destroy(playerAvatar);
         swimBehaviour.Drown();
+        staminaBar.Destroy();
         GameController.DeregisterPlayer(this);
         GameController.CheckEndGameCondition(this);
         Destroy(playerInputController);
@@ -274,25 +318,26 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.LogError(collision.gameObject.SetActive(false));
-        //collision.gameObject.SetActive(false);
-        // should maybe check "Floor" tag -- not yet implemented
-        isJumping = false;
-
-        if (collision.collider.material.name.ToLower().Contains("snow"))
+        if (collision.gameObject.CompareTag("Tile"))
         {
-            isOnIce = false;
-            if (collision.transform.position.y < transform.position.y)
-            {
-                IsOnGround = true;
-            }
+            isJumping = false;
         }
-        else if (collision.collider.material.name.ToLower().Contains("ice"))
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(swimBehaviour.IsSwimming && !isJumping && collision.gameObject.CompareTag("Tile"))
         {
-            isOnIce = true;
-            if (collision.transform.position.y < transform.position.y)
+            Vector3 collisionHit = collision.GetContact(0).point;
+            Vector3 direction = (collisionHit - transform.position).normalized;
+            if(direction.x * direction.x + direction.z * direction.z > direction.y * direction.y)
             {
-                IsOnGround = true;
+                // copied from jump method
+                isJumping = true;
+                AudioController.PlaySoundEffect(SoundEffectType.PLAYER_JUMP, playerAudioSrc);
+                playerAnimator.Play("Jump");
+                Vector3 jumpDirection = transform.up; // <-- Global up or local up better? unsure, but global up *should* be the same as local up
+                playerRigidbody.AddForce(jumpDirection * jumpPower, ForceMode.Impulse);
             }
         }
     }

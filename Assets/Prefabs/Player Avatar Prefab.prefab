@@ -13004,6 +13004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7034939281984235016}
   - component: {fileID: 2655880024300506079}
+  - component: {fileID: 9127287410688264272}
   m_Layer: 0
   m_Name: Player Avatar Prefab
   m_TagString: Untagged
@@ -13057,6 +13058,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9127287410688264272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339513402562073627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557929d25804bf34c940aa4504a9a974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 2655880024300506079}
 --- !u!1 &6346643197565417419
 GameObject:
   m_ObjectHideFlags: 0

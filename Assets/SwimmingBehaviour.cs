@@ -6,6 +6,8 @@ public class SwimmingBehaviour : MonoBehaviour
 {    
     [SerializeField]
     private PlayerBehaviour playerBehaviour = null;
+    [SerializeField]
+    private StaminaBarBehaviour staminaBar = null;
 
     private Animator playerAnimator = null;
 
@@ -19,9 +21,6 @@ public class SwimmingBehaviour : MonoBehaviour
     private float surfaceOffset;
 
     [SerializeField]
-    private Slider strengthBar = null;
-
-    [SerializeField]
     private PhysicMaterial playerWalkingMaterial;
 
     [SerializeField]
@@ -29,34 +28,17 @@ public class SwimmingBehaviour : MonoBehaviour
 
     public bool IsSwimming { get; private set; } = false;
 
-    private readonly float drownTime = 5.0f;
-    private float swimTimer = 0.0f;
-
     void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
-
-        InitSlider();
 
         // start out not swimming
         EndSwimming();
     }
 
-    private void InitSlider()
-    {
-        strengthBar.maxValue = drownTime;
-        strengthBar.minValue = swimTimer;
-        strengthBar.value = swimTimer;
-    }
-
     void Update()
     {
-        // needed to keep slider facing the camera
-        strengthBar.transform.LookAt(GameCamera.Instance.transform);
-
         AdjustSwimTimer();
-
-        strengthBar.value = swimTimer;
     }
 
     private void FixedUpdate()
@@ -92,32 +74,18 @@ public class SwimmingBehaviour : MonoBehaviour
 
     private void AdjustSwimTimer()
     {
-        if (LobbyBehaviour.isInLobby)
-            return;
-
-        if(GameOverBehaviour.IsGameOver)
-        {
-            if(strengthBar.gameObject.activeInHierarchy)
-            {
-                strengthBar.gameObject.SetActive(false);
-            }
-            swimTimer = 0;
-            return;
-        }
+        float breathChange = 0;
 
         if (IsSwimming)
         {
-            if (swimTimer >= drownTime)
-                playerBehaviour.KillPlayer();
-            else
-                swimTimer += Time.deltaTime;
+            breathChange -= Time.deltaTime;
         }
         else if (playerBehaviour.IsOnGround)
         {
-            swimTimer -= Time.deltaTime;
+            breathChange += Time.deltaTime;
         }
 
-        swimTimer = Mathf.Clamp(swimTimer, 0.0f, drownTime);
+        staminaBar.modifyStaminaByValue(breathChange);
     }
 
     public void StartSwimming()
@@ -125,7 +93,6 @@ public class SwimmingBehaviour : MonoBehaviour
         playerBehaviour.IsOnGround = false;
 
         IsSwimming = true;
-        strengthBar.gameObject.SetActive(true);
 
         StopCoroutine(ApplyWalkingMaterial());
         StartCoroutine(ApplySwimmingMaterial());
@@ -134,7 +101,6 @@ public class SwimmingBehaviour : MonoBehaviour
     public void EndSwimming()
     {
         IsSwimming = false;
-        strengthBar.gameObject.SetActive(false);
 
         StopCoroutine(ApplySwimmingMaterial());
         StartCoroutine(ApplyWalkingMaterial());
@@ -143,7 +109,6 @@ public class SwimmingBehaviour : MonoBehaviour
     public void Drown()
     {
         IsSwimming = false;
-        Destroy(strengthBar.transform.parent.gameObject);
         Destroy(this);
     }
 
