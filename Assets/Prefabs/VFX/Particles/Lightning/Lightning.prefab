@@ -42,7 +42,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  m_Radius: 1
+  m_Radius: 2
   m_Height: 500
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -481,6 +481,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   hitDuration: 1
+  tileDamage: 2
+  playerDamage: 4
   sfxAudioSource: {fileID: 5186097016902439522}
 --- !u!54 &6144048545030830277
 Rigidbody:

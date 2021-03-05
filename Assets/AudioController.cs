@@ -4,7 +4,7 @@ using static EventStateSwitcher;
 
 public enum SoundEffectType
 {
-    PLAYER_JUMP, PLAYER_PUNCH, PLAYER_HIT, LIGHTNING_STRIKE, TITANIC_CRASH
+    PLAYER_JUMP, PLAYER_PUNCH, PLAYER_HIT, LIGHTNING_STRIKE, TITANIC_CRASH, LIGHTNING_RIBBON
 }
 
 public class AudioController : MonoBehaviour
@@ -36,6 +36,9 @@ public class AudioController : MonoBehaviour
 
     [SerializeField]
     private AudioClip lightningStrikeSfx;    
+
+    [SerializeField]
+    private AudioClip lightningRibbonSfx;    
     
     [SerializeField]
     private AudioClip titanicCrashSfx;
@@ -115,7 +118,7 @@ public class AudioController : MonoBehaviour
     {
         audioSrc.Stop();
 
-        switch (soundEffectType)
+        switch(soundEffectType)
         {
             case SoundEffectType.PLAYER_JUMP:
                 audioSrc.PlayOneShot(instance.playerJumpClip);
@@ -131,6 +134,9 @@ public class AudioController : MonoBehaviour
                 break;
             case SoundEffectType.TITANIC_CRASH:
                 audioSrc.PlayOneShot(instance.titanicCrashSfx);
+                break;
+            case SoundEffectType.LIGHTNING_RIBBON:
+                audioSrc.PlayOneShot(instance.lightningRibbonSfx);
                 break;
             default:
                 break;

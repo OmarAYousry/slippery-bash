@@ -218,7 +218,7 @@ public class PlayerBehaviour : MonoBehaviour
         isPunchOnCD = false;
     }
 
-    public void GetHit(Vector3 forceVector)
+    public void GetHit(Vector3 forceVector, float damageMultiplier = 1)
     {
         // play sound
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
@@ -245,7 +245,7 @@ public class PlayerBehaviour : MonoBehaviour
         stunCoroutine = StartCoroutine(applyStun());
 
         // apply max stamina modification
-        float maxStaminaChangeRatio = -0.05f;
+        float maxStaminaChangeRatio = -0.05f * damageMultiplier;
         staminaBar.modifyMaxStaminaByRatio(maxStaminaChangeRatio);
     }
     private Coroutine stunCoroutine;

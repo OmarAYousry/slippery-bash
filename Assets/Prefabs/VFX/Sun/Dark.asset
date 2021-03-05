@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dark
   m_EditorClassIdentifier: 
   lux: 1
-  skyExposure: 10
+  skyExposure: 12
   exposure: 10
   indirect: 1

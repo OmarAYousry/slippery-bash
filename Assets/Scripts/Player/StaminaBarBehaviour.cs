@@ -49,7 +49,7 @@ public class StaminaBarBehaviour : MonoBehaviour
             return;
 
         float oldRatio = maxStamina / initialMaxStamina;
-        float newRatio = Mathf.Clamp01(oldRatio + ratioChange);
+        float newRatio = Mathf.Clamp(oldRatio + ratioChange, .1f, 1);
 
         maxStamina = Mathf.Clamp(initialMaxStamina * newRatio, 0, initialMaxStamina);
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);

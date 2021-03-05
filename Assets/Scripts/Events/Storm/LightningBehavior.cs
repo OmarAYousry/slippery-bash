@@ -22,7 +22,7 @@ public class LightningBehavior: MonoBehaviour
     /// The time ratio in which the second ribbon activates.
     /// </summary>
     [Tooltip("The time ratio in which the second ribbon activates.")]
-    [Range(0,1)] public float ribbonSecondPhase = .5f;
+    [Range(0, 1)] public float ribbonSecondPhase = .5f;
 
     private float ribbonTimer = -1;
     private ParticleSystem.EmissionModule emission;
@@ -92,7 +92,9 @@ public class LightningBehavior: MonoBehaviour
     /// The time ratio of the strike in which the players can get hit.
     /// </summary>
     [Tooltip("The time ratio of the strike in which the players can get hit.")]
-    [Range(0,1)] public float hitDuration = .5f;
+    [Range(0, 1)] public float hitDuration = .5f;
+    public int tileDamage = 2;
+    public int playerDamage = 4;
 
     [SerializeField]
     private AudioSource sfxAudioSource = null;
@@ -290,11 +292,11 @@ public class LightningBehavior: MonoBehaviour
             {
                 direction = Random.insideUnitSphere;
             }
-            other.GetComponent<PlayerBehaviour>().GetHit(direction);
+            other.GetComponent<PlayerBehaviour>().GetHit(direction, playerDamage);
         }
         if(other.CompareTag("Tile"))
         {
-            other.GetComponent<TileController>().DamageTile();
+            other.GetComponent<TileController>().DamageTile(0, false, tileDamage);
         }
     }
 
@@ -313,5 +315,7 @@ public class LightningBehavior: MonoBehaviour
         emission.enabled = true;
         preRibbon0.Play();
         ribbonTimer = 0;
+
+        AudioController.PlaySoundEffect(SoundEffectType.LIGHTNING_RIBBON, sfxAudioSource);
     }
 }

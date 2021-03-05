@@ -23,6 +23,7 @@ public class TitanicBehavior: EventBehavior
     /// </summary>
     [Tooltip("How long should the collider be enabled to destroy tiles?")]
     public float destroyLifetime = .1f;
+    public float playerDamage = 2;
 
     private Vector3 targetPoint;
     private Vector3 spawnPoint;
@@ -120,7 +121,7 @@ public class TitanicBehavior: EventBehavior
         }
         else if(collision.gameObject.tag.Equals("Player"))
         {
-            collision.gameObject.GetComponent<PlayerBehaviour>().GetHit(transform.forward);
+            collision.gameObject.GetComponent<PlayerBehaviour>().GetHit(transform.forward, playerDamage);
         }
     }
 

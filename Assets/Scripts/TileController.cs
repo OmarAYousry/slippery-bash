@@ -143,12 +143,12 @@ public class TileController : MonoBehaviour
         transform.rotation = oldRot;
     }
 
-    public void DamageTile(float waitTime = 0.0f, bool destroy = false)
+    public void DamageTile(float waitTime = 0.0f, bool destroy = false, int damage = 1)
     {
         if (destroyed)
             return;
 
-        hitsTaken++;
+        hitsTaken += damage;
         destroyed = (hitsTaken >= hitsTillDestroy) || destroy;
 
         StartCoroutine(DestroyMesh(waitTime, destroyed));

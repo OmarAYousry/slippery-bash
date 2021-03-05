@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5322628121809420495, guid: fd3ac1ba2b0e1e3418c2b609e52200e6, type: 3}
   additionalSpawnRadius: 5
-  lightningAmount: 3
+  lightningAmount: 4
