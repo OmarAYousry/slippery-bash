@@ -4,10 +4,18 @@ using static EventStateSwitcher;
 
 public enum SoundEffectType
 {
-    PLAYER_JUMP, PLAYER_PUNCH, PLAYER_HIT, LIGHTNING_STRIKE, TITANIC_CRASH, LIGHTNING_RIBBON
+    PLAYER_JUMP,
+    PLAYER_PUNCH,
+    PLAYER_HIT,
+    LIGHTNING_STRIKE,
+    TITANIC_CRASH,
+    LIGHTNING_RIBBON,
+    PLAYER_STEP,
+    PLAYER_SNOWSTEP,
+    PLAYER_SWIM
 }
 
-public class AudioController : MonoBehaviour
+public class AudioController: MonoBehaviour
 {
     private static AudioController instance = null;
 
@@ -35,11 +43,11 @@ public class AudioController : MonoBehaviour
     private AudioClip snowEventMusic;
 
     [SerializeField]
-    private AudioClip lightningStrikeSfx;    
+    private AudioClip lightningStrikeSfx;
 
     [SerializeField]
-    private AudioClip lightningRibbonSfx;    
-    
+    private AudioClip lightningRibbonSfx;
+
     [SerializeField]
     private AudioClip titanicCrashSfx;
 
@@ -56,18 +64,27 @@ public class AudioController : MonoBehaviour
     [SerializeField]
     private AudioClip playerGetHitClip;
 
+    [SerializeField]
+    private AudioClip playerStepClip;
+
+    [SerializeField]
+    private AudioClip playerSnowStepClip;
+
+    [SerializeField]
+    private AudioClip playerSwimClip;
+
     #endregion
 
     #region mono-behaviours
 
     void Awake()
     {
-        instance = this;    
+        instance = this;
     }
 
     void Start()
     {
-        if (!instance.defaultBGMAudioSource.isPlaying)
+        if(!instance.defaultBGMAudioSource.isPlaying)
         {
             instance.defaultBGMAudioSource.Play();
         }
@@ -85,8 +102,8 @@ public class AudioController : MonoBehaviour
     public static void PlayEventMusic(EventState eventType, AudioSource eventAudioSrc)
     {
         eventAudioSrc.Stop();
-        
-        switch (eventType)
+
+        switch(eventType)
         {
             case EventState.Idle:
                 eventAudioSrc.Stop();
@@ -138,11 +155,20 @@ public class AudioController : MonoBehaviour
             case SoundEffectType.LIGHTNING_RIBBON:
                 audioSrc.PlayOneShot(instance.lightningRibbonSfx);
                 break;
+            case SoundEffectType.PLAYER_STEP:
+                audioSrc.PlayOneShot(instance.playerStepClip);
+                break;
+            case SoundEffectType.PLAYER_SWIM:
+                audioSrc.PlayOneShot(instance.playerSwimClip);
+                break;
+            case SoundEffectType.PLAYER_SNOWSTEP:
+                audioSrc.PlayOneShot(instance.playerSnowStepClip);
+                break;
             default:
                 break;
         }
 
-        if (handleAudioSourceDestruction)
+        if(handleAudioSourceDestruction)
         {
             instance.StartCoroutine(instance.destroyAudioSourceWhenDone(audioSrc));
         }
@@ -158,7 +184,7 @@ public class AudioController : MonoBehaviour
         // remove audio source from parent to avoid parents' destruction affecting it
         sourceToBeDestroyed.transform.parent = transform;
 
-        while (sourceToBeDestroyed && sourceToBeDestroyed.isPlaying)
+        while(sourceToBeDestroyed && sourceToBeDestroyed.isPlaying)
         {
             // wait for 1 second at a time while
             // the audio source is still playing something

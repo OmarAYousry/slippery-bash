@@ -12,6 +12,7 @@ public class CrystalBehavior: MonoBehaviour
 
     [SerializeField] private ParticleSystem spawnParticles = null;
     [SerializeField] private ParticleSystem destroyParticles = null;
+    [SerializeField] private MeshRenderer mesh = null;
 
     /// <summary>
     /// Smoothen the movement changes. The higher the value, the slower the changes.
@@ -34,16 +35,21 @@ public class CrystalBehavior: MonoBehaviour
     [Tooltip("The speed the crystal goes up and down.")]
     public float floatSpeed = 1;
 
+    public Color glowColor;
+    public Color noGlowColor;
+
     private float floatHeight;
     private Vector3 toPos;
     private RaycastHit rayHit;
     private Vector3 currentVelocity;
+    private Material material;
 
 
     //---------------------------------------------------------------------------------------------//
     private void Awake()
     {
         Instance = this;
+        material = mesh.material;
     }
 
     private void Update()
@@ -59,8 +65,10 @@ public class CrystalBehavior: MonoBehaviour
             floatHeight = transform.position.y - rayHit.distance;
         }
         floatHeight = Mathf.Max(floatHeight, OceanHeightSampler.SampleHeight(gameObject, transform.position));
+        float sinus = Mathf.Sin(Time.time * floatSpeed);
         toPos = transform.position;
-        toPos.y = floatHeight + floatOffset + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
+        toPos.y = floatHeight + floatOffset + sinus * floatAmplitude;
+        material.SetColor("_EmissiveColor", Color.Lerp(noGlowColor, glowColor * 10, sinus / 2 + .5f));
     }
 
 

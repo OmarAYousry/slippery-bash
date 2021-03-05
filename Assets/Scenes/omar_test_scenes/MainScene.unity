@@ -213,7 +213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &171143178
 PrefabInstance:
@@ -598,7 +598,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &656026468 stripped
 Camera:
@@ -726,7 +726,7 @@ PrefabInstance:
     - target: {fileID: 2679600282762352279, guid: b55bb32348d04c343beb477afc37decd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2679600282762352279, guid: b55bb32348d04c343beb477afc37decd,
         type: 3}
@@ -1493,7 +1493,7 @@ PrefabInstance:
     - target: {fileID: 3122524580988490493, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3122524580988490493, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
@@ -2650,6 +2650,21 @@ PrefabInstance:
       propertyPath: _amplitudes.Array.data[111]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5802994874770226414, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802994874770226414, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716515017318755806, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d8247c7d88f07a4085af5db2b128dc4, type: 2}
     - target: {fileID: 8130552986270749650, guid: da13107105d6a5440901cf089f2715d1,
         type: 3}
       propertyPath: m_Name
@@ -2659,6 +2674,21 @@ PrefabInstance:
         type: 3}
       propertyPath: fixedOrder.Array.data[3]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: fixedOrder.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: fixedOrder.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547748470265362745, guid: da13107105d6a5440901cf089f2715d1,
+        type: 3}
+      propertyPath: fixedOrder.Array.data[0]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da13107105d6a5440901cf089f2715d1, type: 3}

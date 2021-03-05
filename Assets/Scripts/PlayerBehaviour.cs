@@ -312,7 +312,7 @@ public class PlayerBehaviour : MonoBehaviour
         isDead = true;
     }
 
-    bool isOnIce = false;
+    public bool isOnIce = false;
 
     public bool IsOnGround { get; set; } = true;
 

@@ -59,7 +59,7 @@ Material:
     - _FoamNormalStrength: 1
     - _FoamScale: 5
     - _FoamSmoothness: 0.7
-    - _MinReflectionDirectionY: -0
+    - _MinReflectionDirectionY: 0
     - _NormalsScale: 40
     - _NormalsStrength: 0.387
     - _Occlusion: 1
