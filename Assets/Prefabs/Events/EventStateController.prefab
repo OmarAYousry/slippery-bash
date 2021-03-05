@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switcher: {fileID: 6341384700895949144}
-  initialIdleDuration: 20
+  initialIdleDuration: 5
   maxMinEventDuration: {x: 30, y: 10}
   eventDurationCurve:
     serializedVersion: 2

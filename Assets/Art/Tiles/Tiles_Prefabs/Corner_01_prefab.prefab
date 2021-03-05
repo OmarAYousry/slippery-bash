@@ -62,6 +62,7 @@ MonoBehaviour:
   physicMaterials:
   - {fileID: 13400000, guid: 7958b6df963de0c45abd79c927a9a513, type: 2}
   - {fileID: 13400000, guid: 63ae5784ee6e07343a3aad3a4b78973c, type: 2}
+  foamObject: {fileID: 0}
 --- !u!114 &3249843824463994492
 MonoBehaviour:
   m_ObjectHideFlags: 0

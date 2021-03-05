@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1452379127828460386}
   - component: {fileID: 4296940665296851005}
   - component: {fileID: 9000213815047807258}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: CrystalSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4917,7 +4917,7 @@ GameObject:
   - component: {fileID: 1472270457177934566}
   - component: {fileID: 5182118993501566464}
   - component: {fileID: 4417236725844839505}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4981,7 +4981,7 @@ GameObject:
   - component: {fileID: 828537478559256301}
   - component: {fileID: 5150392111889903658}
   - component: {fileID: 887469863758340706}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: CrystalDestroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

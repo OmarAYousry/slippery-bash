@@ -32,6 +32,6 @@ public class FoamObject : MonoBehaviour
         {
             mat.SetFloat("_Strength", 1 - Mathf.Clamp01((distance - blend.x) / blendRange));
         }
-        transform.localScale = Vector3.Lerp(idleScale, Vector3.zero, Mathf.Abs(distance / blendRange));
+        transform.localScale = Vector3.Lerp(idleScale * 1.1f, Vector3.zero, Mathf.Abs(distance / blendRange));
     }
 }

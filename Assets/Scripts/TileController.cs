@@ -26,6 +26,7 @@ public class TileController : MonoBehaviour
     int hitsTaken = 0;
     bool destroyed = false;
     System.Action onDestroy = null;
+    ParticleSystem destroyEffectInstance;
 
     const float neighborRayDistance = 3f;
 
@@ -48,15 +49,17 @@ public class TileController : MonoBehaviour
         tileMesh.SetActive(false);
         brokenMeshParent.SetActive(true);
 
-        if (destroyEffect != null)
+        if (destroyEffectInstance == null)
         {
-            destroyEffect = Instantiate(destroyEffect);
-            destroyEffect.transform.position = transform.position;
-            destroyEffect.Play();
+            destroyEffectInstance = Instantiate(destroyEffect);
         }
+        destroyEffectInstance.transform.position = transform.position;
+        destroyEffectInstance.Play();
 
         if (scatterPieces)
         {
+            GetComponent<ApplyPhysicsMaterial>().foamInstance.SetActive(false);
+
             foreach (Transform brokenPiece in brokenMeshParent.transform)
             {
                 brokenPiece.GetComponent<MeshCollider>().enabled = true;
