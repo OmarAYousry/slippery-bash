@@ -137,26 +137,26 @@ public class PlatformController : MonoBehaviour
         List<GameObject> buoyancyElements = new List<GameObject>();
 
         GameObject topRight = new GameObject();
+        topRight.transform.rotation = buoyancyTiles[0].transform.rotation;
         topRight.transform.localPosition = new Vector3(maxX + offset, buoyancyTiles[0].transform.localPosition.y, maxZ + offset);
-        //topRight.transform.position = GetUpRightTile(tiles[0]).transform.position;
         topRight.transform.parent = parentObj.transform;
         buoyancyElements.Add(topRight);
 
         GameObject topLeft = new GameObject();
+        topLeft.transform.rotation = buoyancyTiles[1].transform.rotation;
         topLeft.transform.localPosition = new Vector3(minX - offset, buoyancyTiles[1].transform.localPosition.y, maxZ + offset);
-        //topLeft.transform.position = GetUpLeftTile(tiles[0]).transform.position;
         topLeft.transform.parent = parentObj.transform;
         buoyancyElements.Add(topLeft);
 
         GameObject bottomRight = new GameObject();
+        bottomRight.transform.rotation = buoyancyTiles[2].transform.rotation;
         bottomRight.transform.localPosition = new Vector3(maxX + offset, buoyancyTiles[2].transform.localPosition.y, minZ - offset);
-        //bottomRight.transform.position = GetDownRightTile(tiles[0]).transform.position;
         bottomRight.transform.parent = parentObj.transform;
         buoyancyElements.Add(bottomRight);
 
         GameObject bottomLeft = new GameObject();
+        bottomLeft.transform.rotation = buoyancyTiles[3].transform.rotation;
         bottomLeft.transform.localPosition = new Vector3(minX - offset, buoyancyTiles[3].transform.localPosition.y, minZ - offset);
-        //bottomLeft.transform.position = GetDownLeftTile(tiles[0]).transform.position;
         bottomLeft.transform.parent = parentObj.transform;
         buoyancyElements.Add(bottomLeft);
 
