@@ -203,7 +203,7 @@ public class PlayerBehaviour : MonoBehaviour
                 }
                 else if (contactedCollider.CompareTag("Crystal"))
                 {
-                    float maxStaminaToRegain = 0.25f;
+                    float maxStaminaToRegain = 1.0f;
                     staminaBar.modifyMaxStaminaByRatio(maxStaminaToRegain);
                     contactedCollider.GetComponent<CrystalBehavior>().Destroy();
                 }
