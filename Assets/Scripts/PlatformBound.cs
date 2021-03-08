@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlatformBound : MonoBehaviour
 {
     [SerializeField]
-    float pushForce = 10f;
+    float pushForceFactor = 7.5f;
 
     List<GameObject> platformsToPush = new List<GameObject>();
 
@@ -39,7 +39,7 @@ public class PlatformBound : MonoBehaviour
         foreach(GameObject platform in platformsToPush)
         {
             Rigidbody rb = platform.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * pushForce);
+            rb.AddForce(transform.forward * pushForceFactor * rb.mass);
             Debug.Log("pushing " + platform.name);
         }
     }
