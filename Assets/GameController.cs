@@ -99,6 +99,8 @@ public class GameController : MonoBehaviour
 
     public static void ResetToTitle()
     {
+        Time.timeScale = 1;
+
         if(TitleScreen.Instance)
             TitleScreen.Instance.LoadGame();
         else

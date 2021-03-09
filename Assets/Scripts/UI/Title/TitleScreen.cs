@@ -131,7 +131,6 @@ public class TitleScreen: MonoBehaviour
         {
             SetDissolve(appear ? 1 - sCurve.Evaluate(progress) : sCurve.Evaluate(progress));
             progress = (Time.time - timer) / dissolveDuration;
-            Debug.Log(appear ? 1 - sCurve.Evaluate(progress) : sCurve.Evaluate(progress));
             yield return null;
         }
         SetDissolve(appear ? 0 : 1);
@@ -155,6 +154,9 @@ public class TitleScreen: MonoBehaviour
 
     private IEnumerator LoadGameScene()
     {
+        Time.timeScale = 1;
+        yield return null;
+
         float endTime = Time.realtimeSinceStartup + minLoadDuration;
 
         AsyncOperation op = SceneManager.LoadSceneAsync(gameScene);

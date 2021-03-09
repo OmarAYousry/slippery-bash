@@ -19,8 +19,7 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     public static void ShowPauseMenu()
     {
-        Debug.LogError(isGamePaused);
-        if (isGamePaused)
+        if (isGamePaused || TitleScreen.Instance.gameObject.activeInHierarchy)
             return;
 
         instance.gameObject.SetActive(true);

@@ -369,8 +369,8 @@ MonoBehaviour:
   dissolveDuration: 1
   dissolvePattern: {fileID: 2800000, guid: c032f2c3da48d9a40bff389ea026bfeb, type: 3}
   gameScene: MainScene
-  minLoadDuration: 1
-  loadDissolveDuration: 1
+  minLoadDuration: 0.5
+  loadDissolveDuration: 0.5
 --- !u!1 &7474960319212715153
 GameObject:
   m_ObjectHideFlags: 0
