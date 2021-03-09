@@ -370,6 +370,8 @@ MonoBehaviour:
   playerJumpClip: {fileID: 8300000, guid: b360d187ba4ef5c41bf17eb896f720b1, type: 3}
   playerPunchClip: {fileID: 8300000, guid: 2bb41f7de1a0929478b669f0f54965b1, type: 3}
   playerGetHitClip: {fileID: 8300000, guid: 2a577a0c76967b04595b290ce26e49b0, type: 3}
+  playerGetHitParticleClip: {fileID: 8300000, guid: 8fb22472437d7404a8a36abc4d3d782f,
+    type: 3}
   playerStepClip: {fileID: 8300000, guid: ce70576df4f812d40afca0f4a9a228e2, type: 3}
   playerSnowStepClip: {fileID: 8300000, guid: c467be2c31ee1d34591269abed6c89c0, type: 3}
   playerSwimClip: {fileID: 8300000, guid: 04d490d911450a54db8e828ede107f2c, type: 3}

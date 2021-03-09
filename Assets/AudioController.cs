@@ -17,7 +17,8 @@ public enum SoundEffectType
     TILE_DAMAGE,
     TILE_BREAK,
     CRYSTAL_SPAWN,
-    CRYSTAL_DESTROY
+    CRYSTAL_DESTROY,
+    HIT_PARTICLE
 }
 
 public class AudioController: MonoBehaviour
@@ -80,6 +81,9 @@ public class AudioController: MonoBehaviour
 
     [SerializeField]
     private AudioClip playerGetHitClip;
+
+    [SerializeField]
+    private AudioClip playerGetHitParticleClip;
 
     [SerializeField]
     private AudioClip playerStepClip;
@@ -198,6 +202,9 @@ public class AudioController: MonoBehaviour
                 break;
             case SoundEffectType.CRYSTAL_DESTROY:
                 audioSrc.PlayOneShot(instance.crystalBreakSfx);
+                break;
+            case SoundEffectType.HIT_PARTICLE:
+                audioSrc.PlayOneShot(instance.playerGetHitParticleClip);
                 break;
             default:
                 break;

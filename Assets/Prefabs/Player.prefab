@@ -230,11 +230,14 @@ MonoBehaviour:
   - {fileID: 6854866128670184511, guid: 946b7325f6a0384478c78b341615aadb, type: 3}
   - {fileID: 3608708206099038908, guid: 35303601d60a94c46845bf3daecdc5cd, type: 3}
   - {fileID: 4164644468952488918, guid: 60d9aa733290bb943ba77948737dd5a5, type: 3}
+  hitParticlePrefab: {fileID: 823705137591127847, guid: 5f34eded2db583342b4abfa0c237c7c0,
+    type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   jumpPower: 9
   iceSlipSpeed: 3
+  isOnIce: 0
 --- !u!114 &3244669537654301553
 MonoBehaviour:
   m_ObjectHideFlags: 0

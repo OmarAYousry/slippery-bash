@@ -17,6 +17,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject[] playerAvatarPrefabs = null;
 
+    [SerializeField]
+    private GameObject hitParticlePrefab = null;
+
     private Animator playerAnimator = null;
 
     private Transform punchTransform = null;
@@ -31,6 +34,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float distanceMoved { get; private set; }
 
     bool isJumping = false;
+    ParticleSystem hitParticle;
 
     private void Awake()
     {
@@ -224,6 +228,13 @@ public class PlayerBehaviour : MonoBehaviour
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
         if(playerAnimator)
             playerAnimator.Play("Hit");
+
+        // play particles
+        if(!hitParticle)
+            hitParticle = Instantiate(hitParticlePrefab).GetComponent<ParticleSystem>();
+        hitParticle.transform.position = transform.position;
+        hitParticle.Play();
+        AudioController.PlaySoundEffect(SoundEffectType.HIT_PARTICLE, hitParticle.GetComponent<AudioSource>());
 
         // add force
         const float hitPower = 200.0f;
