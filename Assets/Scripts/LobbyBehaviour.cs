@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 /// <summary>
@@ -64,7 +62,7 @@ public class LobbyBehaviour : MonoBehaviour
 
     public static void virtualStartGameButtonClick()
     {
-        if (instance.startGameButton.IsInteractable())
+        if (instance.startGameButton.IsInteractable() && instance.startGameButton.gameObject.activeInHierarchy)
             instance.startGameButton.onClick.Invoke();
     }
 
@@ -99,7 +97,6 @@ public class LobbyBehaviour : MonoBehaviour
 
     // added by Akbar Suriaganda
     //-----------------------------------------------------------------------------------------------------------------------------------------------//
-    [SerializeField] private TextMeshProUGUI objective = null;
     [SerializeField] private PlayerJoinUI[] playerUI = null;
     [SerializeField] private MainMenuAnimation anim = null;
 
@@ -115,21 +112,11 @@ public class LobbyBehaviour : MonoBehaviour
     private void UpdateObjectiveAndButton()
     {
         playerJoined = GameController.players.Count;
-        startGameButton.interactable = playerJoined > 0;
+        startGameButton.interactable = playerJoined > 1;
 
         for(int i = 0; i < playerUI.Length; i++)
         {
             playerUI[i].ToggleJoin(i < playerJoined, i);
-        }
-
-        switch(playerJoined)
-        {
-            case 0: objective.text = "NO PLAYER JOINED";
-                break;
-            case 1: objective.text = "SURVIVAL!";
-                break;
-            default: objective.text = "LAST MAN STANDING!";
-                break;
         }
     }
 

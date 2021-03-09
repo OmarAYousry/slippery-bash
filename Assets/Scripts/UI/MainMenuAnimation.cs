@@ -9,8 +9,8 @@
 public class MainMenuAnimation : MonoBehaviour
 {
     [SerializeField] private RectTransform mainUI = null;
-    [SerializeField] private RectTransform quitUI = null;
-    [SerializeField] private RectTransform creditsUI = null;
+    [SerializeField] private RectTransform startUI = null;
+    [SerializeField] private RectTransform playerUI = null;
 
     /// <summary>
     /// The duration of the full animation in seconds.
@@ -41,8 +41,8 @@ public class MainMenuAnimation : MonoBehaviour
             curveProgress = curve.Evaluate(animProgress);
 
             mainUI.anchoredPosition = Vector2.left * Screen.width * curveProgress;
-            quitUI.anchoredPosition = Vector2.right * Screen.width * curveProgress;
-            creditsUI.anchoredPosition = Vector2.right * Screen.width * curveProgress;
+            startUI.anchoredPosition = Vector2.right * Screen.width * curveProgress;
+            playerUI.anchoredPosition = Vector2.up * Screen.height * curveProgress;
         }
         else
         {
