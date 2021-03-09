@@ -88,7 +88,6 @@ public class TitanicBehavior: EventBehavior
             spawnPoint = transform.position;
             spawnPoint.y = OceanHeightSampler.SampleHeight(gameObject, spawnPoint);
             transform.position = spawnPoint;
-            // TODO: add roll
             if(rigid.velocity.sqrMagnitude > 0)
             {
                 transform.rotation = Quaternion.LookRotation(rigid.velocity);
@@ -105,13 +104,12 @@ public class TitanicBehavior: EventBehavior
         // TODO: check if collision with tile
         if(collision.collider.GetComponentInParent<TileController>())
         {
-            collision.collider.GetComponentInParent<TileController>().DamageTile(0, true);
-
             if(desiredVelocity.sqrMagnitude > 0)
             {
                 destroyCollider.parent = null;
                 destroyCollider.position = transform.position;
                 destroyCollider.rotation = Quaternion.LookRotation(desiredVelocity, Vector3.up);
+                destroyCollider.GetComponent<TileDestruction>().SetupCollider();
                 destroyCollider.gameObject.SetActive(true);
 
                 Invoke("DeactivateDestroyCollider", destroyLifetime);

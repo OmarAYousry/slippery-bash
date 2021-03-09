@@ -12,7 +12,12 @@ public enum SoundEffectType
     LIGHTNING_RIBBON,
     PLAYER_STEP,
     PLAYER_SNOWSTEP,
-    PLAYER_SWIM
+    PLAYER_SWIM,
+    WATER_JUMP,
+    TILE_DAMAGE,
+    TILE_BREAK,
+    CRYSTAL_SPAWN,
+    CRYSTAL_DESTROY
 }
 
 public class AudioController: MonoBehaviour
@@ -51,6 +56,18 @@ public class AudioController: MonoBehaviour
     [SerializeField]
     private AudioClip titanicCrashSfx;
 
+    [SerializeField]
+    private AudioClip tileDamageSfx;
+
+    [SerializeField]
+    private AudioClip tileBreakSfx;
+
+    [SerializeField]
+    private AudioClip crystalSpawnSfx;
+
+    [SerializeField]
+    private AudioClip crystalBreakSfx;
+
     #endregion
 
     #region player-sound-effect-clips
@@ -72,6 +89,9 @@ public class AudioController: MonoBehaviour
 
     [SerializeField]
     private AudioClip playerSwimClip;
+
+    [SerializeField]
+    private AudioClip playerWaterJumpClip;
 
     #endregion
 
@@ -163,6 +183,21 @@ public class AudioController: MonoBehaviour
                 break;
             case SoundEffectType.PLAYER_SNOWSTEP:
                 audioSrc.PlayOneShot(instance.playerSnowStepClip);
+                break;
+            case SoundEffectType.WATER_JUMP:
+                audioSrc.PlayOneShot(instance.playerWaterJumpClip);
+                break;
+            case SoundEffectType.TILE_DAMAGE:
+                audioSrc.PlayOneShot(instance.tileDamageSfx);
+                break;
+            case SoundEffectType.TILE_BREAK:
+                audioSrc.PlayOneShot(instance.tileBreakSfx);
+                break;
+            case SoundEffectType.CRYSTAL_SPAWN:
+                audioSrc.PlayOneShot(instance.crystalSpawnSfx);
+                break;
+            case SoundEffectType.CRYSTAL_DESTROY:
+                audioSrc.PlayOneShot(instance.crystalBreakSfx);
                 break;
             default:
                 break;

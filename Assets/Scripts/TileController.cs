@@ -27,6 +27,7 @@ public class TileController : MonoBehaviour
     bool destroyed = false;
     System.Action onDestroy = null;
     ParticleSystem destroyEffectInstance;
+    AudioSource sfx;
 
     const float neighborRayDistance = 3f;
 
@@ -42,7 +43,7 @@ public class TileController : MonoBehaviour
         LocateNeighboringTiles();
     }
 
-    public IEnumerator DestroyMesh(float secondsToWait, bool scatterPieces = false)
+    public IEnumerator DestroyMesh(float secondsToWait, bool scatterPieces = false, bool playSound = true)
     {
         yield return new WaitForSeconds(secondsToWait);
 
@@ -56,8 +57,16 @@ public class TileController : MonoBehaviour
         destroyEffectInstance.transform.position = transform.position;
         destroyEffectInstance.Play();
 
+        if(!sfx)
+        {
+            sfx = GetComponent<AudioSource>();
+        }
+
         if (scatterPieces)
         {
+            if(playSound)
+                AudioController.PlaySoundEffect(SoundEffectType.TILE_BREAK, sfx);
+
             GetComponent<ApplyPhysicsMaterial>().foamInstance.SetActive(false);
 
             foreach (Transform brokenPiece in brokenMeshParent.transform)
@@ -78,6 +87,10 @@ public class TileController : MonoBehaviour
                 onDestroy();
                 onDestroy = null;
             }
+        }
+        else if(playSound)
+        {
+            AudioController.PlaySoundEffect(SoundEffectType.TILE_DAMAGE, sfx);
         }
 
         yield return null;
@@ -143,7 +156,7 @@ public class TileController : MonoBehaviour
         transform.rotation = oldRot;
     }
 
-    public void DamageTile(float waitTime = 0.0f, bool destroy = false, int damage = 1)
+    public void DamageTile(float waitTime = 0.0f, bool destroy = false, int damage = 1, bool playSound = true)
     {
         if (destroyed)
             return;
@@ -151,7 +164,7 @@ public class TileController : MonoBehaviour
         hitsTaken += damage;
         destroyed = (hitsTaken >= hitsTillDestroy) || destroy;
 
-        StartCoroutine(DestroyMesh(waitTime, destroyed));
+        StartCoroutine(DestroyMesh(waitTime, destroyed, playSound));
     }
 
     public void DestroyMeshCascading(float cascadeRadius = 2.0f, int maxNumCascades = 999)

@@ -28,9 +28,12 @@ public class SwimmingBehaviour : MonoBehaviour
 
     public bool IsSwimming { get; private set; } = false;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         // start out not swimming
         EndSwimming();
@@ -61,12 +64,14 @@ public class SwimmingBehaviour : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector3();
             playerAnimator.SetBool("Swimming", true);
+            AudioController.PlaySoundEffect(SoundEffectType.WATER_JUMP, audioSource);
             StartSwimming();
             return true;
         }
         else if (IsSwimming && transform.position.y > OceanHeightSampler.SampleHeight(gameObject, transform.position) + surfaceOffset)
         {
             playerAnimator.SetBool("Swimming", false);
+            AudioController.PlaySoundEffect(SoundEffectType.WATER_JUMP, audioSource);
             EndSwimming();
         }
         return false;

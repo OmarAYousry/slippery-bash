@@ -15,6 +15,7 @@ public class CountdownUI: MonoBehaviour
     public static CountdownUI Instance { get; private set; }
 
     [SerializeField] private Animator anim = null;
+    [SerializeField] private AudioSource audio = null;
 
 
     //---------------------------------------------------------------------------------------------//
@@ -60,5 +61,15 @@ public class CountdownUI: MonoBehaviour
     public void AnimationEnd()
     {
         gameObject.SetActive(false);
+    }
+
+    public void PlaySoundNumber()
+    {
+        AudioController.PlaySoundEffect(SoundEffectType.TILE_DAMAGE);
+    }
+
+    public void PlaySoundGo()
+    {
+        AudioController.PlaySoundEffect(SoundEffectType.TILE_BREAK);
     }
 }

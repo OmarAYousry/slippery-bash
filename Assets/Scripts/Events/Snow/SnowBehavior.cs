@@ -75,7 +75,7 @@ public class SnowBehavior: EventBehavior
                         currentRadius = Vector3.Distance(GameController.players[i].transform.position, spawnPoint / playerAmount);
                     }
                 }
-                spawnPoint /= playerAmount;
+                spawnPoint /= Mathf.Max(1, playerAmount);
             }
             Vector2 randomOffset = Random.insideUnitCircle * (currentRadius + additionalSpawnRadius);
             spawnPoint.x += randomOffset.x;

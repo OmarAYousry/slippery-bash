@@ -43,6 +43,7 @@ public class CrystalBehavior: MonoBehaviour
     private RaycastHit rayHit;
     private Vector3 currentVelocity;
     private Material material;
+    private AudioSource audio;
 
 
     //---------------------------------------------------------------------------------------------//
@@ -50,6 +51,7 @@ public class CrystalBehavior: MonoBehaviour
     {
         Instance = this;
         material = mesh.material;
+        audio = transform.parent.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -88,6 +90,8 @@ public class CrystalBehavior: MonoBehaviour
 
         spawnParticles.transform.position = transform.position;
         spawnParticles.Play();
+
+        AudioController.PlaySoundEffect(SoundEffectType.CRYSTAL_SPAWN);
     }
 
     /// <summary>
@@ -101,6 +105,8 @@ public class CrystalBehavior: MonoBehaviour
         spawnParticles.transform.position = transform.position;
         spawnParticles.Play();
         gameObject.SetActive(false);
+
+        AudioController.PlaySoundEffect(SoundEffectType.CRYSTAL_SPAWN);
     }
 
     /// <summary>
@@ -114,5 +120,7 @@ public class CrystalBehavior: MonoBehaviour
         destroyParticles.transform.position = transform.position;
         destroyParticles.Play();
         gameObject.SetActive(false);
+
+        AudioController.PlaySoundEffect(SoundEffectType.CRYSTAL_DESTROY);
     }
 }

@@ -222,7 +222,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // play sound
         AudioController.PlaySoundEffect(SoundEffectType.PLAYER_HIT, playerAudioSrc);
-        playerAnimator.Play("Hit");
+        if(playerAnimator)
+            playerAnimator.Play("Hit");
 
         // add force
         const float hitPower = 200.0f;

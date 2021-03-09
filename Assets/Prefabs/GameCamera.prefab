@@ -362,13 +362,18 @@ MonoBehaviour:
   snowEventMusic: {fileID: 8300000, guid: 8c3faae4928fc0f45a6687107d365032, type: 3}
   lightningStrikeSfx: {fileID: 8300000, guid: 72ab635d7f5f7fa4184212bf0610a3c0, type: 3}
   lightningRibbonSfx: {fileID: 8300000, guid: 5d99643b8544f99488e5ac7643e047ce, type: 3}
-  titanicCrashSfx: {fileID: 0}
+  titanicCrashSfx: {fileID: 8300000, guid: 63598a0f60a00f8478d689067159edb9, type: 3}
+  tileDamageSfx: {fileID: 8300000, guid: 6b33dcb53260ca94f872520e7f808f1c, type: 3}
+  tileBreakSfx: {fileID: 8300000, guid: b07d9ebc3ccc02c4593bccde56c23a2c, type: 3}
+  crystalSpawnSfx: {fileID: 8300000, guid: 5cfb59a2f4ee8374e94701d0c18f1caa, type: 3}
+  crystalBreakSfx: {fileID: 8300000, guid: 93913a726a1f1da4682182969eaf129b, type: 3}
   playerJumpClip: {fileID: 8300000, guid: b360d187ba4ef5c41bf17eb896f720b1, type: 3}
   playerPunchClip: {fileID: 8300000, guid: 2bb41f7de1a0929478b669f0f54965b1, type: 3}
   playerGetHitClip: {fileID: 8300000, guid: 2a577a0c76967b04595b290ce26e49b0, type: 3}
   playerStepClip: {fileID: 8300000, guid: ce70576df4f812d40afca0f4a9a228e2, type: 3}
   playerSnowStepClip: {fileID: 8300000, guid: c467be2c31ee1d34591269abed6c89c0, type: 3}
   playerSwimClip: {fileID: 8300000, guid: 04d490d911450a54db8e828ede107f2c, type: 3}
+  playerWaterJumpClip: {fileID: 8300000, guid: b01c18dec88822349a1612b24206d80e, type: 3}
 --- !u!1 &8368598161625824950
 GameObject:
   m_ObjectHideFlags: 0
