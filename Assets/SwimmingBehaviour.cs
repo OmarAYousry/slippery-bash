@@ -79,6 +79,9 @@ public class SwimmingBehaviour : MonoBehaviour
 
     private void AdjustSwimTimer()
     {
+        if(GameController.players != null && GameController.players.Count <= 1)
+            return;
+
         float breathChange = 0;
 
         if (IsSwimming)
