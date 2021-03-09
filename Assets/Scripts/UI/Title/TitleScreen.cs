@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TitleScreen : MonoBehaviour
+public class TitleScreen: MonoBehaviour
 {
+    public static TitleScreen Instance { get; private set; }
+
     public AnimationCurve sCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
     [Header("Presents")]
@@ -19,7 +22,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private GameObject titleParent = null;
     [SerializeField] private ComputeShader shader = null;
     [SerializeField] private RawImage mask = null;
-    [Range(0f,1f)] public float dissolve = 0;
+    [Range(0f, 1f)] public float dissolve = 0;
     public float size = 1;
     public float dissolveDuration = 2;
     public Texture dissolvePattern;
@@ -27,10 +30,10 @@ public class TitleScreen : MonoBehaviour
     private RenderTexture render;
     private int kernel;
 
-    [Header("Instruction")]
-    [SerializeField] private TextMeshProUGUI instruction = null;
-    public float instructionOffset = 2;
-    public float breatheSpeed = 1;
+    [Header("Load game")]
+    public string gameScene = "MainScene";
+    public float minLoadDuration = 1;
+    public float loadDissolveDuration = 1;
 
     private Color toColor;
 
@@ -38,6 +41,14 @@ public class TitleScreen : MonoBehaviour
     //---------------------------------------------------------------------------------------------//
     private void Awake()
     {
+        if(Instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         render = new RenderTexture(1024, 1024, 1);
         render.enableRandomWrite = true;
         render.Create();
@@ -54,15 +65,6 @@ public class TitleScreen : MonoBehaviour
         StartCoroutine(Presenting());
     }
 
-    private void Update()
-    {
-        if(instruction.gameObject.activeInHierarchy)
-        {
-            InstructionsBreathe();
-            CheckForInput();
-        }
-    }
-
 
     //---------------------------------------------------------------------------------------------//
     private void SetDissolve(float dissolve)
@@ -70,21 +72,6 @@ public class TitleScreen : MonoBehaviour
         shader.SetFloat("Size", size);
         shader.SetFloat("Dissolve", dissolve);
         shader.Dispatch(kernel, 1024 / 8, 1024 / 8, 1);
-    }
-
-    private void InstructionsBreathe()
-    {
-        toColor.r = toColor.g = toColor.b = 1;
-        toColor.a = Mathf.Sin(Time.time * breatheSpeed) / 4 + .75f;
-        instruction.color = toColor;
-    }
-
-    private void CheckForInput()
-    {
-        if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            StartCoroutine(ClosingTitle());
-        }
     }
 
 
@@ -121,42 +108,60 @@ public class TitleScreen : MonoBehaviour
         iceGuys.color = Color.clear;
 
         // title dissolve
-        titleParent.SetActive(true);
-        instruction.gameObject.SetActive(false);
-        SetDissolve(1);
-        timer = Time.time;
-        progress = 0;
-        while(progress < 1)
-        {
-            SetDissolve(1 - sCurve.Evaluate(progress));
-            progress = (Time.time - timer) / dissolveDuration;
-            yield return null;
-        }
-        SetDissolve(0);
+        yield return TitleDissolve(true, dissolveDuration);
 
         // wait before instruction
-        yield return new WaitForSeconds(instructionOffset);
-
-        // show instructions
+        yield return new WaitForSeconds(2f);
         presentsParent.SetActive(false);
-        instruction.gameObject.SetActive(true);
+        yield return LoadGameScene();
+
+        yield return TitleDissolve(false, dissolveDuration);
+
+        gameObject.SetActive(false);
     }
 
-    private IEnumerator ClosingTitle()
+    private IEnumerator TitleDissolve(bool appear, float dissolveDuration)
     {
-        instruction.gameObject.SetActive(false);
-        SetDissolve(0);
+        if(appear)
+            titleParent.SetActive(true);
+        SetDissolve(appear ? 1 : 0);
         float timer = Time.time;
         float progress = 0;
         while(progress < 1)
         {
-            SetDissolve(sCurve.Evaluate(progress));
+            SetDissolve(appear ? 1 - sCurve.Evaluate(progress) : sCurve.Evaluate(progress));
             progress = (Time.time - timer) / dissolveDuration;
+            Debug.Log(appear ? 1 - sCurve.Evaluate(progress) : sCurve.Evaluate(progress));
             yield return null;
         }
-        SetDissolve(1);
+        SetDissolve(appear ? 0 : 1);
+        if(!appear)
+            titleParent.SetActive(false);
+    }
 
-        titleParent.SetActive(false);
+    public void LoadGame()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(LoadingGame());
+    }
+
+    private IEnumerator LoadingGame()
+    {
+        yield return TitleDissolve(true, loadDissolveDuration);
+        yield return LoadGameScene();
+        yield return TitleDissolve(false, loadDissolveDuration);
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator LoadGameScene()
+    {
+        float endTime = Time.realtimeSinceStartup + minLoadDuration;
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(gameScene);
+        while(!op.isDone)
+            yield return null;
+
+        while(Time.realtimeSinceStartup < endTime)
+            yield return null;
     }
 }

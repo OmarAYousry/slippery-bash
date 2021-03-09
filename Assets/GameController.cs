@@ -65,12 +65,10 @@ public class GameController : MonoBehaviour
 
     public static void PauseGame()
     {
-        Debug.LogError(LobbyBehaviour.isInLobby);
         if (PauseMenuBehaviour.isGamePaused || LobbyBehaviour.isInLobby)
         {
             return;
         }
-        Debug.LogError("here...");
 
         Time.timeScale = 0.0f;
         foreach (PlayerBehaviour player in players)
@@ -78,7 +76,6 @@ public class GameController : MonoBehaviour
             // TODO: Change Control Scheme to UI
             player.ChangeInputToUI();
         }
-        Debug.LogError("here...2");
 
         PauseMenuBehaviour.ShowPauseMenu();
     }
@@ -102,6 +99,9 @@ public class GameController : MonoBehaviour
 
     public static void ResetToTitle()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        if(TitleScreen.Instance)
+            TitleScreen.Instance.LoadGame();
+        else
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
